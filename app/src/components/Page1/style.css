@@ -1,12 +1,14 @@
 
 .firstPage{
     height: 100vh;
+    width: 100vw;
     background-color: aqua;
     z-index: 1;
 }
 
     .background1{
         position: fixed;
+        top: 0;
         left: 0;
         height: 100vh;
         width: 50vw;
@@ -21,6 +23,7 @@
 
     .background2{
         position: fixed;
+        top: 0;
         right: 0;
         height: 100vh;
         width: 50vw;
@@ -35,6 +38,7 @@
 
     .background3{
         position: fixed;
+        top: 0;
         right: 0;
         height: 100vh;
         width: 50vw;
