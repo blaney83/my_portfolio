@@ -1,0 +1,30 @@
+
+.firstPage{
+    height: 100vh;
+    width: 50vw;
+    background-color: aqua
+}
+
+    .background1{
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        z-index: -1;
+        background-image: url("../../assets/img/trianglify\ \(1\).png");
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover;
+        background-attachment: fixed
+    }
+
+    .background2{
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        z-index: -10;
+        background-image: url("../../assets/img/trianglify\ \(4\).png");
+        background-position: center; /* Center the image */
+        background-repeat: no-repeat; /* Do not repeat the image */
+        background-size: cover;
+        background-attachment: fixed
+    }

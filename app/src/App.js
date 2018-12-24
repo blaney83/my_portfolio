@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component, useEffect } from 'react';
+import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/lib/integration/react';
+import { persistor, store} from "./state";
 import './App.css';
+import Page1 from "./components/Page1/Page1.js"
+import Page2 from "./components/Page2/Page2.js"
+import Page3 from "./components/Page3/Page3.js"
 
 class App extends Component {
+
   render() {
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <div className="App">
+            <Page1></Page1>
+            <Page2></Page2>
+            <Page3></Page3>
+          </div>
+        </PersistGate>
+      </Provider>
     );
   }
 }

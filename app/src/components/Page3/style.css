@@ -1,0 +1,19 @@
+
+.container{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.emptyHalf{
+    position: relative;
+    height: 100vh;
+    width: 50vw;
+}
+
+.thirdPage{
+    position: relative;
+    height: 100vh;
+    width: 50vw;
+    background-color: aqua
+}
