@@ -1,19 +1,47 @@
-import React from "react"
-import "./style.css"
+import React, { useEffect, useState } from "react"
+import { connect } from "react-redux";
+import injectSheet from 'react-jss'
 
-function Page4(){
-    // setInterval(function(){
-    //     console.log(window.scrollY)
-    // }, 5000)
+const styles = {
+    fourthPage : {
+        position: "relative",
+        height: "100vh",
+        width: "50vw",
+        backgroundColor: "aqua",
+        zIndex: "1"
+    },
+    fourthContainer : {
+        position: "relative",
+        display: "flex",
+        flexDirection: "row",
+        zIndex: "1",
+    },
+    fourthEmptyHalf : {
+        position: "relative",
+        height: "100vh",
+        width: "50vw",
+    }
+}
+
+function Page4(props){
+    const { classes } = props;
+
     return(
-        <div className="container">
-        <div className="fourthPage">
+        <div className={classes.fourthContainer}>
+        <div className={classes.fourthPage}>
             Hello World
         </div>
-        <div className="emptyHalf"></div>
+        <div className={classes.fourthEmptyHalf}></div>
         </div>
     )
 
 }
 
-export default Page4
+function mapDispatchToProps(dispatch) {
+}
+
+function mapStateToProps(state) {
+    
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Page4))

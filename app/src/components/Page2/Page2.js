@@ -1,14 +1,33 @@
-import React from "react"
-import "./style.css"
+import React, { useEffect, useState } from "react"
+import { connect } from "react-redux";
+import injectSheet from 'react-jss'
 
-function Page2(){
+const styles = {
+    secondPage : {
+        height: "100vh",
+        width: "50vw",
+        backgroundColor: "orange",
+        zIndex: "1"
+    }
+}
 
-    return(
-        <div className="secondPage">
+
+function Page2(props) {
+    const { classes } = props;
+
+    return (
+        <div className={classes.secondPage}>
             Hello Again!
         </div>
     )
 
 }
 
-export default Page2
+function mapDispatchToProps(dispatch) {
+}
+
+function mapStateToProps(state) {
+    
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Page2))
