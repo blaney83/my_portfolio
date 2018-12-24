@@ -26,14 +26,22 @@ function Page1(props) {
         }else if (window.scrollY >= oneTall/2 && window.scrollY < oneTall + oneTall/2){  
             console.log("clack")
             document.getElementsByClassName("landingPage")[0].style.display = "none" 
-            document.getElementsByClassName("background2")[0].style.display = "initial"            
-            document.getElementsByClassName("background1")[0].style.display = "none" 
+            document.getElementsByClassName("background2")[0].style.display = "block"            
+            document.getElementsByClassName("background1")[0].style.display = "block" 
+            document.getElementsByClassName("background3")[0].style.display = "none" 
 
             // document.getElementsByClassName("background2")[0].style.zIndex = "-3"            
+        }else if(window.scrollY >= oneTall + oneTall/2 && window.scrollY < oneTall * 2  + oneTall/2){
+            console.log("boom")
+            document.getElementsByClassName("background1")[0].style.display = "block" 
+            document.getElementsByClassName("background2")[0].style.display = "block"  
+            document.getElementsByClassName("background3")[0].style.display = "none" 
+            // document.getElementsByClassName("background2")[0].style.zIndex = "-1"            
         }else if(window.scrollY >= oneTall * 2 + oneTall/2 && window.scrollY < oneTall * 3 + oneTall/2){
             console.log("boom")
             document.getElementsByClassName("background1")[0].style.display = "block" 
-            document.getElementsByClassName("background2")[0].style.display = "none"            
+            document.getElementsByClassName("background2")[0].style.display = "none"  
+            document.getElementsByClassName("background3")[0].style.display = "block" 
             // document.getElementsByClassName("background2")[0].style.zIndex = "-1"            
         }
     }
