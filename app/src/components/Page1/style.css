@@ -1,8 +1,8 @@
 
 .firstPage{
     height: 100vh;
-    width: 50vw;
-    background-color: aqua
+    background-color: aqua;
+    z-index: 1;
 }
 
     .background1{
@@ -10,6 +10,7 @@
         height: 100vh;
         width: 100vw;
         z-index: -1;
+        display: none;
         background-image: url("../../assets/img/trianglify\ \(1\).png");
         background-position: center; /* Center the image */
         background-repeat: no-repeat; /* Do not repeat the image */
@@ -21,7 +22,8 @@
         position: fixed;
         height: 100vh;
         width: 100vw;
-        z-index: -10;
+        display: none;
+        z-index: -1;
         background-image: url("../../assets/img/trianglify\ \(4\).png");
         background-position: center; /* Center the image */
         background-repeat: no-repeat; /* Do not repeat the image */

@@ -9,9 +9,10 @@
 .emptyHalf{
     position: relative;
     height: 100vh;
+    width: 50vw;
 }
 
-.thirdPage{
+.fourthPage{
     position: relative;
     height: 100vh;
     width: 50vw;
