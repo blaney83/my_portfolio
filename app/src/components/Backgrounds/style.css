@@ -7,9 +7,9 @@
         width: 50vw;
         z-index: -1;
         display: none;
-        background-image: url("../../assets/img/trianglify\ \(1\).png");
-        background-position: center; /* Center the image */
-        background-repeat: no-repeat; /* Do not repeat the image */
+        background-image: url("../../assets/img/bg1.jpg");
+        background-position: center; 
+        background-repeat: no-repeat; 
         background-size: cover;
         background-attachment: fixed
     }
@@ -22,7 +22,7 @@
         width: 50vw;
         display: none;
         z-index: -1;
-        background-image: url("../../assets/img/trianglify\ \(4\).png");
+        background-image: url("../../assets/img/bg2.jpg");
         background-position: center; /* Center the image */
         background-repeat: no-repeat; /* Do not repeat the image */
         background-size: cover;

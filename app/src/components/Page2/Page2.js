@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux";
 import injectSheet from 'react-jss'
+import bgImage from "../../assets/img/page2BG.jpg"
 
 const styles = {
     secondPage : {
         height: "100vh",
         width: "50vw",
-        backgroundColor: "orange",
+        backgroundImage: "url('" + bgImage + "')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        // backgroundAttachment: 'fixed',
         zIndex: "1"
     }
 }

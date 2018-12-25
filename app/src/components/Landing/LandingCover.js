@@ -5,10 +5,15 @@ import injectSheet from 'react-jss'
 
 const styles = {
     landingCover: {
-        height: "50vh",
+        height: "33vh",
         width: "100vw",
         zIndex: "-10",
         pointerEvents: "none"
+    },
+    titleName: {
+        font: "1.5rem",
+        color: "grey",
+        margin: "0 !important"
     }
 }
 
@@ -16,7 +21,8 @@ function LandingCover(props) {
     const { classes } = props;
 
     return (
-            <div className={classes.landingCover}>
+        <div className={classes.landingCover}>
+            <h1 className={classes.titleName}>Ben Laney</h1>
         </div>
     )
 

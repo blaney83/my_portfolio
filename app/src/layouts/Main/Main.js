@@ -1,4 +1,5 @@
 import React, { Component, useEffect } from 'react';
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb.js"
 import Background1 from "../../components/Backgrounds/Background1.js"
 import Background2 from "../../components/Backgrounds/Background2.js"
 import Background3 from "../../components/Backgrounds/Background3.js"
@@ -18,26 +19,27 @@ function Main(props) {
         // console.log(window.visualViewport.width)
         let oneTall = window.visualViewport.height
         let oneWide = window.visualViewport.width
-        if (window.scrollY < oneTall / 2) {
+        if (window.scrollY < oneTall / 3) {
             console.log("click")
-            document.getElementsByClassName("landingPage")[0].style.display = "block"
+            document.getElementById("landingPage").style.display = "block"
             document.getElementsByClassName("background2")[0].style.display = "none"
-        } else if (window.scrollY >= oneTall / 2 && window.scrollY < oneTall + oneTall / 2) {
+            document.getElementsByClassName("background1")[0].style.display = "none"
+        } else if (window.scrollY >= oneTall / 3 && window.scrollY < oneTall + oneTall / 3) {
             console.log("clack")
-            document.getElementsByClassName("landingPage")[0].style.display = "none"
+            document.getElementById("landingPage").style.display = "none"
             document.getElementsByClassName("background2")[0].style.display = "block"
             document.getElementsByClassName("background1")[0].style.display = "block"
-            document.getElementsByClassName("background3")[0].style.display = "none"           
-        } else if (window.scrollY >= oneTall + oneTall / 2 && window.scrollY < oneTall * 2 + oneTall / 2) {
+            document.getElementsByClassName("background3")[0].style.display = "none"
+        } else if (window.scrollY >= oneTall + oneTall / 3 && window.scrollY < oneTall * 2 + oneTall / 3) {
             console.log("boom")
             document.getElementsByClassName("background1")[0].style.display = "block"
             document.getElementsByClassName("background2")[0].style.display = "block"
-            document.getElementsByClassName("background3")[0].style.display = "none"           
-        } else if (window.scrollY >= oneTall * 2 + oneTall / 2 && window.scrollY < oneTall * 3 + oneTall / 2) {
+            document.getElementsByClassName("background3")[0].style.display = "none"
+        } else if (window.scrollY >= oneTall * 2 + oneTall / 3 && window.scrollY < oneTall * 3 + oneTall / 3) {
             console.log("boom")
             document.getElementsByClassName("background1")[0].style.display = "block"
             document.getElementsByClassName("background2")[0].style.display = "none"
-            document.getElementsByClassName("background3")[0].style.display = "block"        
+            document.getElementsByClassName("background3")[0].style.display = "block"
         }
     }
     document.addEventListener("DOMContentLoaded", function () {
@@ -46,6 +48,7 @@ function Main(props) {
 
     return (
         <div className="Main">
+            <Breadcrumb />
             <Background1 />
             <Background2 />
             <Background3 />
