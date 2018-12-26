@@ -12,6 +12,10 @@ import Page3 from "../../components/Page3/Page3.js"
 import Page4 from "../../components/Page4/Page4.js"
 
 function Main(props) {
+        // document.documentElement.style.overflow = '';  // firefox, chrome
+        // document.body.scroll = "no"; // ie only
+        window.scrollbars = false
+    console.log(window)
 
     function handleScroll() {
         // console.log(window.visualViewport.height)
