@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,7 +12,6 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-// import { updateAuth } from "../../state/auth/actions";
 import { persistor } from "../../state"
 import { connect } from "react-redux";
 import IconButton from '@material-ui/core/IconButton';
@@ -30,8 +28,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import ExitIcon from '@material-ui/icons/FirstPage';
 import Avatar from '@material-ui/core/Avatar';
 // import { searchJobs, updateNumberResults } from "../../state/search/actions";
-// import { getSaved } from "../../state/saved/actions"
-// import "./style.css"
 
 const drawerWidth = 240;
 
@@ -45,6 +41,8 @@ const styles = theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        backgroundColor: "transparent !important",
+        boxShadow: "none !important"
     },
     appBarShift: {
         marginLeft: drawerWidth,
@@ -139,46 +137,31 @@ const styles = theme => ({
     },
     toolbar: {
         display: 'flex',
+        width: "100%",
+        justifyContent: "flex-end",
         alignItems: 'center',
-        justifyContent: 'flex-end',
         padding: '0 8px',
+        position: "absolute",
+        top: "0px",
         ...theme.mixins.toolbar,
     },
     toolbar2: {
         display: 'flex',
+        width: "100%",
+        justifyContent: "flex-start",
         alignItems: 'center',
-        justifyContent: 'flex-start',
         padding: '0 8px',
+        position: "absolute",
+        top: "0px",
         ...theme.mixins.toolbar,
+    },
+    sideTbCloseIcon: {
+        color: "white",
     },
     content: {
         flexGrow: 1,
         padding: theme.spacing.unit * 3,
     },
-    // search: {
-    //     position: 'relative',
-    //     borderRadius: theme.shape.borderRadius,
-    //     backgroundColor: fade(theme.palette.common.white, 0.15),
-    //     '&:hover': {
-    //         backgroundColor: fade(theme.palette.common.white, 0.25),
-    //     },
-    //     marginRight: "10px",
-    //     width: '100%',
-    //     [theme.breakpoints.up('sm')]: {
-    //         position: 'fixed',
-    //         right: "1rem",
-    //         width: 'auto',
-    //     },
-    // },
-    // searchIcon: {
-    //     width: theme.spacing.unit * 9,
-    //     height: '100%',
-    //     position: 'absolute',
-    //     pointerEvents: 'none',
-    //     display: 'flex',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-    // },
     inputRoot: {
         color: 'inherit',
         width: '100%',
@@ -211,7 +194,14 @@ const styles = theme => ({
         bottom: "0px"
     },
     toolSplit: {
-        justifyContent: "space-between"
+        justifyContent: "space-between",
+    },
+    seeThruPaper: {
+        backgroundColor: "transparent !important",
+        border: "none !important",
+    },
+    sBDrawerPaper: {
+        justifyContent: "center"
     }
 });
 
@@ -256,14 +246,13 @@ class Sidebar extends React.Component {
         const { classes, theme } = this.props;
         return (
             <div className={classes.root}>
-                <CssBaseline />
+                {/* <CssBaseline /> */}
                 <AppBar position="fixed"
                     className={classNames(classes.appBar, {
                         [classes.appBarShift]: this.state.open,
                         [classes.appBarShift2]: this.state.open2,
                     })}
                 >
-                    {/* <Toolbar disableGutters={this.state.open}> */}
                     <Toolbar disableGutters={this.guttersMod(this.state.open, this.state.open2)} className={classes.toolSplit}>
                         <IconButton
                             color="inherit"
@@ -282,30 +271,10 @@ class Sidebar extends React.Component {
                             onClick={this.handleDrawer2Open}
                             className={classNames(classes.menuButton2, {
                                 [classes.hide]: this.state.open || this.state.open2,
-
-                                // [classes.hide]: this.state.open2,
-                                // [classes.hide]: this.state.open,
                             })}
                         >
                             <MenuIcon />
                         </IconButton>
-                        {/* <Avatar className={classes.mainIconJR} img={{ color: "transparent" }} src={JobRouter} /> */}
-                        {/* <Typography align="center" className={classes.title} variant="h6" color="inherit" noWrap>
-                            Job Router
-                        </Typography> */}
-                        {/* <div className={classes.grow} />
-                        <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                                <SearchIcon />
-                            </div>
-                            <InputBase
-                                placeholder="Search…"
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput,
-                                }}
-                            />
-                        </div> */}
                     </Toolbar>
                 </AppBar>
                 <Hidden xsDown={this.state.mediaQ} implementation="css">
@@ -316,7 +285,7 @@ class Sidebar extends React.Component {
                             [classes.drawerClose]: !this.state.open,
                         })}
                         classes={{
-                            paper: classNames("sidebarClass", {
+                            paper: classNames("sidebarClass", classes.seeThruPaper, classes.sBDrawerPaper, {
                                 [classes.drawerOpen]: this.state.open,
                                 [classes.drawerClose]: !this.state.open,
                             }),
@@ -325,58 +294,47 @@ class Sidebar extends React.Component {
                     >
                         <div className={classes.toolbar}>
                             <IconButton onClick={this.handleDrawerClose}>
-                                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                                {/* {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />} */}
+                                {this.state.open ? <ChevronLeftIcon className={classes.sideTbCloseIcon} /> : ""}
                             </IconButton>
                         </div>
-                        <Divider />
+                        {/* <Divider /> */}
                         <List>
-                            {/* <Link to="/dashboard/home"> */}
                             <ListItem button="true"
-                                // selected={this.props.locationProps.location.pathname === "/dashboard/home" ? "true" : ""} 
                                 key={"Home"}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIcons} />
                                 </ListItemIcon>
                                 <ListItemText primary="Home" primaryTypographyProps={{ className: classes.sideIconLabels }} />
                             </ListItem>
-                            {/* </Link> */}
-                            {/* <Link to="/dashboard/search"> */}
                             <ListItem button key={"Search Jobs"}
-                            // selected={this.props.locationProps.location.pathname === "/dashboard/search" ? "true" : ""}
                             >
                                 <ListItemIcon>
                                     <SearchIcon className={classes.sideIcons} />
                                 </ListItemIcon>
                                 <ListItemText primary="Search Jobs" primaryTypographyProps={{ className: classes.sideIconLabels }} />
                             </ListItem>
-                            {/* </Link> */}
-                            {/* <Link to="/dashboard/saved"> */}
                             <ListItem button key={"Saved Jobs"}
-                            // selected={this.props.locationProps.location.pathname === "/dashboard/saved" ? "true" : ""}
                             >
                                 <ListItemIcon>
                                     <SavedIcon className={classes.sideIcons} />
                                 </ListItemIcon>
                                 <ListItemText primary="Saved Jobs" primaryTypographyProps={{ className: classes.sideIconLabels }} />
                             </ListItem>
-                            {/* </Link> */}
-                            {/* <Link to="/dashboard/account"> */}
                             <ListItem button key={"Account"}
-                            // selected={this.props.locationProps.location.pathname === "/dashboard/account" ? "true" : ""}
                             >
                                 <ListItemIcon>
                                     <AccountIcon className={classes.sideIcons} />
                                 </ListItemIcon>
                                 <ListItemText primary="Account" primaryTypographyProps={{ className: classes.sideIconLabels }} />
                             </ListItem>
-                            {/* </Link> */}
                         </List>
                         <List className={classes.signOutStayDown}>
                             <ListItem button="true"
-                            // selected={this.props.locationProps.location.pathname === "/" ? "true" : ""} key={"Home"}
                             >
-                                {/* <ListItemIcon onClick={() => this.props.signout(persistor)}><Link to="/"><ExitIcon className={classes.sideIcons} /></Link></ListItemIcon> */}
-                                <ListItemText primary="Sign Out" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                                <ListItemIcon>
+                                    <AccountIcon className={classes.sideIcons} />
+                                </ListItemIcon>
                             </ListItem>
                         </List>
                     </Drawer>
@@ -390,7 +348,7 @@ class Sidebar extends React.Component {
                             [classes.drawer2Close]: !this.state.open2,
                         })}
                         classes={{
-                            paper: classNames("sidebarClass", {
+                            paper: classNames("sidebarClass", classes.seeThruPaper, classes.sBDrawerPaper, {
                                 [classes.drawer2Open]: this.state.open2,
                                 [classes.drawer2Close]: !this.state.open2,
                             }),
@@ -399,16 +357,51 @@ class Sidebar extends React.Component {
                     >
                         <div className={classes.toolbar2}>
                             <IconButton onClick={this.handleDrawer2Close}>
-                                {theme.direction === 'ltr' ?  <ChevronRightIcon /> : <ChevronLeftIcon /> }
+                                {/* {theme.direction === 'ltr' ?  <ChevronRightIcon /> : <ChevronLeftIcon /> } */}
+                                {this.state.open2 ? <ChevronRightIcon className={classes.sideTbCloseIcon} /> : ""}
                             </IconButton>
                         </div>
-                        <Divider />
+                        {/* <Divider /> */}
                         <List>
+                            <ListItem button="true"
+                                key={"Home"}>
+                                <ListItemIcon>
+                                    <HomeIcon className={classes.sideIcons} />
+                                </ListItemIcon>
+                                <ListItemText primary="Home" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                            </ListItem>
+                            <ListItem button key={"Search Jobs"}
+                            >
+                                <ListItemIcon>
+                                    <SearchIcon className={classes.sideIcons} />
+                                </ListItemIcon>
+                                <ListItemText primary="Search Jobs" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                            </ListItem>
+                            <ListItem button key={"Saved Jobs"}
+                            >
+                                <ListItemIcon>
+                                    <SavedIcon className={classes.sideIcons} />
+                                </ListItemIcon>
+                                <ListItemText primary="Saved Jobs" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                            </ListItem>
+                            <ListItem button key={"Account"}
+                            >
+                                <ListItemIcon>
+                                    <AccountIcon className={classes.sideIcons} />
+                                </ListItemIcon>
+                                <ListItemText primary="Account" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                            </ListItem>
+                        </List>
+                        <List className={classes.signOutStayDown}>
+                            <ListItem button="true"
+                            >
+                                <ListItemIcon>
+                                    <AccountIcon className={classes.sideIcons} />
+                                </ListItemIcon>
+                            </ListItem>
                         </List>
                     </Drawer>
                 </Hidden>
-
-                {/* rest of code */}
             </div>
         );
     }
