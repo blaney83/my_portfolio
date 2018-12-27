@@ -1,23 +1,49 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux";
 import injectSheet from 'react-jss'
+import bgImage from "../../assets/img/page2BG.jpg"
+import bgImage1 from "../../assets/img/trianglify.png"
+
 
 const styles = {
     secondPage : {
+        position: "relative",
         height: "100vh",
         width: "50vw",
-        backgroundColor: "orange",
+        backgroundImage: "url('" + bgImage + "')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundAttachment: "fixed",
         zIndex: "1"
+    },
+    secondContainer : {
+        position: "relative",
+        display: "flex",
+        flexDirection: "row",
+        zIndex: "1",
+    },
+    secondEmptyHalf : {
+        position: "relative",
+        height: "100vh",
+        width: "50vw",
+        backgroundImage: "url('" + bgImage1 + "')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
     }
 }
 
-
-function Page2(props) {
+function Page2(props){
     const { classes } = props;
 
-    return (
+    return(
+        <div className={classes.secondContainer}>
         <div className={classes.secondPage}>
-            Hello Again!
+            Hello World
+        </div>
+        <div className={classes.secondEmptyHalf}></div>
         </div>
     )
 

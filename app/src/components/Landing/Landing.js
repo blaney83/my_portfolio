@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux";
-import "./style.css"
 import injectSheet from 'react-jss'
+import bgImage from "../../assets/img/stars.jpg"
 
 const styles = {
     landingPage: {
-        position: "fixed",
-        height: "50vh",
+        // position: "fixed",
+        height: "33vh",
         width: "100vw",
-        backgroundColor: "pink",
+        backgroundImage: "url('" + bgImage + "')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
         zIndex: "-1",
         pointerEvents: "auto"
     }
@@ -22,8 +26,7 @@ function Landing(props) {
     }
 
     return (
-        <div className={"landingPage"}>
-            Hello World<button onClick={logMe}>click me</button>
+        <div className={classes.landingPage} id="landingPage">
         </div>
     )
 

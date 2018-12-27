@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux";
 import injectSheet from 'react-jss'
+import bgImage from "../../assets/img/page3BG.jpg"
+import bgImage1 from "../../assets/img/trianglify.png"
+
 
 const styles = {
     thirdPage : {
         position: "relative",
         height: "100vh",
         width: "50vw",
-        backgroundColor: "aqua",
+        backgroundImage: "url('" + bgImage + "')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundAttachment: "fixed",
         zIndex: "1"
     },
     thirdContainer : {
@@ -20,6 +27,11 @@ const styles = {
         position: "relative",
         height: "100vh",
         width: "50vw",
+        backgroundImage: "url('" + bgImage1 + "')",
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'fixed',
     }
 }
 
