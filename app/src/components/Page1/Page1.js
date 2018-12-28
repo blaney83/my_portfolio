@@ -15,6 +15,10 @@ const styles = {
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
         zIndex: "1"
+    },
+    particleDiv: {
+        height: "100vh",
+        width: "100vw",
     }
 }
 
@@ -25,6 +29,7 @@ function Page1(props) {
         <div className={classes.firstPage}>
             Hello World
             <Particles
+            className={classes.particleDiv}
             params={PartParams}
             />
         </div>

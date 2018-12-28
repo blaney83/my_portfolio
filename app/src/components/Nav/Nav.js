@@ -223,23 +223,25 @@ class Sidebar extends React.Component {
     }
 
     handleDrawerOpen = () => {
-        this.setState({ open: true });
         this.setState({ mediaQ: false });
+        setTimeout(()=>this.setState({ open: true }),150);
+        // this.setState({ open: true });
     };
 
     handleDrawerClose = () => {
         this.setState({ open: false });
-        this.setState({ mediaQ: true });
+        setTimeout(()=>this.setState({ mediaQ: true }),300);
     };
 
     handleDrawer2Open = () => {
-        this.setState({ open2: true });
         this.setState({ mediaQ2: false });
+        setTimeout(()=>this.setState({ open2: true }),150);
+        // this.setState({ open2: true });
     };
 
     handleDrawer2Close = () => {
         this.setState({ open2: false });
-        this.setState({ mediaQ2: true });
+        setTimeout(()=>this.setState({ mediaQ2: true }),300);
     };
 
     render() {
