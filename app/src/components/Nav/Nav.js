@@ -10,7 +10,6 @@ import Hidden from '@material-ui/core/Hidden';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import { persistor } from "../../state"
 import { connect } from "react-redux";
@@ -101,9 +100,9 @@ const styles = theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         overflowX: 'hidden',
-        width: theme.spacing.unit * 7 + 1,
+        width: theme.spacing.unit * 7,
         [theme.breakpoints.up('sm')]: {
-            width: theme.spacing.unit * 9 + 1,
+            width: theme.spacing.unit * 9,
         },
     },
     drawer2: {
@@ -130,9 +129,10 @@ const styles = theme => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         overflowX: 'hidden',
-        width: theme.spacing.unit * 7 + 1,
+        //removed + 1 from both equations below
+        width: theme.spacing.unit * 7,
         [theme.breakpoints.up('sm')]: {
-            width: theme.spacing.unit * 9 + 1,
+            width: theme.spacing.unit * 9,
         },
     },
     toolbar: {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { connect } from "react-redux";
 import injectSheet from 'react-jss'
+import Button from '@material-ui/core/Button';
 import bgImage from "../../assets/img/page2BG.jpg"
 import bgImage1 from "../../assets/img/trianglify.png"
 
@@ -42,6 +43,9 @@ function Page2(props){
         <div className={classes.secondContainer}>
         <div className={classes.secondPage}>
             Hello World
+            <Button variant="contained" color="primary" className={classes.button}>
+        Primary
+      </Button>
         </div>
         <div className={classes.secondEmptyHalf}></div>
         </div>

@@ -56,8 +56,6 @@ function Landing(props) {
     return (
         <div className={classes.landingPage} id="landingPage">
             <Typography variant="h2" className={classes.mainTitle}>Ben Laney</Typography>
-            <Grid container>
-            </Grid>
         </div>
     )
 
