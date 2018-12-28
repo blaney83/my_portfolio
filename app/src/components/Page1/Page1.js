@@ -235,11 +235,7 @@ function Page1(props) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        togglePanel(panel, setExpanded) {
-            setExpanded(panel)
-        }
-    }
+
 }
 
 function mapStateToProps(state) {
