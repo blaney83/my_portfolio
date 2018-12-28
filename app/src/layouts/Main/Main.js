@@ -19,7 +19,8 @@ const theme = createMuiTheme({
 
 const styles = {
     Main: {
-        height: "0px"
+        height: "0px",
+        // overflowX: "hidden"
     }
 }
 

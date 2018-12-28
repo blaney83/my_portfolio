@@ -63,35 +63,17 @@ const styles = theme => ({
         "-webkit-background-clip": "text",
         backgroundClip: "text",
         color: "transparent",
-        // font: "900 35vmin/50vh cookie, cursive",
         textAlign: "center",
         filter: "invert(1) grayscale(1) contrast(9)",
-        //     color: "white !important",
-        fontSize: "2.5rem",
+        fontSize: "3rem",
         [theme.breakpoints.up('sm')]: {
             fontSize: "4rem",
         },
         fontFamily: "monospace",
         fontVariant: "ordinal",
-        // textDecoration: "underline overline",
         fontWeight: "bold",
+        marginBottom: "2rem"
     },
-    // firstHeaderHalf: {
-    //     backgroundImage: "url('" + bgImage + "')",
-    //     backgroundPosition: 'center',
-    //     backgroundRepeat: 'no-repeat',
-    //     backgroundSize: 'cover',
-    //     backgroundAttachment: "fixed",
-    //     "-webkit-background-clip": "text",
-    // },
-    // secondHeaderHalf: {
-    //     backgroundImage: "url('" + bgImage1 + "')",
-    //     backgroundPosition: 'center',
-    //     backgroundRepeat: 'no-repeat',
-    //     backgroundSize: 'cover',
-    //     backgroundAttachment: 'fixed',
-    //     "-webkit-background-clip": "text",
-    // }
 })
 
 
