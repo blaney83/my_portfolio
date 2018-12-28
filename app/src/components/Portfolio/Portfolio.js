@@ -104,7 +104,7 @@ const styles = theme => ({
     gridList: {
         flexWrap: 'wrap',
         flexDirection: "column",
-        maxHeight: "206px",
+        maxHeight: "230px",
         [theme.breakpoints.up('sm')]: {
             maxHeight: "412px",
         },
