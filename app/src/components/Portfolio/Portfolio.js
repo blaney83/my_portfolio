@@ -39,7 +39,7 @@ const tileData = [
         img: image1,
         id: 1,
         ref: "http://job-router.herokuapp.com/",
-        title: 'Job Router',
+        title: 'Job-Router',
         tech: 'MongoDB, React 16.7.2A',
         featured: true,
         isImg: true,
