@@ -5,16 +5,16 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import CardActions from '@material-ui/core/CardActions';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
-import bgImage from "../../assets/img/forest.jpg"
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import bgImage from "../../assets/img/forest.jpg"
 import bgImage1 from "../../assets/img/bg6.jpg"
 import bgImage2 from "../../assets/img/bg4.jpg"
 import bgImage3 from "../../assets/img/leaves.jpg"
+import Fire from "../../assets/img/resourceImg/fire.jpg"
+import Ocean from "../../assets/img/resourceImg/ocean.jpg"
+import Nightlight from "../../assets/img/resourceImg/nightlight.jpg"
+import Woods from "../../assets/img/resourceImg/woods.jpg"
 import Coverflow from "react-coverflow"
 import ScrollableAnchor from 'react-scrollable-anchor'
 import "./style.css"
@@ -171,7 +171,7 @@ function Page4(props) {
                         active={0}
                         // height={"100%"}
                     >
-                        <img src={bgImage2} alt={
+                        <img src={Fire} alt={
                             <div>
                                 <Grid container spacing={16}>
                                     <Grid item xs={12} md={6}>
@@ -200,27 +200,7 @@ function Page4(props) {
                             </div>
                         }
                         />
-                        <img src={bgImage2} alt={
-                            <div>
-                                <Grid container spacing={16}>
-                                    <Grid item xs={12} md={6}>
-                                        <Typography variant="body" className={classes.slideTile}>Media</Typography>
-                                        <div >
-                                            <List dense={true}>
-                                                <ListItem button={true}>
-                                                    <a href="https://syntax.fm/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Syntax (Podcast)</Typography></a>
-                                                </ListItem>
-                                                <ListItem button={true}>
-                                                    <a href="https://darknetdiaries.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- darknetdiaries  (Podcast)</Typography></a>
-                                                </ListItem>
-                                            </List>
-                                        </div>
-                                    </Grid>
-                                </Grid>
-                            </div>
-                        }
-                        />
-                        <img src={bgImage2} alt={
+                        <img src={Nightlight} alt={
                             <div>
                                 <Grid container spacing={16}>
                                     <Grid item xs={12} md={6}>
@@ -242,7 +222,27 @@ function Page4(props) {
                                 </Grid>
                             </div>
                         } />
-                        <img src={bgImage2} alt={
+                                                <img src={Woods} alt={
+                            <div>
+                                <Grid container spacing={16}>
+                                    <Grid item xs={12} md={6}>
+                                        <Typography variant="body" className={classes.slideTile}>Media</Typography>
+                                        <div >
+                                            <List dense={true}>
+                                                <ListItem button={true}>
+                                                    <a href="https://syntax.fm/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Syntax (Podcast)</Typography></a>
+                                                </ListItem>
+                                                <ListItem button={true}>
+                                                    <a href="https://darknetdiaries.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- darknetdiaries  (Podcast)</Typography></a>
+                                                </ListItem>
+                                            </List>
+                                        </div>
+                                    </Grid>
+                                </Grid>
+                            </div>
+                        }
+                        />
+                        <img src={Ocean} alt={
                             <div>
                                 <Grid container spacing={16}>
                                     <Grid item xs={12} md={6}>
