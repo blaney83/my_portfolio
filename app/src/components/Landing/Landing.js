@@ -4,8 +4,7 @@ import injectSheet from 'react-jss'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import bgImage from "../../assets/img/stars.jpg"
-
-
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 const styles = theme => ({
     landingPage: {
@@ -54,9 +53,11 @@ const styles = theme => ({
 function Landing(props) {
     const { classes } = props;
     return (
+        <ScrollableAnchor id={'home'}>
         <div className={classes.landingPage} id="landingPage">
             <Typography variant="h2" className={classes.mainTitle}>Ben Laney</Typography>
         </div>
+        </ScrollableAnchor>
     )
 
 }

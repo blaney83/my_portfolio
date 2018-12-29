@@ -6,6 +6,7 @@ import bgImage from "../../assets/img/page2BG.jpg"
 import Typography from '@material-ui/core/Typography';
 import bgImage1 from "../../assets/img/trianglify.png"
 import GraphTabs from "../GraphTabs/GraphTabs.js"
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 
 const styles = theme => ({
@@ -81,14 +82,16 @@ function Page2(props) {
     const { classes } = props;
 
     return (
+        <ScrollableAnchor id={'practical_knowledge'}>
         <div className={classes.secondContainer}>
             <div className={classes.secondPage} />
             <div className={classes.secondEmptyHalf} />
             <div className={classes.graphTabsContainer}>
-                <Typography variant="h2" className={classes.graphTabsHeader}>Tech Focus</Typography>
+                <Typography variant="h2" className={classes.graphTabsHeader}>Practical Knowledge</Typography>
                 <GraphTabs></GraphTabs>
             </div>
         </div>
+        </ScrollableAnchor>
     )
 
 }

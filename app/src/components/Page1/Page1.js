@@ -17,6 +17,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { callbackify } from "util";
 import { Avatar } from "@material-ui/core";
 import Headshot from "../../assets/img/headshot.jpg"
+import ScrollableAnchor from 'react-scrollable-anchor'
 const PartParams = require("./particles.json")
 
 const styles = theme => ({
@@ -33,7 +34,7 @@ const styles = theme => ({
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
         zIndex: "-1",
-        overflowX: "hidden"
+        overflowY: "hidden"
     },
     particleDiv: {
         position: "absolute",
@@ -66,13 +67,15 @@ const styles = theme => ({
         padding: "8px",
         paddingTop: "30px",
         [theme.breakpoints.up('sm')]: {
-            padding: "72px",
+            paddingTop: "50px",
+            paddingLeft: "72px",
+            paddingRight: "72px"
         },
         width: "100%",
         height: "100%",
     },
     avatarBubble: {
-        width: "75%",
+        width: "30%",
         [theme.breakpoints.up('sm')]: {
             width: "100%",
         },
@@ -129,7 +132,7 @@ const styles = theme => ({
 
 function Page1(props) {
     const { classes } = props;
-    const [expanded, setExpanded] = useState(null)
+    const [expanded, setExpanded] = useState("")
 
     function togglePanel(panel){
         if(panel === expanded){
@@ -140,6 +143,7 @@ function Page1(props) {
     }
 
     return (
+        <ScrollableAnchor id={'about_me'}>
         <div className={classes.firstPage}>
             <div className={classes.firstPageMainContainer}>
                 <Grid container className={classes.firstPageCardContainer}>
@@ -174,8 +178,7 @@ function Page1(props) {
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                             <Typography className={classes.panelBody}>
-                                                Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-                                                maximus est, id dignissim quam.
+                                                I moved to Arizona at the age of three and spent most of my adolescence in and around The Valley of the Sun. As a child I enjoyed all things science. 
                                         </Typography>
                                         </ExpansionPanelDetails>
                                     </ExpansionPanel>
@@ -230,6 +233,7 @@ function Page1(props) {
                 params={PartParams}
             />
         </div>
+        </ScrollableAnchor>
     )
 
 }

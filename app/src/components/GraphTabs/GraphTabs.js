@@ -68,12 +68,17 @@ const styles = theme => ({
 });
 
 function GraphTabs(props) {
-    const [value, setValue] = useState(0)
     const { classes } = props;
+    let [value, setValue] = useState(0)
 
-    function switchGraph(value) {
-        setValue(value)
+    function switchGraph(burro) {
+        setValue(burro)
+        // console.log(setValue)
     }
+
+    useEffect(()=>{
+        console.log("im hooks")
+    })
 
     return (
         <div className={classes.root}>
