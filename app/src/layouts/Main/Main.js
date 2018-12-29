@@ -8,6 +8,7 @@ import Page2 from "../../components/Page2/Page2.js"
 import Page3 from "../../components/Page3/Page3.js"
 import Page4 from "../../components/Page4/Page4.js"
 import Page5 from "../../components/Page5/Page5.js"
+import "./globalStyle.css"
 
 const theme = createMuiTheme({
     palette: {

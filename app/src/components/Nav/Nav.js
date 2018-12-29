@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
@@ -7,6 +7,9 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import Hidden from '@material-ui/core/Hidden';
+// import Link from '@material-ui/core/Link';
+import GitHubIcon from '../../assets/icons/GitHub.svg';
+import LinkedIcon from '../../assets/icons/linked.svg';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import InputBase from '@material-ui/core/InputBase';
 import { fade } from '@material-ui/core/styles/colorManipulator';
@@ -23,10 +26,17 @@ import SearchIcon from '@material-ui/icons/Search';
 import SavedIcon from '@material-ui/icons/Save';
 import AccountIcon from '@material-ui/icons/PersonPin';
 import ListItemText from '@material-ui/core/ListItemText';
-import HomeIcon from '@material-ui/icons/Home';
-import ExitIcon from '@material-ui/icons/FirstPage';
+import HomeIcon from '@material-ui/icons/HomeOutlined';
+import InfoIcon from '@material-ui/icons/AccountCircleOutlined';
+import CodeIcon from '@material-ui/icons/AssessmentOutlined';
+import ResourceIcon from '@material-ui/icons/HelpOutline';
+import ContactIcon from '@material-ui/icons/ContactMailOutlined';
+import HistoryIcon from '@material-ui/icons/Code';
 import Avatar from '@material-ui/core/Avatar';
+import ScrollableAnchor, { goToTop, goToAnchor, configureAnchors } from "react-scrollable-anchor"
 // import { searchJobs, updateNumberResults } from "../../state/search/actions";
+
+configureAnchors({ scrollDuration: 1000 })
 
 const drawerWidth = 240;
 
@@ -62,10 +72,12 @@ const styles = theme => ({
     menuButton: {
         marginLeft: 12,
         marginRight: 36,
+        backgroundColor: "#1a1a1ac2"
     },
     menuButton2: {
         marginRight: 12,
         marginLeft: 36,
+        backgroundColor: "#1a1a1ac2"
     },
     title: {
         display: 'none',
@@ -191,17 +203,32 @@ const styles = theme => ({
     },
     signOutStayDown: {
         position: "absolute",
-        bottom: "0px"
+        bottom: "0px",
+        width: "100%"
     },
     toolSplit: {
         justifyContent: "space-between",
     },
     seeThruPaper: {
-        backgroundColor: "transparent !important",
+        backgroundColor: "#1a1a1a9c",
+        // backgroundColor: "transparent !important",
         border: "none !important",
     },
     sBDrawerPaper: {
         justifyContent: "center"
+    },
+    sideListItems: {
+        backgroundColor: "transparent"
+    },
+    selectedListItems: {
+        backgroundColor: "#0c0b0ba8 !important"
+    },
+    customAvatars: {
+        height: "1.3em",
+        width: "1.3em",
+    },
+    customIcons:{
+        textAlign: "left"
     }
 });
 
@@ -211,9 +238,16 @@ class Sidebar extends React.Component {
         mediaQ: true,
         open2: false,
         mediaQ2: true,
+        currentPage: window.location.hash,
         path: this.props
     };
 
+    componentDidMount() {
+        let hello = this
+        window.addEventListener('hashchange', function () {
+            hello.setState({ currentPage: window.location.hash })
+        });
+    }
     guttersMod = (open1, open2) => {
         if (open1 || open2) {
             return (false)
@@ -224,24 +258,24 @@ class Sidebar extends React.Component {
 
     handleDrawerOpen = () => {
         this.setState({ mediaQ: false });
-        setTimeout(()=>this.setState({ open: true }),150);
+        setTimeout(() => this.setState({ open: true }), 150);
         // this.setState({ open: true });
     };
 
     handleDrawerClose = () => {
         this.setState({ open: false });
-        setTimeout(()=>this.setState({ mediaQ: true }),300);
+        setTimeout(() => this.setState({ mediaQ: true }), 300);
     };
 
     handleDrawer2Open = () => {
         this.setState({ mediaQ2: false });
-        setTimeout(()=>this.setState({ open2: true }),150);
+        setTimeout(() => this.setState({ open2: true }), 150);
         // this.setState({ open2: true });
     };
 
     handleDrawer2Close = () => {
         this.setState({ open2: false });
-        setTimeout(()=>this.setState({ mediaQ2: true }),300);
+        setTimeout(() => this.setState({ mediaQ2: true }), 300);
     };
 
     render() {
@@ -303,41 +337,99 @@ class Sidebar extends React.Component {
                         {/* <Divider /> */}
                         <List>
                             <ListItem button="true"
-                                key={"Home"}>
+                                key={"Home"}
+                                onClick={() => goToAnchor("home", true)}
+                                selected={this.state.currentPage === "#home"}
+                                className={this.state.currentPage === "#home" ? classes.selectedListItems : classes.sideListItems}
+                            >
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIcons} />
                                 </ListItemIcon>
                                 <ListItemText primary="Home" primaryTypographyProps={{ className: classes.sideIconLabels }} />
                             </ListItem>
-                            <ListItem button key={"Search Jobs"}
+                            <ListItem button="true"
+                                key={"About Me"}
+                                onClick={() => goToAnchor("about_me", true)}
+                                selected={this.state.currentPage === "#about_me"}
+                                className={this.state.currentPage === "#about_me" ? classes.selectedListItems : classes.sideListItems}
                             >
                                 <ListItemIcon>
-                                    <SearchIcon className={classes.sideIcons} />
+                                    <InfoIcon className={classes.sideIcons} />
                                 </ListItemIcon>
-                                <ListItemText primary="Search Jobs" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                                <ListItemText primary="About Me" primaryTypographyProps={{ className: classes.sideIconLabels }} />
                             </ListItem>
-                            <ListItem button key={"Saved Jobs"}
+                            <ListItem button className={this.state.currentPage === "#practical_knowledge" ? classes.selectedListItems : classes.sideListItems} key={"Practical Knowledge"}
+                                onClick={() => goToAnchor("practical_knowledge", true)}
+                                selected={this.state.currentPage === "#practical_knowledge"}
                             >
                                 <ListItemIcon>
-                                    <SavedIcon className={classes.sideIcons} />
+                                    <CodeIcon className={classes.sideIcons} />
                                 </ListItemIcon>
-                                <ListItemText primary="Saved Jobs" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                                <ListItemText primary="Practical Knowledge" primaryTypographyProps={{ className: classes.sideIconLabels }} />
                             </ListItem>
-                            <ListItem button key={"Account"}
+                            <ListItem button className={this.state.currentPage === "#projects" ? classes.selectedListItems : classes.sideListItems}
+                                key={"Project Anthology"}
+                                onClick={() => goToAnchor("projects", true)}
+                                selected={this.state.currentPage === "#projects"}
                             >
                                 <ListItemIcon>
-                                    <AccountIcon className={classes.sideIcons} />
+                                    <HistoryIcon className={classes.sideIcons} />
                                 </ListItemIcon>
-                                <ListItemText primary="Account" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                                <ListItemText primary="Project Anthology" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                            </ListItem>
+                            <ListItem button className={this.state.currentPage === "#resources" ? classes.selectedListItems : classes.sideListItems} key={"Resources"}
+                                onClick={() => goToAnchor("resources", true)}
+                                selected={this.state.currentPage === "#resources"}
+                            >
+                                <ListItemIcon>
+                                    <ResourceIcon className={classes.sideIcons} />
+                                </ListItemIcon>
+                                <ListItemText primary="Resources" primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                            </ListItem>
+                            <ListItem button key={"Contact"} className={this.state.currentPage === "#contact" ? classes.selectedListItems : classes.sideListItems} onClick={() => goToAnchor("contact", true)}
+                                selected={this.state.currentPage === "#contact"}
+                            >
+                                <ListItemIcon>
+                                    <ContactIcon className={classes.sideIcons} />
+                                </ListItemIcon>
+                                <ListItemText primary="Contact" primaryTypographyProps={{ className: classes.sideIconLabels }} />
                             </ListItem>
                         </List>
                         <List className={classes.signOutStayDown}>
-                            <ListItem button="true"
-                            >
-                                <ListItemIcon>
-                                    <AccountIcon className={classes.sideIcons} />
-                                </ListItemIcon>
-                            </ListItem>
+                            <a className={classes.listText} href="https://github.com/blaney83" rel="noopener noreferrer" target="_blank">
+                                <ListItem
+                                    button="true"
+                                    className={classes.sideListItems}
+                                >
+                                    <ListItemIcon
+                                            className={classes.customIcons}
+                                    >
+                                        <Avatar src={GitHubIcon}
+                                            className={classes.customAvatars}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="My GitHub"
+                                        primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                                </ListItem>
+                            </a>
+                            <a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/" rel="noopener noreferrer" target="_blank">
+                                <ListItem
+                                    button="true"
+                                    className={classes.sideListItems}
+                                >
+                                    <ListItemIcon
+                                            className={classes.customIcons}                                    
+                                    >
+                                        <Avatar src={LinkedIcon}
+                                            className={classes.customAvatars}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        primary="LinkedIn Profile"
+                                        primaryTypographyProps={{ className: classes.sideIconLabels }} />
+                                </ListItem>
+                            </a>
                         </List>
                     </Drawer>
                 </Hidden>
@@ -404,7 +496,7 @@ class Sidebar extends React.Component {
                         </List>
                     </Drawer>
                 </Hidden>
-            </div>
+            </div >
         );
     }
 }

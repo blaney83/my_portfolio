@@ -33,6 +33,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import GraphTabs from "../GraphTabs/GraphTabs.js"
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 
 const styles = theme => ({
@@ -180,6 +181,7 @@ function Page5(props) {
         }
     }
     return (
+        <ScrollableAnchor id={'contact'}>
         <div className={classes.fifthContainer}>
             <div className={classes.fifthEmptyHalf} />
             <div className={classes.contactContainer}>
@@ -187,16 +189,6 @@ function Page5(props) {
                 <div className={classes.contactCardContainer}>
                     <Card className={classes.card}>
                         <CardHeader
-                            // //     avatar={
-                            // //         <Avatar aria-label="Recipe" className={classes.avatar}>
-                            // //             R
-                            // // </Avatar>
-                            //     }
-                            // action={
-                            //     <IconButton>
-                            //         <MoreVertIcon />
-                            //     </IconButton>
-                            // }
                             title="Benjamin Laney"
                             subheader="Scottsdale, AZ"
                             titleTypographyProps={{
@@ -232,7 +224,7 @@ function Page5(props) {
                                                 <Avatar src={GitHubIcon}/>
                                             </ListItemAvatar>
                                             <ListItemText
-                                                primary={<a className={classes.listText} href="https://github.com/blaney83">https://github.com/blaney83</a>}
+                                                primary={<a className={classes.listText} href="https://github.com/blaney83"  rel="noopener noreferrer" target="_blank">https://github.com/blaney83</a>}
                                                 secondary={<div className={classes.secondaryListText}>GitHub</div>}
 
                                             />
@@ -250,7 +242,7 @@ function Page5(props) {
                                             <Avatar src={LinkedIcon}/>
                                             </ListItemAvatar>
                                             <ListItemText
-                                                primary={<a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/">www.linkedin.com/in/ben-laney</a>}
+                                                primary={<a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/"  rel="noopener noreferrer" target="_blank">www.linkedin.com/in/ben-laney</a>}
                                                 secondary={<div className={classes.secondaryListText}>LinkedIn</div>}
                                             />
                                             <ListItemSecondaryAction>
@@ -278,6 +270,7 @@ function Page5(props) {
                 </div>
             </div>
         </div >
+        </ScrollableAnchor>
     )
 
 }

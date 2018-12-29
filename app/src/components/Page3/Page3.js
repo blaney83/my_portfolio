@@ -18,6 +18,7 @@ import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import green from '@material-ui/core/colors/green';
+import ScrollableAnchor from 'react-scrollable-anchor'
 
 
 const styles = theme => ({
@@ -136,11 +137,12 @@ function Page3(props) {
     const [portfolioSort, setPortfolioSort] = useState("All")
 
     return (
+        <ScrollableAnchor id={'projects'}>
         <div className={classes.thirdContainer}>
             <div className={classes.thirdPage} />
             <div className={classes.thirdEmptyHalf} />
             <div className={classes.portfolioContainer}>
-                <Typography variant="h2" className={classes.portfolioHeader}>Program Anthology</Typography>
+                <Typography variant="h2" className={classes.portfolioHeader}>Project Anthology</Typography>
                 <div className={classes.portfolioGridListContainer}>
                     <AppBar position="static" color="default" className={classes.portfolioTabBar}>
                         <Tabs
@@ -162,6 +164,7 @@ function Page3(props) {
                 </div>
             </div>
         </div>
+        </ScrollableAnchor>
     )
 
 }

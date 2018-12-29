@@ -16,6 +16,7 @@ import bgImage1 from "../../assets/img/bg6.jpg"
 import bgImage2 from "../../assets/img/bg4.jpg"
 import bgImage3 from "../../assets/img/leaves.jpg"
 import Coverflow from "react-coverflow"
+import ScrollableAnchor from 'react-scrollable-anchor'
 import "./style.css"
 
 const styles = theme => ({
@@ -57,7 +58,7 @@ const styles = theme => ({
     fourthEmpty1Half: {
         position: "absolute",
         height: "100vh",
-        width: "25vw",
+        width: "26vw",
         bottom: "0px",
         left: "25vw",
         zIndex: "-1",
@@ -147,6 +148,7 @@ function Page4(props) {
     const { classes } = props;
 
     return (
+        <ScrollableAnchor id={'resources'}>
         <div className={classes.fourthContainer}>
             <div className={classes.fourthPage} />
             <div className={classes.fourthEmptyHalf} />
@@ -267,6 +269,7 @@ function Page4(props) {
                     </div>
             </div>
         </div>
+        </ScrollableAnchor>
     )
 
 }
