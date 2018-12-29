@@ -132,7 +132,7 @@ const styles = theme => ({
 
 function Page1(props) {
     const { classes } = props;
-    const [expanded, setExpanded] = useState(null)
+    const [expanded, setExpanded] = useState("")
 
     function togglePanel(panel){
         if(panel === expanded){
@@ -178,8 +178,7 @@ function Page1(props) {
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                             <Typography className={classes.panelBody}>
-                                                Nulla facilisi. Phasellus sollicitudin nulla et quam mattis feugiat. Aliquam eget
-                                                maximus est, id dignissim quam.
+                                                I moved to Arizona at the age of three and spent most of my adolescence in and around The Valley of the Sun. As a child I enjoyed all things science. 
                                         </Typography>
                                         </ExpansionPanelDetails>
                                     </ExpansionPanel>

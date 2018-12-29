@@ -503,47 +503,7 @@ class Sidebar extends React.Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        //     signout(persistor) {
-        //         persistor.purge()
-        //         dispatch(updateAuth({
-        //             authenticated: false,
-        //             token: "",
-        //             error: "",
-        //             user: {
-        //                 username: "",
-        //                 firstName: "",
-        //                 lastName: "",
-        //                 userCity: "",
-        //                 userStateCode: "",
-        //                 numberSaved: 0,
-        //                 numberApplied: 0,
-        //                 userId: "",
-        //                 recentSearches: [],
-        //                 savedChartData: [0, 0, 0, 0, 0, 0, 0],
-        //                 appliedChartData: [0, 0, 0, 0, 0, 0, 0],
-        //                 postingsViewed: [],
-        //                 postingsSaved: [],
-        //                 postingsApplied: [],
-        //                 totalSearches: 0,
-        //                 siteTag: 0,
-        //                 filterTag: 0,
-        //                 sortTag: 0,
-        //             }
-        //         }));
-        //         dispatch(searchJobs({
-        //             searchCity: "",
-        //             searchState: "",
-        //             searchJob: "",
-        //             searchResults: [],
-        //         }));
-        //         dispatch(updateNumberResults({
-        //             numberResults: 15
-        //         }));
-        //         dispatch(getSaved({
-        //             savedResults: [],
-        //             savedLoaded: false,
-        //         }));
-        //     }
+
     }
 }
 

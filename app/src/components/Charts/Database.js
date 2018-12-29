@@ -3,12 +3,9 @@ const Chartist = require("chartist")
 
 var databaseChart = {
     data: {
-        labels: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
+        labels: ['Post/mySQL/JawsDB', 'Sequelize', 'Seeding', 'CSV Files', 'ORM Design', 'CLI', 'Workbench'],
         series: [
-            [12, 9, 7, 8, 5, 4, 6],
-            [4, 5, 3, 7, 3, 5, 5],
-            [5, 3, 4, 5, 6, 3, 3],
-            [3, 4, 5, 6, 7, 6, 4]
+            [7.5, 8, 5, 9, 8, 7, 8.5]
         ]
     },
     options: {

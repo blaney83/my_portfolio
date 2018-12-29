@@ -3,12 +3,9 @@ const Chartist = require("chartist")
 
 var scriptChart = {
     data: {
-        labels: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
+        labels: ['JS-ES7', 'React', 'Redux', 'Hooks', 'React Material-UI', 'jQuery'],
         series: [
-            [12, 9, 7, 8, 5, 4, 6],
-            [4, 5, 3, 7, 3, 5, 5],
-            [5, 3, 4, 5, 6, 3, 3],
-            [3, 4, 5, 6, 7, 6, 4]
+            [9.2, 8.5, 8.5, 9, 9, 8.5],
         ]
     },
     options: {

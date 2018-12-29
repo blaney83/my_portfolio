@@ -3,12 +3,9 @@ const Chartist = require("chartist")
 
 var cloudChart = {
     data: {
-        labels: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
+        labels: ['G-Cloud', 'G-APIs', 'G-Firebase', 'AWS', 'Virtual Box'],
         series: [
-            [12, 9, 7, 8, 5, 4, 6],
-            [4, 5, 3, 7, 3, 5, 5],
-            [5, 3, 4, 5, 6, 3, 3],
-            [3, 4, 5, 6, 7, 6, 4]
+            [3, 6, 5, 2, 6]
         ]
     },
     options: {
