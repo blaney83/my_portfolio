@@ -103,8 +103,10 @@ const styles = theme => ({
         textAlign: "center",
         filter: "invert(1) grayscale(1) contrast(9)",
         fontSize: "3rem",
+        marginTop: "-10px",
         [theme.breakpoints.up('sm')]: {
             fontSize: "4rem",
+            // marginBottom: "0px"
         },
         fontFamily: "monospace",
         fontVariant: "ordinal",

@@ -5,8 +5,33 @@ import Button from '@material-ui/core/Button';
 import bgImage from "../../assets/img/forest.jpg"
 import Typography from '@material-ui/core/Typography';
 import bgImage1 from "../../assets/img/rainy.jpg"
+import FolderIcon from '@material-ui/icons/Folder';
+import DeleteIcon from '@material-ui/icons/Delete';
+import LinkIcon from '@material-ui/icons/CallMade';
+import CopyLink from '@material-ui/icons/AttachFile';
+import Grid from '@material-ui/core/Grid';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
 import bgImage2 from "../../assets/img/bg4.jpg"
 import bgImage3 from "../../assets/img/bg5.jpg"
+import classnames from 'classnames';
+import ShareIcon from '@material-ui/icons/Share';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import EmailIcon from '../../assets/icons/email.svg';
+import GitHubIcon from '../../assets/icons/GitHub.svg';
+import LinkedIcon from '../../assets/icons/linked.svg';
+import CardActions from '@material-ui/core/CardActions';
+import Collapse from '@material-ui/core/Collapse';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
 import GraphTabs from "../GraphTabs/GraphTabs.js"
 
 
@@ -24,20 +49,6 @@ const styles = theme => ({
         backgroundSize: 'cover',
         backgroundAttachment: 'fixed',
     },
-    fifthPage: {
-        position: "absolute",
-        height: "100vh",
-        width: "33vw",
-        top: "0px",
-        left: "0px",
-        zIndex: "-1",
-        backgroundImage: "url('" + bgImage3 + "')",
-        // backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        // backgroundSize: '100vh',
-        backgroundSize: 'cover',
-        backgroundAttachment: "fixed",
-    },
     fifthEmptyHalf: {
         position: "absolute",
         height: "60vh",
@@ -51,33 +62,7 @@ const styles = theme => ({
         backgroundSize: 'cover',
         // backgroundAttachment: 'fixed',
     },
-    fifthEmpty1Half: {
-        position: "absolute",
-        height: "100vh",
-        width: "0vw",
-        bottom: "0px",
-        left: "25vw",
-        zIndex: "-1",
-        backgroundImage: "url('" + bgImage3 + "')",
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
-    },
-    fifthEmpty2Half: {
-        position: "absolute",
-        height: "40vh",
-        width: "67vw",
-        bottom: "0px",
-        right: "0px",
-        zIndex: "-1",
-        backgroundImage: "url('" + bgImage3 + "')",
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
-    },
-    resourcesContainer: {
+    contactContainer: {
         boxSizing: "border-box",
         padding: "8px",
         [theme.breakpoints.up('sm')]: {
@@ -88,8 +73,8 @@ const styles = theme => ({
         height: "100%",
         paddingTop: "30px",
     },
-    resourcesHeader: {
-        backgroundImage: "url('" + bgImage1 + "')",
+    contactHeader: {
+        backgroundImage: "url('" + bgImage3 + "')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
@@ -98,33 +83,201 @@ const styles = theme => ({
         backgroundClip: "text",
         color: "transparent",
         textAlign: "center",
-        filter: "invert(1) grayscale(1) contrast(9)",
+        filter: "invert(0) grayscale(1) contrast(9)",
         fontSize: "3rem",
+        marginBottom: "0px",
         [theme.breakpoints.up('sm')]: {
             fontSize: "4rem",
+            marginBottom: "2rem",
         },
         fontFamily: "monospace",
         fontVariant: "ordinal",
         fontWeight: "bold",
-        marginBottom: "2rem"
+        height: "10%"
+    },
+    card: {
+        width: "100%",
+        backgroundColor: "#191919e6",
+        color: "white",
+        height: "90%",
+    },
+    media: {
+        height: 0,
+        paddingTop: '56.25%', // 16:9
+    },
+    actions: {
+        display: 'flex',
+    },
+    expand: {
+        transform: 'rotate(0deg)',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
+        marginLeft: 'auto',
+        [theme.breakpoints.up('sm')]: {
+            marginRight: -8,
+        },
+    },
+    expandOpen: {
+        transform: 'rotate(180deg)',
+    },
+    avatar: {
+        backgroundColor: "red",
+    },
+    cardHeader: {
+        color: "#a1a1a1db"
+    },
+    listText: {
+        color: "white !important",
+        textDecoration: "none !important",
+        fontSize: ".8rem",
+        [theme.breakpoints.up('sm')]: {
+            fontSize: "1.2rem",
+            // marginBottom: "2rem",
+        },
+    },
+    secondaryListText: {
+        color: "#a1a1a1db !important",
+        textDecoration: "none !important",
+        fontSize: ".7rem",
+        [theme.breakpoints.up('sm')]: {
+            fontSize: "1.1rem",
+            // marginBottom: "2rem",
+        },
+    },
+    contactCardContent: {
+        padding: "0 !important"
+    },
+    contactIcons: {
+        color: "white",
+        fontSize: "1rem",
+        padding: "6px",
+        [theme.breakpoints.up('sm')]: {
+            fontSize: "24px",
+            // marginBottom: "2rem",
+        },
+    },
+    contactIconsBB: {
+        padding: "0px",
+        [theme.breakpoints.up('sm')]: {
+            // fontSize: "24px",
+            padding: "12px",
+
+            // marginBottom: "2rem",
+        },
     },
 })
 
 
 function Page5(props) {
     const { classes } = props;
-
+    const [contactExpanded, setContactExpanded] = useState(false)
+    function toggleContactExpanded(contactExpanded) {
+        if (contactExpanded) {
+            setContactExpanded(false)
+        } else {
+            setContactExpanded(true)
+        }
+    }
     return (
         <div className={classes.fifthContainer}>
-            {/* <div className={classes.fifthPage} /> */}
             <div className={classes.fifthEmptyHalf} />
-            {/* <div className={classes.fifthEmpty1Half} /> */}
-            {/* <div className={classes.fifthEmpty2Half} /> */}
-            <div className={classes.resourcesContainer}>
-                <Typography variant="h2" className={classes.resourcesHeader}>Contact</Typography>
-                {/* <GraphTabs></GraphTabs> */}
+            <div className={classes.contactContainer}>
+                <Typography variant="h2" className={classes.contactHeader}>Contact</Typography>
+                <div className={classes.contactCardContainer}>
+                    <Card className={classes.card}>
+                        <CardHeader
+                            // //     avatar={
+                            // //         <Avatar aria-label="Recipe" className={classes.avatar}>
+                            // //             R
+                            // // </Avatar>
+                            //     }
+                            // action={
+                            //     <IconButton>
+                            //         <MoreVertIcon />
+                            //     </IconButton>
+                            // }
+                            title="Benjamin Laney"
+                            subheader="Scottsdale, AZ"
+                            titleTypographyProps={{
+                                color: "secondary"
+                            }}
+                            subheaderTypographyProps={{
+                                color: "secondary"
+                            }}
+                        />
+                        <CardContent className={classes.contactCardContent}>
+                            <Grid item xs={12} md={6}>
+                                <div className={classes.demo}>
+                                    <List dense={false}>
+                                        <ListItem>
+                                            <ListItemAvatar>
+                                                <Avatar src={EmailIcon}/>
+                                            </ListItemAvatar>
+                                            <ListItemText
+                                                primary={<div className={classes.listText}>professionallaney@gmail.com</div>}
+                                                secondary={<div className={classes.secondaryListText}>E-Mail</div>}
+                                            />
+                                            <ListItemSecondaryAction>
+                                                <IconButton aria-label="CopyLink" className={classes.contactIconsBB}>
+                                                    <CopyLink className={classes.contactIcons} />
+                                                </IconButton>
+                                                <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
+                                                    <LinkIcon className={classes.contactIcons} />
+                                                </IconButton>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>
+                                        <ListItem>
+                                            <ListItemAvatar>
+                                                <Avatar src={GitHubIcon}/>
+                                            </ListItemAvatar>
+                                            <ListItemText
+                                                primary={<a className={classes.listText} href="https://github.com/blaney83">https://github.com/blaney83</a>}
+                                                secondary={<div className={classes.secondaryListText}>GitHub</div>}
+
+                                            />
+                                            <ListItemSecondaryAction>
+                                                <IconButton aria-label="CopyLink" className={classes.contactIconsBB}>
+                                                    <CopyLink className={classes.contactIcons} />
+                                                </IconButton>
+                                                <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
+                                                    <LinkIcon className={classes.contactIcons} />
+                                                </IconButton>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>
+                                        <ListItem>
+                                            <ListItemAvatar>
+                                            <Avatar src={LinkedIcon}/>
+                                            </ListItemAvatar>
+                                            <ListItemText
+                                                primary={<a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/">www.linkedin.com/in/ben-laney</a>}
+                                                secondary={<div className={classes.secondaryListText}>LinkedIn</div>}
+                                            />
+                                            <ListItemSecondaryAction>
+                                                <IconButton aria-label="CopyLink" className={classes.contactIconsBB}>
+                                                    <CopyLink className={classes.contactIcons} />
+                                                </IconButton>
+                                                <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
+                                                    <LinkIcon className={classes.contactIcons} />
+                                                </IconButton>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>
+                                    </List>
+                                </div>
+                            </Grid>
+                        </CardContent>
+                        <CardActions className={classes.actions} >
+                            <IconButton aria-label="Add to favorites" className={classes.contactIconsBB}>
+                                <FavoriteIcon className={classes.contactIcons} />
+                            </IconButton>
+                            <IconButton aria-label="Share" className={classes.contactIconsBB}>
+                                <ShareIcon className={classes.contactIcons} />
+                            </IconButton>
+                        </CardActions>
+                    </Card>
+                </div>
             </div>
-        </div>
+        </div >
     )
 
 }
@@ -136,4 +289,4 @@ function mapStateToProps(state) {
 
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Page5))
+export default connect(null, mapDispatchToProps)(injectSheet(styles)(Page5))
