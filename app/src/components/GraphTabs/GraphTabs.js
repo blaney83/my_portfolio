@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { withStyles } from '@material-ui/core/styles';
@@ -17,6 +17,7 @@ import SevenIcon from "@material-ui/icons/Fingerprint"
 import EightIcon from "@material-ui/icons/FormatAlignRightOutlined"
 import Typography from '@material-ui/core/Typography';
 import ChartistGraph from "react-chartist";
+import "./graphStyle.css"
 import {
     visualChart,
 } from "../Charts/Visual.js";
@@ -77,11 +78,11 @@ const styles = theme => ({
 
 function GraphTabs(props) {
     const { classes } = props;
-    let [value, setValue] = useState(0)
+    let [currentGraph, setCurrentGraph] = useState(0)
 
     function switchGraph(burro) {
-        setValue(burro)
-        // console.log(setValue)
+        setCurrentGraph(burro)
+        console.log(setCurrentGraph)
     }
 
     useEffect(()=>{
@@ -92,7 +93,7 @@ function GraphTabs(props) {
         <div className={classes.root}>
             <AppBar position="static" color="default" className={classes.tabBar}>
                 <Tabs
-                    value={value}
+                    value={currentGraph}
                     scrollable
                     scrollButtons="on"
                     // indicatorColor="#ffff"
@@ -110,7 +111,7 @@ function GraphTabs(props) {
                     <Tab label="CS Basics" icon={<CSIcon />} onClick={()=>switchGraph(8)}/>
                 </Tabs>
             </AppBar>
-            {value === 0 && <TabContainer className={classes.graphBackground}>
+            {currentGraph === 0 && <TabContainer className={classes.graphBackground}>
                 Visual
                 <ChartistGraph
                             className="ct-chart"
@@ -122,7 +123,7 @@ function GraphTabs(props) {
                             plugins={visualChart.plugins.chartistPluginAxisTitle}
                         />
             </TabContainer>}
-            {value === 1 && <TabContainer className={classes.graphBackground}>
+            {currentGraph === 1 && <TabContainer className={classes.graphBackground}>
                 Scripting
                                 <ChartistGraph
                             className="ct-chart"
@@ -134,7 +135,7 @@ function GraphTabs(props) {
                             plugins={scriptChart.plugins.chartistPluginAxisTitle}
                         />
             </TabContainer>}
-            {value === 2 && <TabContainer className={classes.graphBackground}>
+            {currentGraph === 2 && <TabContainer className={classes.graphBackground}>
                 Compiled/Interpreted
                                 <ChartistGraph
                             className="ct-chart"
@@ -146,7 +147,7 @@ function GraphTabs(props) {
                             plugins={compiledChart.plugins.chartistPluginAxisTitle}
                         />
             </TabContainer>}    
-            {value === 3 && <TabContainer className={classes.graphBackground}>
+            {currentGraph === 3 && <TabContainer className={classes.graphBackground}>
                 Cloud-Based
                                 <ChartistGraph
                             className="ct-chart"
@@ -158,7 +159,7 @@ function GraphTabs(props) {
                             plugins={cloudChart.plugins.chartistPluginAxisTitle}
                         />
             </TabContainer>}    
-            {value === 4 && <TabContainer className={classes.graphBackground}>
+            {currentGraph === 4 && <TabContainer className={classes.graphBackground}>
                 SQL Databases
                                 <ChartistGraph
                             className="ct-chart"
@@ -170,7 +171,7 @@ function GraphTabs(props) {
                             plugins={sqlChart.plugins.chartistPluginAxisTitle}
                         />
             </TabContainer>}
-            {value === 5 && <TabContainer className={classes.graphBackground}>
+            {currentGraph === 5 && <TabContainer className={classes.graphBackground}>
                 noSQL Databases
                                 <ChartistGraph
                             className="ct-chart"
@@ -182,7 +183,7 @@ function GraphTabs(props) {
                             plugins={noSQLChart.plugins.chartistPluginAxisTitle}
                         />
             </TabContainer>}
-            {value === 6 && <TabContainer className={classes.graphBackground}>
+            {currentGraph === 6 && <TabContainer className={classes.graphBackground}>
                 Unstructured Data
                                 <ChartistGraph
                             className="ct-chart"
@@ -194,7 +195,7 @@ function GraphTabs(props) {
                             plugins={unstructuredChart.plugins.chartistPluginAxisTitle}
                         />
             </TabContainer>}        
-            {value === 7 && <TabContainer className={classes.graphBackground}>
+            {currentGraph === 7 && <TabContainer className={classes.graphBackground}>
                 Server
                                 <ChartistGraph
                             className="ct-chart"
@@ -206,7 +207,7 @@ function GraphTabs(props) {
                             plugins={serverChart.plugins.chartistPluginAxisTitle}
                         />
             </TabContainer>}    
-            {value === 8 && <TabContainer className={classes.graphBackground}>
+            {currentGraph === 8 && <TabContainer className={classes.graphBackground}>
                 CS Basics
                                 <ChartistGraph
                             className="ct-chart"

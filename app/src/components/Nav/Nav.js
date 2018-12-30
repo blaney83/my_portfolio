@@ -507,9 +507,15 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
+function mapStateToProps(props) {
+    return {
+
+    }
+}
+
 Sidebar.propTypes = {
     classes: PropTypes.object.isRequired,
     theme: PropTypes.object.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Sidebar));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles, { withTheme: true })(Sidebar));
