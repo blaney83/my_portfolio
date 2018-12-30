@@ -6,13 +6,15 @@ import injectSheet from 'react-jss'
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import PhoneIcon from '@material-ui/icons/Phone';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonPinIcon from '@material-ui/icons/PersonPin';
-import HelpIcon from '@material-ui/icons/Help';
-import ShoppingBasket from '@material-ui/icons/ShoppingBasket';
-import ThumbDown from '@material-ui/icons/ThumbDown';
-import ThumbUp from '@material-ui/icons/ThumbUp';
+import VisualIcon from '@material-ui/icons/PanoramaOutlined';
+import ScriptIcon from '@material-ui/icons/WrapTextOutlined';
+import Cloud from '@material-ui/icons/CloudOutlined';
+import Lock from '@material-ui/icons/LockOutlined';
+import SQLIcon from "@material-ui/icons/StorageOutlined";
+import ServerIcon from "@material-ui/icons/RouterOutlined"
+import CSIcon from "@material-ui/icons/CategoryOutlined"
+import SevenIcon from "@material-ui/icons/Fingerprint"
+import EightIcon from "@material-ui/icons/FormatAlignRightOutlined"
 import Typography from '@material-ui/core/Typography';
 import ChartistGraph from "react-chartist";
 import {
@@ -25,7 +27,13 @@ import {
     scriptChart,
 } from "../Charts/Scripting.js";
 import {
-    databaseChart,
+    sqlChart,
+} from "../Charts/Database.js";
+import {
+    noSQLChart,
+} from "../Charts/Database.js";
+import {
+    unstructuredChart,
 } from "../Charts/Database.js";
 import {
     csChart,
@@ -91,13 +99,15 @@ function GraphTabs(props) {
                     // textColor="#ffff"
                     className={classes.eachTab}
                 >
-                    <Tab label="Visual" icon={<PhoneIcon />} onClick={()=>switchGraph(0)}/>
-                    <Tab label="Scripting" icon={<FavoriteIcon />} onClick={()=>switchGraph(1)}/>
-                    <Tab label="Compiled/Interpreted" icon={<PersonPinIcon />} onClick={()=>switchGraph(2)}/>
-                    <Tab label="Cloud-Based" icon={<HelpIcon />} onClick={()=>switchGraph(3)}/>
-                    <Tab label="Database" icon={<ShoppingBasket />} onClick={()=>switchGraph(4)}/>
-                    <Tab label="Server" icon={<ThumbDown />} onClick={()=>switchGraph(5)}/>
-                    <Tab label="CS Basics" icon={<ThumbUp />} onClick={()=>switchGraph(6)}/>
+                    <Tab label="Visual" icon={<VisualIcon />} onClick={()=>switchGraph(0)}/>
+                    <Tab label="Scripting" icon={<ScriptIcon />} onClick={()=>switchGraph(1)}/>
+                    <Tab label="Compiled/Interpreted" icon={<Lock />} onClick={()=>switchGraph(2)}/>
+                    <Tab label="Cloud-Based" icon={<Cloud />} onClick={()=>switchGraph(3)}/>
+                    <Tab label="SQL" icon={<SQLIcon />} onClick={()=>switchGraph(4)}/>
+                    <Tab label="noSQL" icon={<EightIcon />} onClick={()=>switchGraph(5)}/>
+                    <Tab label="Unstructured Data" icon={<SevenIcon />} onClick={()=>switchGraph(6)}/>
+                    <Tab label="Server" icon={<ServerIcon />} onClick={()=>switchGraph(7)}/>
+                    <Tab label="CS Basics" icon={<CSIcon />} onClick={()=>switchGraph(8)}/>
                 </Tabs>
             </AppBar>
             {value === 0 && <TabContainer className={classes.graphBackground}>
@@ -149,18 +159,42 @@ function GraphTabs(props) {
                         />
             </TabContainer>}    
             {value === 4 && <TabContainer className={classes.graphBackground}>
-                Database
+                SQL Databases
                                 <ChartistGraph
                             className="ct-chart"
-                            data={databaseChart.data}
+                            data={sqlChart.data}
                             type="Line"
-                            options={databaseChart.options}
-                            responsiveOptions={databaseChart.responsiveOptions}
-                            listener={databaseChart.animation}
-                            plugins={databaseChart.plugins.chartistPluginAxisTitle}
+                            options={sqlChart.options}
+                            responsiveOptions={sqlChart.responsiveOptions}
+                            listener={sqlChart.animation}
+                            plugins={sqlChart.plugins.chartistPluginAxisTitle}
                         />
-            </TabContainer>}    
+            </TabContainer>}
             {value === 5 && <TabContainer className={classes.graphBackground}>
+                noSQL Databases
+                                <ChartistGraph
+                            className="ct-chart"
+                            data={noSQLChart.data}
+                            type="Line"
+                            options={noSQLChart.options}
+                            responsiveOptions={noSQLChart.responsiveOptions}
+                            listener={noSQLChart.animation}
+                            plugins={noSQLChart.plugins.chartistPluginAxisTitle}
+                        />
+            </TabContainer>}
+            {value === 6 && <TabContainer className={classes.graphBackground}>
+                Unstructured Data
+                                <ChartistGraph
+                            className="ct-chart"
+                            data={unstructuredChart.data}
+                            type="Line"
+                            options={unstructuredChart.options}
+                            responsiveOptions={unstructuredChart.responsiveOptions}
+                            listener={unstructuredChart.animation}
+                            plugins={unstructuredChart.plugins.chartistPluginAxisTitle}
+                        />
+            </TabContainer>}        
+            {value === 7 && <TabContainer className={classes.graphBackground}>
                 Server
                                 <ChartistGraph
                             className="ct-chart"
@@ -172,7 +206,7 @@ function GraphTabs(props) {
                             plugins={serverChart.plugins.chartistPluginAxisTitle}
                         />
             </TabContainer>}    
-            {value === 6 && <TabContainer className={classes.graphBackground}>
+            {value === 8 && <TabContainer className={classes.graphBackground}>
                 CS Basics
                                 <ChartistGraph
                             className="ct-chart"
