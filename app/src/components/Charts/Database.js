@@ -3,7 +3,7 @@ const Chartist = require("chartist")
 
 var sqlChart = {
     data: {
-        labels: ['PostgreSQL\nmySQL\nJawsDB', 'Sequelize', 'Seeding', 'CSV Files', 'ORM Design', 'CLI', 'Workbench'],
+        labels: ['PostgreSQL\nmySQL', 'Sequelize', 'Seeding', 'CSV Files', 'ORM Design', 'CLI', 'Workbench'],
         series: [
             [7.5, 8, 5, 9, 8, 7, 8.5]
         ]
