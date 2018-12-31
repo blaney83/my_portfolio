@@ -39,12 +39,13 @@ const styles = theme => ({
         "-moz-background-size": "cover",
         "-o-background-size": "cover",
         backgroundSize: 'cover',
-        [theme.breakpoints.up('sm')]: {
-        },
         "-webkit-backgroundAttachment": 'fixed',
         "-moz-backgroundAttachment": 'fixed',
         "-o-backgroundAttachment": 'fixed',
-        backgroundAttachment: 'fixed',
+        backgroundAttachment: 'scroll',
+        [theme.breakpoints.up('sm')]: {
+            backgroundAttachment: 'fixed',
+        },
         zIndex: "-1",
         // overflowY: "hidden"
     },
@@ -220,7 +221,7 @@ class Page1 extends React.Component {
                                     <CardContent className={classes.cardContent}>
                                         <div className={classes.root}>
                                             <ExpansionPanel expanded={this.state.expanded === "panel1"} className={classes.paperStyle} >
-                                                <ExpansionPanelSummary classes={{content:  this.state.expanded === "" || this.state.expanded === "panel1" ? classes.summaryContent : classes.summaryContentHidden}} className={classes.expansionSummary} onClick={() => this.togglePanel("panel1", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{root: this.state.expanded === "" || this.state.expanded === "panel1" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
+                                                <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel1" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel1", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel1" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel1" ? classes.heading : classes.headingHidden}>Intro</Typography>
                                                 </ExpansionPanelSummary>
                                                 <ExpansionPanelDetails>
@@ -231,7 +232,7 @@ class Page1 extends React.Component {
                                             </ExpansionPanel>
                                             {/* </div> */}
                                             <ExpansionPanel expanded={this.state.expanded === 'panel2'} className={classes.paperStyle}>
-                                                <ExpansionPanelSummary classes={{content:  this.state.expanded === "" || this.state.expanded === "panel2" ? classes.summaryContent : classes.summaryContentHidden}} className={classes.expansionSummary} onClick={() => this.togglePanel("panel2", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{root: this.state.expanded === "" || this.state.expanded === "panel2" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
+                                                <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel2" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel2", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel2" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel2" ? classes.heading : classes.headingHidden}>Personal Background</Typography>
                                                     <Typography className={classes.secondaryHeading}>
                                                         {/* You are currently not an owner */}
@@ -244,7 +245,7 @@ class Page1 extends React.Component {
                                                 </ExpansionPanelDetails>
                                             </ExpansionPanel>
                                             <ExpansionPanel expanded={this.state.expanded === 'panel3'} className={classes.paperStyle}>
-                                                <ExpansionPanelSummary classes={{content:  this.state.expanded === "" || this.state.expanded === "panel3" ? classes.summaryContent : classes.summaryContentHidden}} className={classes.expansionSummary} onClick={() => this.togglePanel("panel3", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{root: this.state.expanded === "" || this.state.expanded === "panel3" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
+                                                <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel3" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel3", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel3" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel3" ? classes.heading : classes.headingHidden}>Educational Background</Typography>
                                                     <Typography className={classes.secondaryHeading}>
                                                     </Typography>
@@ -256,53 +257,53 @@ class Page1 extends React.Component {
                                                 </ExpansionPanelDetails>
                                             </ExpansionPanel>
                                             <ExpansionPanel expanded={this.state.expanded === 'panel4'} className={classes.paperStyle}>
-                                                <ExpansionPanelSummary classes={{content:  this.state.expanded === "" || this.state.expanded === "panel4" ? classes.summaryContent : classes.summaryContentHidden}} className={classes.expansionSummary} onClick={() => this.togglePanel("panel4", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{root: this.state.expanded === "" || this.state.expanded === "panel4" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
+                                                <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel4" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel4", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel4" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel4" ? classes.heading : classes.headingHidden}>Professional Background</Typography>
                                                 </ExpansionPanelSummary>
                                                 <ExpansionPanelDetails>
                                                     <Typography className={classes.panelBody}>
                                                         {"Notably, I have spent time in many positions from delivering food to bartending. I was the general manager of 2 multi-million dollar food and entertainment venues as well as the lead Specimen Triage Analyst in a major hospital's chemistry diagnostics lab. \n\nMore recently I have pursued free lance web and software development while I am exploring machine learning and data science, which is where my path lies."}
-                                            </Typography>
+                                                    </Typography>
                                                 </ExpansionPanelDetails>
                                             </ExpansionPanel>
                                             <ExpansionPanel expanded={this.state.expanded === 'panel5'} className={classes.paperStyle}>
-                                                <ExpansionPanelSummary classes={{content:  this.state.expanded === "" || this.state.expanded === "panel5" ? classes.summaryContent : classes.summaryContentHidden}} className={classes.expansionSummary} onClick={() => this.togglePanel("panel5", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{root: this.state.expanded === "" || this.state.expanded === "panel5" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
+                                                <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel5" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel5", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel5" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel5" ? classes.heading : classes.headingHidden}>Personal Interests</Typography>
                                                 </ExpansionPanelSummary>
                                                 <ExpansionPanelDetails>
                                                     <Typography className={classes.panelBody}>
                                                         {"Hiking, reading, learning, camping, baseball, football, movies, Tested, snowboarding, travel, reading the news, computer hardware, my dog and making waffles"}
-                                            </Typography>
+                                                    </Typography>
                                                 </ExpansionPanelDetails>
                                             </ExpansionPanel>
                                             <ExpansionPanel expanded={this.state.expanded === 'panel6'} className={classes.paperStyle}>
-                                                <ExpansionPanelSummary classes={{content:  this.state.expanded === "" || this.state.expanded === "panel6" ? classes.summaryContent : classes.summaryContentHidden}} className={classes.expansionSummary} onClick={() => this.togglePanel("panel6", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{root: this.state.expanded === "" || this.state.expanded === "panel6" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
+                                                <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel6" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel6", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel6" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel6" ? classes.heading : classes.headingHidden}>Professional Interests</Typography>
                                                 </ExpansionPanelSummary>
                                                 <ExpansionPanelDetails>
                                                     <Typography className={classes.panelBody}>
                                                         {"Data, Data Structures, Databases, Algorithms, Machine Learning, Web Scraping, KNIME, good looking websites, Python, Node, React and Server structure"}
-                                            </Typography>
+                                                    </Typography>
                                                 </ExpansionPanelDetails>
                                             </ExpansionPanel>
                                             <ExpansionPanel expanded={this.state.expanded === 'panel7'} className={classes.paperStyle}>
-                                                <ExpansionPanelSummary classes={{content:  this.state.expanded === "" || this.state.expanded === "panel7" ? classes.summaryContent : classes.summaryContentHidden}} className={classes.expansionSummary} onClick={() => this.togglePanel("panel7", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{root: this.state.expanded === "" || this.state.expanded === "panel7" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
+                                                <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel7" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel7", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel7" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel7" ? classes.heading : classes.headingHidden}>Code of Ethos</Typography>
                                                 </ExpansionPanelSummary>
                                                 <ExpansionPanelDetails>
                                                     <Typography className={classes.panelBody}>
                                                         {"Respect your neighbor. Love your animals. Protect your planet. Work hard. Learn always. Stand up for whats right. Be a good person. Always be knolling."}
-                                            </Typography>
+                                                    </Typography>
                                                 </ExpansionPanelDetails>
                                             </ExpansionPanel>
                                             <ExpansionPanel expanded={this.state.expanded === 'panel8'} className={classes.paperStyle}>
-                                                <ExpansionPanelSummary classes={{content:  this.state.expanded === "" || this.state.expanded === "panel8" ? classes.summaryContent : classes.summaryContentHidden}} className={classes.expansionSummary} onClick={() => this.togglePanel("panel8", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{root: this.state.expanded === "" || this.state.expanded === "panel8" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
+                                                <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel8" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel8", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel8" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel8" ? classes.heading : classes.headingHidden}>About this Page</Typography>
                                                 </ExpansionPanelSummary>
                                                 <ExpansionPanelDetails>
                                                     <Typography className={classes.panelBody}>
                                                         {"This page is currently under development. It was completed over the course of 4 days and developed on Google Chrome for Google Chrome. It is mobile friendly, but large screen resolutions can distort it functionality. The recommended zoom ratio on laptop browsers is between 768 px wide and 1024 xp wide. If you are having trouble viewing the site and its features, try adjusting you zoom settings to these values. \n That being said, further development on this site is planned and if you are using a platform other than Google Chrome or an iPhone browser and you encounter an ISSUE, please CONTACT me at PROFESSIONALLANEY@GMAIL.COM or through the contact section below. Suggestions are welcome. Enjoy!"}
-                                            </Typography>
+                                                    </Typography>
                                                 </ExpansionPanelDetails>
                                             </ExpansionPanel>
                                         </div>
