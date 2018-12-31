@@ -332,10 +332,10 @@ class Sidebar extends React.Component {
             hello.setState({ yScrollPosition: Math.floor(window.scrollY) })
         });
         window.addEventListener("orientationchange", function () {
-            hello.setState({ screenOrientationAngle: window.screen.orientation.angle })
+            hello.setState({ screenOrientationAngle: window.screen.orientation ? window.screen.orientation.angle : "Hidden" })
         });
         window.addEventListener("resize", function () {
-            hello.setState({ screenZoom: window.visualViewport.scale, screenSize: [window.innerWidth, window.innerHeight] })
+            hello.setState({ screenZoom: window.visualViewport ? window.visualViewport.scale : "hidden", screenSize: [window.innerWidth, window.innerHeight] })
         });
         let infoRequestConfig = {
             "async": true,
