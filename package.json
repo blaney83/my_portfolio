@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/blaney83/my_portfolio/issues"
   },
-  "homepage": "https://github.com/blaney83/my_portfolio#readme",
+  "homepage" : "http://blaney83.github.io/",
   "dependencies": {
     "create-react-app": "^2.1.2",
     "express": "^4.16.4"

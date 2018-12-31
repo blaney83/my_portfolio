@@ -9,7 +9,8 @@ var serverChart = {
         ]
     },
     options: {
-        low: 0
+        low: 0,
+        high: 10
     },
     animation: {
         // Let's put a sequence number aside so we can use it in the event callbacks

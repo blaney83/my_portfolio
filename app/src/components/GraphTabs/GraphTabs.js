@@ -117,7 +117,7 @@ function GraphTabs(props) {
                 <ChartistGraph
                     className="ct-chart"
                     data={visualChart.data}
-                    type="Line"
+                    type="Bar"
                     options={visualChart.options}
                     responsiveOptions={visualChart.responsiveOptions}
                     listener={visualChart.animation}
@@ -141,7 +141,7 @@ function GraphTabs(props) {
                                 <ChartistGraph
                     className="ct-chart"
                     data={compiledChart.data}
-                    type="Line"
+                    type="Bar"
                     options={compiledChart.options}
                     responsiveOptions={compiledChart.responsiveOptions}
                     listener={compiledChart.animation}
@@ -165,7 +165,7 @@ function GraphTabs(props) {
                                 <ChartistGraph
                     className="ct-chart"
                     data={sqlChart.data}
-                    type="Line"
+                    type="Bar"
                     options={sqlChart.options}
                     responsiveOptions={sqlChart.responsiveOptions}
                     listener={sqlChart.animation}
@@ -189,7 +189,7 @@ function GraphTabs(props) {
                                 <ChartistGraph
                     className="ct-chart"
                     data={unstructuredChart.data}
-                    type="Line"
+                    type="Bar"
                     options={unstructuredChart.options}
                     responsiveOptions={unstructuredChart.responsiveOptions}
                     listener={unstructuredChart.animation}
