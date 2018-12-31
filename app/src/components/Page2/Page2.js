@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { connect } from "react-redux";
-import injectSheet from 'react-jss'
-import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 import bgImage from "../../assets/img/page2BG.jpg"
 import Typography from '@material-ui/core/Typography';
 import bgImage1 from "../../assets/img/trianglify.png"
@@ -69,6 +68,20 @@ const styles = theme => ({
         fontSize: "3rem",
         [theme.breakpoints.up('sm')]: {
             fontSize: "4rem",
+            marginBottom: "1rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: "5rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "8rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "10rem",
+            // marginBottom: "0px"
         },
         fontFamily: "monospace",
         fontVariant: "ordinal",
@@ -96,11 +109,12 @@ function Page2(props) {
 
 }
 
-function mapDispatchToProps(dispatch) {
-}
+// function mapDispatchToProps(dispatch) {
+// }
 
-function mapStateToProps(state) {
+// function mapStateToProps(state) {
 
-}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Page2))
+// export default withStyles(styles)(Page2)
+export default connect(null, null)(withStyles(styles)(Page2))

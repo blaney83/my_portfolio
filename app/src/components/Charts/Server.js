@@ -3,7 +3,7 @@ const Chartist = require("chartist")
 
 var serverChart = {
     data: {
-        labels: ['Express', 'Node', 'NPM/Yarn', 'CRUD Ops', 'REST',  'Remote Deployment'],
+        labels: ['Express', 'Node', 'NPM/Yarn', 'CRUD Ops', 'REST',  'Remote\nDeployment'],
         series: [
             [9, 9, 9, 9, 9, 8.5]
         ]
@@ -118,9 +118,9 @@ var serverChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]

@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { connect } from "react-redux";
-import injectSheet from 'react-jss'
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
+import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Typography from '@material-ui/core/Typography';
@@ -107,6 +105,19 @@ const styles = theme => ({
         marginTop: "-10px",
         [theme.breakpoints.up('sm')]: {
             fontSize: "4rem",
+            marginBottom: "1rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: "5rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "8rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "10rem",
             // marginBottom: "0px"
         },
         fontFamily: "monospace",
@@ -116,7 +127,24 @@ const styles = theme => ({
     },
     scrollContainer: {
     },
+    listItemClass: {
+
+    },
     slideTile: {
+        color: "white",
+        fontSize: ".7rem",
+        [theme.breakpoints.up('sm')]: {
+            fontSize: ".8rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "1.4rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "4rem",
+            // marginBottom: "0px"
+        },
     },
     mainCard: {
         backgroundColor: "#131313bd",
@@ -131,8 +159,20 @@ const styles = theme => ({
         // backgroundColor: ""
     },
     slideListItem: {
+        color: "white",
         fontSize: ".5rem",
-        color: "white"
+        [theme.breakpoints.up('sm')]: {
+            fontSize: ".7rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: ".7rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "2.5rem",
+            // marginBottom: "0px"
+        },
     },
     flowContainer:{
         width: "100%",
@@ -140,6 +180,9 @@ const styles = theme => ({
     },
     headerContainer: {
         height: "10%"
+    },
+    wheelImages: {
+
     }
 })
 
@@ -171,27 +214,27 @@ function Page4(props) {
                         active={0}
                         // height={"100%"}
                     >
-                        <img src={Fire} alt={
-                            <div>
-                                <Grid container spacing={16}>
-                                    <Grid item xs={12} md={6}>
-                                        <Typography variant="body" className={classes.slideTile}>Docs</Typography>
+                        <img src={Fire} className={classes.wheelImages} alt={
+                            <div >
+                                <Grid container spacing={16} >
+                                    <Grid item xs={12} >
+                                        <Typography variant="body1" className={classes.slideTile}>Docs</Typography>
                                         <div >
                                             <List dense={true}>
-                                                <ListItem button={true}>
-                                                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Mozilla JS Docs</Typography></a>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Mozilla JS Docs</Typography></a>
+                                                </ListItem>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://reactjs.org/docs/getting-started.html" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- React</Typography></a>
+                                                </ListItem>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://redux.js.org/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Redux</Typography></a>
+                                                </ListItem>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://www.w3schools.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- W3</Typography></a>
                                                 </ListItem>
                                                 <ListItem button={true}>
-                                                    <a href="https://reactjs.org/docs/getting-started.html" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- React</Typography></a>
-                                                </ListItem>
-                                                <ListItem button={true}>
-                                                    <a href="https://redux.js.org/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Redux</Typography></a>
-                                                </ListItem>
-                                                <ListItem button={true}>
-                                                    <a href="https://www.w3schools.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- W3</Typography></a>
-                                                </ListItem>
-                                                <ListItem button={true}>
-                                                    <a href="https://www.w3schools.com/jsref/jsref_obj_array.asp" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- W3 Array Methods (deserves its own plug)</Typography></a>
+                                                    <a href="https://www.w3schools.com/jsref/jsref_obj_array.asp" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- W3 Array Methods (deserves its own plug)</Typography></a>
                                                 </ListItem>
                                             </List>
                                         </div>
@@ -203,18 +246,18 @@ function Page4(props) {
                         <img src={Nightlight} alt={
                             <div>
                                 <Grid container spacing={16}>
-                                    <Grid item xs={12} md={6}>
-                                        <Typography variant="body" className={classes.slideTile}>Frameworks</Typography>
+                                    <Grid item xs={12} >
+                                        <Typography variant="body1" className={classes.slideTile}>Frameworks</Typography>
                                         <div >
                                             <List dense={true}>
-                                                <ListItem button={true}>
-                                                    <a href="https://material-ui.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Material UI (React)</Typography></a>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://material-ui.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Material UI (React)</Typography></a>
                                                 </ListItem>
-                                                <ListItem button={true}>
-                                                    <a href="https://getbootstrap.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Bootstrap (HTML/CSS)</Typography></a>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://getbootstrap.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Bootstrap (HTML/CSS)</Typography></a>
                                                 </ListItem>
-                                                <ListItem button={true}>
-                                                    <a href="https://bulma.io/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Bulma (HTML/CSS)</Typography></a>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://bulma.io/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Bulma (HTML/CSS)</Typography></a>
                                                 </ListItem>
                                             </List>
                                         </div>
@@ -225,15 +268,15 @@ function Page4(props) {
                                                 <img src={Woods} alt={
                             <div>
                                 <Grid container spacing={16}>
-                                    <Grid item xs={12} md={6}>
-                                        <Typography variant="body" className={classes.slideTile}>Media</Typography>
+                                    <Grid item xs={12} >
+                                        <Typography variant="body1" className={classes.slideTile}>Media</Typography>
                                         <div >
                                             <List dense={true}>
-                                                <ListItem button={true}>
-                                                    <a href="https://syntax.fm/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Syntax (Podcast)</Typography></a>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://syntax.fm/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Syntax (Podcast)</Typography></a>
                                                 </ListItem>
-                                                <ListItem button={true}>
-                                                    <a href="https://darknetdiaries.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- darknetdiaries  (Podcast)</Typography></a>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://darknetdiaries.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- darknetdiaries  (Podcast)</Typography></a>
                                                 </ListItem>
                                             </List>
                                         </div>
@@ -245,18 +288,18 @@ function Page4(props) {
                         <img src={Ocean} alt={
                             <div>
                                 <Grid container spacing={16}>
-                                    <Grid item xs={12} md={6}>
-                                        <Typography variant="body" className={classes.slideTile}>Visual</Typography>
+                                    <Grid item xs={12} >
+                                        <Typography variant="body1" className={classes.slideTile}>Visual</Typography>
                                         <div className={classes.demo}>
                                             <List dense={true}>
-                                                <ListItem button={true}>
-                                                    <a href="https://unsplash.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Unsplash (Images)</Typography></a>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://unsplash.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Unsplash (Images)</Typography></a>
                                                 </ListItem>
-                                                <ListItem button={true}>
-                                                    <a href="https://gionkunz.github.io/chartist-js/api-documentation.html" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Chartist (Graphs)</Typography></a>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://gionkunz.github.io/chartist-js/api-documentation.html" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Chartist (Graphs)</Typography></a>
                                                 </ListItem>
-                                                <ListItem button={true}>
-                                                    <a href="https://trianglify.io/" rel="noopener noreferrer" target="_blank"><Typography variant="body" className={classes.slideListItem}>- Trianglify (Geometric Backgrounds)</Typography></a>
+                                                <ListItem button={true} className={classes.listItemClass}>
+                                                    <a href="https://trianglify.io/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Trianglify (Geometric Backgrounds)</Typography></a>
                                                 </ListItem>
                                             </List>
                                         </div>
@@ -274,11 +317,11 @@ function Page4(props) {
 
 }
 
-function mapDispatchToProps(dispatch) {
-}
+// function mapDispatchToProps(dispatch) {
+// }
 
-function mapStateToProps(state) {
+// function mapStateToProps(state) {
 
-}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Page4))
+export default connect(null, null)(withStyles(styles)(Page4))

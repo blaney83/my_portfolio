@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { connect } from "react-redux";
-import injectSheet from 'react-jss'
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import bgImage from "../../assets/img/stars.jpg"
 import ScrollableAnchor from 'react-scrollable-anchor'
 
@@ -42,6 +41,10 @@ const styles = theme => ({
             fontSize: "11rem",
 
         },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "24rem",
+
+        },
     },
     mainSubTitle: {
         color: "#a7a7a7",
@@ -62,11 +65,6 @@ function Landing(props) {
 
 }
 
-function mapDispatchToProps(dispatch) {
-}
 
-function mapStateToProps(state) {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Landing))
+// export default withStyles(styles)(Landing)
+export default connect(null, null)(withStyles(styles)(Landing))

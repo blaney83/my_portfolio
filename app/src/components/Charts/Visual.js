@@ -3,9 +3,9 @@ const Chartist = require("chartist")
 
 var visualChart = {
     data: {
-        labels: ['HTML5', 'CSS3', 'Animations', 'Layouts', 'BootStrap/Bulma', 'JSS', 'Material'],
+        labels: ['HTML5', 'CSS3', 'Animations', 'Layouts', 'JSS', 'Material', 'BootStrap', "SCSS"],
         series: [
-            [9, 6, 3, 7, 7, 8, 8]
+            [9, 6, 3, 7, 7.5, 8, 8, 2]
         ]
     },
     options: {
@@ -118,9 +118,9 @@ var visualChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]

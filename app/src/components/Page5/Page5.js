@@ -1,38 +1,29 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux";
-import injectSheet from 'react-jss'
-import Button from '@material-ui/core/Button';
-import bgImage from "../../assets/img/forest.jpg"
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+// import { cold } from 'react-hot-loader'
+import { updateP5State } from "../../state/p5/actions"
 import bgImage1 from "../../assets/img/rainy.jpg"
-import FolderIcon from '@material-ui/icons/Folder';
-import DeleteIcon from '@material-ui/icons/Delete';
 import LinkIcon from '@material-ui/icons/CallMade';
 import CopyLink from '@material-ui/icons/AttachFile';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import bgImage2 from "../../assets/img/bg4.jpg"
 import bgImage3 from "../../assets/img/bg5.jpg"
-import classnames from 'classnames';
 import ShareIcon from '@material-ui/icons/Share';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import EmailIcon from '../../assets/icons/email.svg';
 import GitHubIcon from '../../assets/icons/GitHub.svg';
 import LinkedIcon from '../../assets/icons/linked.svg';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import GraphTabs from "../GraphTabs/GraphTabs.js"
 import Snackbar from '@material-ui/core/Snackbar';
 import ScrollableAnchor from 'react-scrollable-anchor'
 import Modal from '@material-ui/core/Modal';
@@ -91,7 +82,22 @@ const styles = theme => ({
         marginBottom: "0px",
         [theme.breakpoints.up('sm')]: {
             fontSize: "4rem",
-            marginBottom: "2rem",
+            // marginTop: "-2rem",
+            paddingBottom: "2rem",
+            marginBottom: "1rem",
+
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: "5rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "8rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "10rem",
+            // marginBottom: "0px"
         },
         fontFamily: "monospace",
         fontVariant: "ordinal",
@@ -169,18 +175,22 @@ const styles = theme => ({
             // marginBottom: "2rem",
         },
     },
+    snackMessage: {
+        width: "20%",
+        left: "45%"
+    },
+    shareStyle: {
+        bottom: "0px",
+        left: "30%",
+        position: "absolute",
+    }
 })
 
 
 function Page5(props) {
     const { classes } = props;
-    const [emailOpen, setEmailOpen] = useState(false)
-    const [gitHubOpen, setGitHubOpen] = useState(false)
-    const [linkedInOpen, setLinkedInOpen] = useState(false)
-    const [addressOpen, setAddressOpen] = useState(false)
-    const [shareOpen, setShareOpen] = useState(false)
-
-    function copyEmail() {
+    console.log(props)
+    function copyEmail(p5State, toggleState) {
         const myEmail = document.createElement('textarea');
         myEmail.value = "professionallaney@gmail.com"
         myEmail.setAttribute('readonly', '');
@@ -189,10 +199,10 @@ function Page5(props) {
         document.body.appendChild(myEmail);
         myEmail.select()
         document.execCommand('copy')
-        setEmailOpen(true)
+        toggleState(p5State, "email", updateP5State)
         document.body.removeChild(myEmail);
     }
-    function copyGitHub() {
+    function copyGitHub(p5State, toggleState) {
         const myGitHub = document.createElement('textarea');
         myGitHub.value = "https://github.com/blaney83"
         myGitHub.setAttribute('readonly', '');
@@ -201,10 +211,10 @@ function Page5(props) {
         document.body.appendChild(myGitHub);
         myGitHub.select()
         document.execCommand('copy')
-        setGitHubOpen(true)
+        toggleState(p5State, "gitHub", updateP5State)
         document.body.removeChild(myGitHub);
     }
-    function copyLinkedIn() {
+    function copyLinkedIn(p5State, toggleState) {
         const myLinkedIn = document.createElement('textarea');
         myLinkedIn.value = "https://www.linkedin.com/in/ben-laney-090613117/"
         myLinkedIn.setAttribute('readonly', '');
@@ -213,10 +223,11 @@ function Page5(props) {
         document.body.appendChild(myLinkedIn);
         myLinkedIn.select()
         document.execCommand('copy')
-        setLinkedInOpen(true)
+        console.log(props)
+        toggleState(p5State, "linkedIn", updateP5State)
         document.body.removeChild(myLinkedIn);
     }
-    function copyAddress() {
+    function copyAddress(p5State, toggleState) {
         const myAddress = document.createElement('textarea');
         myAddress.value = "https://www.linkedin.com/in/ben-laney-090613117/"
         myAddress.setAttribute('readonly', '');
@@ -225,7 +236,7 @@ function Page5(props) {
         document.body.appendChild(myAddress);
         myAddress.select()
         document.execCommand('copy')
-        setAddressOpen(true)
+        toggleState(p5State, "address", updateP5State)
         document.body.removeChild(myAddress);
     }
     return (
@@ -247,7 +258,7 @@ function Page5(props) {
                                 }}
                             />
                             <CardContent className={classes.contactCardContent}>
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} md={12}>
                                     <div className={classes.demo}>
                                         <List dense={false}>
                                             <ListItem>
@@ -255,25 +266,28 @@ function Page5(props) {
                                                     <Avatar src={EmailIcon} />
                                                 </ListItemAvatar>
                                                 <ListItemText
-                                                    primary={<div className={classes.listText}>professionallaney@gmail.com</div>}
-                                                    secondary={<div className={classes.secondaryListText}>E-Mail</div>}
+                                                    primary={<a href="mailto:professionallaney@gmail.com" className={classes.listText}>professionallaney@gmail.com</a>}
+                                                    secondary={<span className={classes.secondaryListText}>E-Mail</span>}
                                                 />
                                                 <ListItemSecondaryAction>
-                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyEmail()}>
+                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyEmail(props.p5State, props.setP5State)}>
                                                         <CopyLink className={classes.contactIcons} />
                                                     </IconButton>
-                                                    <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
-                                                        <LinkIcon className={classes.contactIcons} />
-                                                    </IconButton>
+                                                    <a href="mailto:professionallaney@gmail.com">
+                                                        <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
+                                                            <LinkIcon className={classes.contactIcons} />
+                                                        </IconButton>
+                                                    </a>
                                                 </ListItemSecondaryAction>
                                                 <Snackbar
+                                                    className={classes.snackMessage}
                                                     anchorOrigin={{
                                                         vertical: 'bottom',
                                                         horizontal: 'center',
                                                     }}
-                                                    open={emailOpen}
-                                                    autoHideDuration={3000}
-                                                    onClose={() => setEmailOpen(false)}
+                                                    open={props.p5State === "email"}
+                                                    autoHideDuration={1500}
+                                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                                     ContentProps={{
                                                         'aria-describedby': 'message-id',
                                                     }}
@@ -288,24 +302,27 @@ function Page5(props) {
                                                 </ListItemAvatar>
                                                 <ListItemText
                                                     primary={<a className={classes.listText} href="https://github.com/blaney83" rel="noopener noreferrer" target="_blank">https://github.com/blaney83</a>}
-                                                    secondary={<div className={classes.secondaryListText}>GitHub</div>}
+                                                    secondary={<span className={classes.secondaryListText}>GitHub</span>}
                                                 />
                                                 <ListItemSecondaryAction>
-                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyGitHub()}>
+                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyGitHub(props.p5State, props.setP5State)}>
                                                         <CopyLink className={classes.contactIcons} />
                                                     </IconButton>
-                                                    <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
-                                                        <LinkIcon className={classes.contactIcons} />
-                                                    </IconButton>
+                                                    <a className={classes.listText} href="https://github.com/blaney83" rel="noopener noreferrer" target="_blank">
+                                                        <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
+                                                            <LinkIcon className={classes.contactIcons} />
+                                                        </IconButton>
+                                                    </a>
                                                 </ListItemSecondaryAction>
                                                 <Snackbar
+                                                    className={classes.snackMessage}
                                                     anchorOrigin={{
                                                         vertical: 'bottom',
                                                         horizontal: 'center',
                                                     }}
-                                                    open={gitHubOpen}
-                                                    autoHideDuration={3000}
-                                                    onClose={() => setGitHubOpen(false)}
+                                                    open={props.p5State === "gitHub"}
+                                                    autoHideDuration={1500}
+                                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                                     ContentProps={{
                                                         'aria-describedby': 'message-id',
                                                     }}
@@ -320,24 +337,27 @@ function Page5(props) {
                                                 </ListItemAvatar>
                                                 <ListItemText
                                                     primary={<a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/" rel="noopener noreferrer" target="_blank">www.linkedin.com/in/ben-laney</a>}
-                                                    secondary={<div className={classes.secondaryListText}>LinkedIn</div>}
+                                                    secondary={<span className={classes.secondaryListText}>LinkedIn</span>}
                                                 />
                                                 <ListItemSecondaryAction>
-                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyLinkedIn()}>
+                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyLinkedIn(props.p5State, props.setP5State)}>
                                                         <CopyLink className={classes.contactIcons} />
                                                     </IconButton>
-                                                    <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
-                                                        <LinkIcon className={classes.contactIcons} />
-                                                    </IconButton>
+                                                    <a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/" rel="noopener noreferrer" target="_blank">
+                                                        <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
+                                                            <LinkIcon className={classes.contactIcons} />
+                                                        </IconButton>
+                                                    </a>
                                                 </ListItemSecondaryAction>
                                                 <Snackbar
+                                                    className={classes.snackMessage}
                                                     anchorOrigin={{
                                                         vertical: 'bottom',
                                                         horizontal: 'center',
                                                     }}
-                                                    open={linkedInOpen}
-                                                    autoHideDuration={3000}
-                                                    onClose={() => setLinkedInOpen(false)}
+                                                    open={props.p5State === "linkedIn"}
+                                                    autoHideDuration={1500}
+                                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                                     ContentProps={{
                                                         'aria-describedby': 'message-id',
                                                     }}
@@ -351,17 +371,18 @@ function Page5(props) {
                                 </Grid>
                             </CardContent>
                             <CardActions className={classes.actions} >
-                                <IconButton aria-label="Copy Website Address" className={classes.contactIconsBB} onClick={() => copyAddress()}>
+                                <IconButton aria-label="Copy Website Address" className={classes.contactIconsBB} onClick={() => copyAddress(props.p5State, props.setP5State)}>
                                     <CopyLink className={classes.contactIcons} />
                                 </IconButton>
                                 <Snackbar
+                                    className={classes.snackMessage}
                                     anchorOrigin={{
                                         vertical: 'bottom',
                                         horizontal: 'center',
                                     }}
-                                    open={addressOpen}
-                                    autoHideDuration={3000}
-                                    onClose={() => setAddressOpen(false)}
+                                    open={props.p5State === "address"}
+                                    autoHideDuration={1500}
+                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                     ContentProps={{
                                         'aria-describedby': 'message-id',
                                     }}
@@ -369,16 +390,16 @@ function Page5(props) {
                                     action={[
                                     ]}
                                 />
-                                <IconButton aria-label="Share" className={classes.contactIconsBB} onClick={()=>setShareOpen(true)}>
+                                <IconButton aria-label="Share" className={classes.contactIconsBB} onClick={() => props.setP5State(props.p5State, "shared", updateP5State)}>
                                     <ShareIcon className={classes.contactIcons} />
                                 </IconButton>
                                 <Modal
                                     aria-labelledby="simple-modal-title"
                                     aria-describedby="simple-modal-description"
-                                    open={shareOpen}
-                                    onClose={setShareOpen(false)}
+                                    open={props.p5State === "shared"}
+                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                 >
-                                <div class="sharethis-inline-share-buttons"></div>
+                                    <div class="sharethis-inline-share-buttons"></div>
                                 </Modal>
                             </CardActions>
                         </Card>
@@ -391,13 +412,26 @@ function Page5(props) {
 }
 
 function mapDispatchToProps(dispatch) {
+    const p5Methods = {
+        setP5State(currentState, newState, setState) {
+            if (currentState === newState) {
+                dispatch(setState({
+                    p5State: false
+                }))
+            } else {
+                dispatch(setState({
+                    p5State: newState
+                }))
+            }
+        },
+    }
+    return (p5Methods)
 }
 
 function mapStateToProps(state) {
-
+    return { p5State: state.p5reducer.p5State }
 }
-
-export default connect(null, mapDispatchToProps)(injectSheet(styles)(Page5))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page5))
 
 
 

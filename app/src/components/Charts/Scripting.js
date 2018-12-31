@@ -3,7 +3,7 @@ const Chartist = require("chartist")
 
 var scriptChart = {
     data: {
-        labels: ['JS-ES7', 'React', 'Redux', 'Hooks', 'React Material-UI', 'jQuery'],
+        labels: ['JS-ES7', 'React', 'Redux', 'Hooks', 'React w/\nMaterial-UI', 'jQuery'],
         series: [
             [9.2, 8.5, 8.5, 9, 9, 8.5],
         ]
@@ -118,9 +118,9 @@ var scriptChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]

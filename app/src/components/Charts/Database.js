@@ -3,7 +3,7 @@ const Chartist = require("chartist")
 
 var sqlChart = {
     data: {
-        labels: ['Post/mySQL/JawsDB', 'Sequelize', 'Seeding', 'CSV Files', 'ORM Design', 'CLI', 'Workbench'],
+        labels: ['PostgreSQL\nmySQL\nJawsDB', 'Sequelize', 'Seeding', 'CSV Files', 'ORM Design', 'CLI', 'Workbench'],
         series: [
             [7.5, 8, 5, 9, 8, 7, 8.5]
         ]
@@ -118,9 +118,9 @@ var sqlChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]
@@ -154,7 +154,7 @@ var sqlChart = {
 
 var noSQLChart = {
     data: {
-        labels: ['Mongo/mLab', 'Mongoose', 'JSON', 'ORM', 'CLI', 'T3'],
+        labels: ['Mongo\nmLab', 'Mongoose', 'JSON', 'ORM', 'CLI', 'T3'],
         series: [
             [8, 8.5, 9, 8, 9, 8.5]
         ]
@@ -269,9 +269,9 @@ var noSQLChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]
@@ -305,7 +305,7 @@ var noSQLChart = {
 
 var unstructuredChart = {
     data: {
-        labels: ['WebScraping', 'Data Normalization', 'Indexing', 'KNIME'],
+        labels: ['WebScraping', 'Normalizing\nData', 'Indexing', 'KNIME'],
         series: [
             [10, 9, 5, 0]
         ]
@@ -420,9 +420,9 @@ var unstructuredChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]
