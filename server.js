@@ -9,8 +9,15 @@ app.use(express.json());
 
 app.use(express.static("app/build"));
 
-// Add routes, both API and view
-// app.use(routes);
+const router = require("express").Router();
+const path = require("path")
+
+// router.use("/", v1Routes);
+
+// Program in a fall back route for missed calls
+router.use("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../app/build/index.html"));
+});
 
 // // Mongoose Connection
 // const db = require("./config/connection");
