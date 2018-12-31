@@ -307,7 +307,7 @@ class Sidebar extends React.Component {
         screenSize: [window.innerWidth, window.innerHeight],
         screenOrientationAngle: window.screen.orientation ? window.screen.orientation.angle : "Hidden",
         screenOrientationType: window.screen.orientation ? window.screen.orientation.type : "Hidden",
-        screenZoom: window.visualViewport.scale,
+        screenZoom: window.visualViewport ? window.visualViewport.scale : "Hidden",
         IPAddress: "Hidden",
         userCity: "Hidden",
         userState: "Hidden",
