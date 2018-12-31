@@ -13,8 +13,14 @@ const styles = theme => ({
         backgroundPositionY: "-30px",
         backgroundPositionX: "center",
         backgroundRepeat: 'no-repeat',
+        "-webkit-background-size": "cover",
+        "-moz-background-size": "cover",
+        "-o-background-size": "cover",
         backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
+        backgroundAttachment: 'scroll',
+        [theme.breakpoints.up('sm')]: {
+            backgroundAttachment: 'fixed',
+        },
         zIndex: "-1",
         pointerEvents: "auto"
     },

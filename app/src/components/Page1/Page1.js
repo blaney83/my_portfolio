@@ -39,9 +39,6 @@ const styles = theme => ({
         "-moz-background-size": "cover",
         "-o-background-size": "cover",
         backgroundSize: 'cover',
-        "-webkit-backgroundAttachment": 'fixed',
-        "-moz-backgroundAttachment": 'fixed',
-        "-o-backgroundAttachment": 'fixed',
         backgroundAttachment: 'scroll',
         [theme.breakpoints.up('sm')]: {
             backgroundAttachment: 'fixed',

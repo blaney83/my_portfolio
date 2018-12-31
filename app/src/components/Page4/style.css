@@ -94,7 +94,7 @@
   
 	  @media(max-width: 600px){
 		.coverflow__figure__3bk_C {
-			/* min-width: 160px; */
+			min-width: 150px;
 		}
 		}
 		@media(min-width: 1000px){

@@ -37,6 +37,9 @@ const styles = theme => ({
         // backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         // backgroundSize: '100vh',
+        "-webkit-background-size": "cover",
+        "-moz-background-size": "cover",
+        "-o-background-size": "cover",
         backgroundSize: 'cover',
         // backgroundAttachment: "fixed",
     },
@@ -50,6 +53,9 @@ const styles = theme => ({
         backgroundImage: "url('" + bgImage1 + "')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        "-webkit-background-size": "cover",
+        "-moz-background-size": "cover",
+        "-o-background-size": "cover",
         backgroundSize: 'cover',
         // backgroundAttachment: 'fixed',
     },
@@ -63,8 +69,14 @@ const styles = theme => ({
         backgroundImage: "url('" + bgImage2 + "')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        "-webkit-background-size": "cover",
+        "-moz-background-size": "cover",
+        "-o-background-size": "cover",
         backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
+        backgroundAttachment: 'scroll',
+        [theme.breakpoints.up('sm')]: {
+            backgroundAttachment: 'fixed',
+        },
     },
     fourthEmpty2Half: {
         position: "absolute",
@@ -76,8 +88,14 @@ const styles = theme => ({
         backgroundImage: "url('" + bgImage3 + "')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        "-webkit-background-size": "cover",
+        "-moz-background-size": "cover",
+        "-o-background-size": "cover",
         backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
+        backgroundAttachment: 'scroll',
+        [theme.breakpoints.up('sm')]: {
+            backgroundAttachment: 'fixed',
+        },
     },
     resourcesContainer: {
         boxSizing: "border-box",
@@ -94,8 +112,14 @@ const styles = theme => ({
         backgroundImage: "url('" + bgImage1 + "')",
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
+        "-webkit-background-size": "cover",
+        "-moz-background-size": "cover",
+        "-o-background-size": "cover",
         backgroundSize: 'cover',
-        backgroundAttachment: 'fixed',
+        backgroundAttachment: 'scroll',
+        [theme.breakpoints.up('sm')]: {
+            backgroundAttachment: 'fixed',
+        },
         "-webkit-background-clip": "text",
         backgroundClip: "text",
         color: "transparent",
@@ -132,13 +156,14 @@ const styles = theme => ({
     },
     slideTile: {
         color: "white",
-        fontSize: ".7rem",
+        fontSize: "1rem",
+        fontWeight: "bold",
         [theme.breakpoints.up('sm')]: {
-            fontSize: ".8rem",
+            fontSize: "1.2rem",
             // marginBottom: "0px"
         },
         [theme.breakpoints.up('lg')]: {
-            fontSize: "1.4rem",
+            fontSize: "1.6rem",
             // marginBottom: "0px"
         },
         [theme.breakpoints.up('xl')]: {
@@ -160,7 +185,7 @@ const styles = theme => ({
     },
     slideListItem: {
         color: "white",
-        fontSize: ".5rem",
+        fontSize: ".6rem",
         [theme.breakpoints.up('sm')]: {
             fontSize: ".7rem",
             // marginBottom: "0px"
@@ -183,6 +208,9 @@ const styles = theme => ({
     },
     wheelImages: {
 
+    },
+    linkTextDecoration: {
+        textDecoration: "none !important"
     }
 })
 
@@ -222,19 +250,16 @@ function Page4(props) {
                                         <div >
                                             <List dense={true}>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Mozilla JS Docs</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Mozilla JS Docs</Typography></a>
                                                 </ListItem>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://reactjs.org/docs/getting-started.html" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- React</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://reactjs.org/docs/getting-started.html" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- React</Typography></a>
                                                 </ListItem>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://redux.js.org/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Redux</Typography></a>
-                                                </ListItem>
-                                                <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://www.w3schools.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- W3</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://redux.js.org/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Redux</Typography></a>
                                                 </ListItem>
                                                 <ListItem button={true}>
-                                                    <a href="https://www.w3schools.com/jsref/jsref_obj_array.asp" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- W3 Array Methods (deserves its own plug)</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://www.w3schools.com/jsref/jsref_obj_array.asp" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- W3 Array Methods</Typography></a>
                                                 </ListItem>
                                             </List>
                                         </div>
@@ -251,13 +276,13 @@ function Page4(props) {
                                         <div >
                                             <List dense={true}>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://material-ui.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Material UI (React)</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://material-ui.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Material UI (React)</Typography></a>
                                                 </ListItem>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://getbootstrap.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Bootstrap (HTML/CSS)</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://getbootstrap.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Bootstrap (HTML/CSS)</Typography></a>
                                                 </ListItem>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://bulma.io/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Bulma (HTML/CSS)</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://bulma.io/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Materialize</Typography></a>
                                                 </ListItem>
                                             </List>
                                         </div>
@@ -273,10 +298,10 @@ function Page4(props) {
                                         <div >
                                             <List dense={true}>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://syntax.fm/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Syntax (Podcast)</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://syntax.fm/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Syntax</Typography></a>
                                                 </ListItem>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://darknetdiaries.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- darknetdiaries  (Podcast)</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://darknetdiaries.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- darknetdiaries</Typography></a>
                                                 </ListItem>
                                             </List>
                                         </div>
@@ -293,13 +318,13 @@ function Page4(props) {
                                         <div className={classes.demo}>
                                             <List dense={true}>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://unsplash.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Unsplash (Images)</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://unsplash.com/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Unsplash</Typography></a>
                                                 </ListItem>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://gionkunz.github.io/chartist-js/api-documentation.html" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Chartist (Graphs)</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://gionkunz.github.io/chartist-js/api-documentation.html" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Chartist</Typography></a>
                                                 </ListItem>
                                                 <ListItem button={true} className={classes.listItemClass}>
-                                                    <a href="https://trianglify.io/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Trianglify (Geometric Backgrounds)</Typography></a>
+                                                    <a className={classes.linkTextDecoration} href="https://trianglify.io/" rel="noopener noreferrer" target="_blank"><Typography variant="body1" className={classes.slideListItem}>- Trianglify</Typography></a>
                                                 </ListItem>
                                             </List>
                                         </div>

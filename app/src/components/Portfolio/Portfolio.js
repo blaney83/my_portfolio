@@ -319,6 +319,19 @@ const styles = theme => ({
     },
     title: {
         color: theme.palette.primary.light,
+        fontSize: ".7rem",
+        [theme.breakpoints.up('sm')]: {
+            fontSize: "1rem",
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: "1.2rem",
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "1.6rem",
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "2rem",
+        },
     },
     titleBar: {
         background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
@@ -374,29 +387,65 @@ const styles = theme => ({
         backgroundSize: 'cover',
     },
     icon: {
-        color: "white"
+        color: "white",
+        padding: "0px",
+        [theme.breakpoints.up('sm')]: {
+            padding: "12px",
+        },
     },
     infoIcon: {
         color: "white",
         position: "absolute",
         top: "8px",
-        right: "8px"
+        right: "8px",
+        padding: "0px",
+        [theme.breakpoints.up('sm')]: {
+            padding: "12px",
+        },
     },
     paper: {
         position: 'absolute',
-        width: theme.spacing.unit * 50,
         backgroundColor: "#0a0a0ae0",
         boxShadow: theme.shadows[5],
-        padding: theme.spacing.unit * 4,
         // color: "white",
         outline: 'none',
         top: `${55}%`,
         left: `${55}%`,
-        transform: `translate(-${55}%, -${55}%)`
+        transform: `translate(-${55}%, -${55}%)`,
+        width: "270px",
+        padding: "15px 20px",
+        [theme.breakpoints.up('sm')]: {
+            width: "400px",
+            padding: "25px",
+        },
+        [theme.breakpoints.up('md')]: {
+            width: "600px",
+            padding: "30px",
+        },
+        [theme.breakpoints.up('lg')]: {
+            width: "700px",
+        },
+        [theme.breakpoints.up('xl')]: {
+            width: "900px",
+        },
+        borderRadius: "5px"
     },
     modalText: {
-        color: "white"
-    }
+        color: "white",
+        fontSize: ".9rem",
+        [theme.breakpoints.up('sm')]: {
+            fontSize: "1.1rem",
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: "1.3rem",
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "1.4rem",
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "1.8rem",
+        },
+    },
 });
 
 
@@ -428,7 +477,7 @@ function Portfolio(props) {
                 </IconButton>
                 <GridListTileBar
                     title={tile.title}
-                    subtitle={<span>
+                    subtitle={<span className={classes.subtitleText}>
                         {tile.tech}
                     </span>}
                     actionIcon={
