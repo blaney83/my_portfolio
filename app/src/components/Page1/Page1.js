@@ -144,7 +144,24 @@ const styles = theme => ({
         color: "white"
     },
     panelBody: {
-        color: "white"
+        color: "white",
+        fontSize: ".8rem",
+        [theme.breakpoints.up('sm')]: {
+            fontSize: ".875rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: "1rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "1.2rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "1.4rem",
+            // marginBottom: "0px"
+        },
     },
     paperStyle: {
         backgroundColor: "#2e2a23"
@@ -164,6 +181,12 @@ const styles = theme => ({
     },
     iconHidden: {
         height: "0px"
+    },
+    panelDetailsContainer: {
+        padding: "5px 5px 10px",
+        [theme.breakpoints.up('sm')]: {
+            padding: "15px 20px 20px",
+        },
     }
 })
 
@@ -221,7 +244,7 @@ class Page1 extends React.Component {
                                                 <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel1" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel1", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel1" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel1" ? classes.heading : classes.headingHidden}>Intro</Typography>
                                                 </ExpansionPanelSummary>
-                                                <ExpansionPanelDetails>
+                                                <ExpansionPanelDetails classes={{root: classes.panelDetailsContainer}}>
                                                     <Typography className={classes.panelBody}>
                                                         Hey, it's Ben. Thanks for checking out this project. Feel free to poke around the site and explore this ongoing work. See the "About the Page" tab below for more specific viewing suggestions and release notes. Enjoy!
                                         </Typography>
@@ -235,7 +258,7 @@ class Page1 extends React.Component {
                                                         {/* You are currently not an owner */}
                                                     </Typography>
                                                 </ExpansionPanelSummary>
-                                                <ExpansionPanelDetails>
+                                                <ExpansionPanelDetails classes={{root: classes.panelDetailsContainer}}>
                                                     <Typography className={classes.panelBody}>
                                                         I've always had a deep love for science, learning, nature and information. Growing up in Arizona, I am an Eagle Scout and a former student-athlete who played baseball through college. Some of my favorite experiences include multi-week backpacking trips, moving to Seattle for a year and raising my husky Aurora.
                                             </Typography>
@@ -247,7 +270,7 @@ class Page1 extends React.Component {
                                                     <Typography className={classes.secondaryHeading}>
                                                     </Typography>
                                                 </ExpansionPanelSummary>
-                                                <ExpansionPanelDetails>
+                                                <ExpansionPanelDetails classes={{root: classes.panelDetailsContainer}}>
                                                     <Typography className={classes.panelBody}>
                                                         {"I excelled in school early on and developed an appreciation for learning through accelerated and STEM classes. I attended Northern Arizona University Honors College on an academic scholarship to study Biomedical Engineering. Understanding I needed additional time to decide my direction was, I transferred to a local college and studied various disciplines including environmental science and sustainability, however my favorite subject was always Chemistry. I received my Associate of Science and began to close in on my calling.\n\nWhen I found software, I found the answer. I have been teaching myself relentlessly ever since!"}
                                                     </Typography>
@@ -257,7 +280,7 @@ class Page1 extends React.Component {
                                                 <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel4" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel4", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel4" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel4" ? classes.heading : classes.headingHidden}>Professional Background</Typography>
                                                 </ExpansionPanelSummary>
-                                                <ExpansionPanelDetails>
+                                                <ExpansionPanelDetails classes={{root: classes.panelDetailsContainer}}>
                                                     <Typography className={classes.panelBody}>
                                                         {"Notably, I have spent time in many positions from delivering food to bartending. I was the general manager of 2 multi-million dollar food and entertainment venues as well as the lead Specimen Triage Analyst in a major hospital's chemistry diagnostics lab. \n\nMore recently I have pursued free lance web and software development while I am exploring machine learning and data science, which is where my path lies."}
                                                     </Typography>
@@ -267,7 +290,7 @@ class Page1 extends React.Component {
                                                 <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel5" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel5", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel5" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel5" ? classes.heading : classes.headingHidden}>Personal Interests</Typography>
                                                 </ExpansionPanelSummary>
-                                                <ExpansionPanelDetails>
+                                                <ExpansionPanelDetails classes={{root: classes.panelDetailsContainer}}>
                                                     <Typography className={classes.panelBody}>
                                                         {"Hiking, reading, learning, camping, baseball, football, movies, Tested, snowboarding, travel, reading the news, computer hardware, my dog and making waffles"}
                                                     </Typography>
@@ -277,7 +300,7 @@ class Page1 extends React.Component {
                                                 <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel6" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel6", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel6" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel6" ? classes.heading : classes.headingHidden}>Professional Interests</Typography>
                                                 </ExpansionPanelSummary>
-                                                <ExpansionPanelDetails>
+                                                <ExpansionPanelDetails classes={{root: classes.panelDetailsContainer}}>
                                                     <Typography className={classes.panelBody}>
                                                         {"Data, Data Structures, Databases, Algorithms, Machine Learning, Web Scraping, KNIME, good looking websites, Python, Node, React and Server structure"}
                                                     </Typography>
@@ -287,7 +310,7 @@ class Page1 extends React.Component {
                                                 <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel7" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel7", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel7" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel7" ? classes.heading : classes.headingHidden}>Code of Ethos</Typography>
                                                 </ExpansionPanelSummary>
-                                                <ExpansionPanelDetails>
+                                                <ExpansionPanelDetails classes={{root: classes.panelDetailsContainer}}>
                                                     <Typography className={classes.panelBody}>
                                                         {"Respect your neighbor. Love your animals. Protect your planet. Work hard. Learn always. Stand up for whats right. Be a good person. Always be knolling."}
                                                     </Typography>
@@ -297,7 +320,7 @@ class Page1 extends React.Component {
                                                 <ExpansionPanelSummary classes={{ content: this.state.expanded === "" || this.state.expanded === "panel8" ? classes.summaryContent : classes.summaryContentHidden }} className={classes.expansionSummary} onClick={() => this.togglePanel("panel8", this.state.expanded)} expandIcon={<ExpandMoreIcon classes={{ root: this.state.expanded === "" || this.state.expanded === "panel8" ? null : classes.iconHidden }} className={classes.expandIcons} color="secondary" />}>
                                                     <Typography className={this.state.expanded === "" || this.state.expanded === "panel8" ? classes.heading : classes.headingHidden}>About this Page</Typography>
                                                 </ExpansionPanelSummary>
-                                                <ExpansionPanelDetails>
+                                                <ExpansionPanelDetails classes={{root: classes.panelDetailsContainer}}>
                                                     <Typography className={classes.panelBody}>
                                                         {"This page is currently under development. It was completed over the course of 4 days and developed on Google Chrome for Google Chrome. It is mobile friendly, but large screen resolutions can distort it functionality. The recommended zoom ratio on laptop browsers is between 768 px wide and 1024 xp wide. If you are having trouble viewing the site and its features, try adjusting you zoom settings to these values. \n That being said, further development on this site is planned and if you are using a platform other than Google Chrome or an iPhone browser and you encounter an ISSUE, please CONTACT me at PROFESSIONALLANEY@GMAIL.COM or through the contact section below. Suggestions are welcome. Enjoy!"}
                                                     </Typography>
