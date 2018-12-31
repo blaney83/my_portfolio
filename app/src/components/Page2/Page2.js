@@ -116,4 +116,5 @@ function Page2(props) {
 
 // }
 
+// export default withStyles(styles)(Page2)
 export default connect(null, null)(withStyles(styles)(Page2))

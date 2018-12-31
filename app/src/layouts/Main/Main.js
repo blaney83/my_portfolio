@@ -1,7 +1,7 @@
 import React from 'react';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { connect } from "react-redux";
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import { withStyles } from '@material-ui/styles';
 import Nav from "../../components/Nav/Nav.js"
 import Landing from "../../components/Landing/Landing.js"
@@ -13,6 +13,7 @@ import Page5 from "../../components/Page5/Page5.js"
 import "./globalStyle.css"
 
 function Main(props) {
+    // const {classes} = props
     let theme = createMuiTheme({
         palette: {
             // primary: "white",
@@ -47,9 +48,9 @@ function Main(props) {
 
 }
 
-Main.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
+// Main.propTypes = {
+//     classes: PropTypes.object.isRequired,
+// };
 
 // function mapDispatchToProps(dispatch) {
 
@@ -60,3 +61,4 @@ Main.propTypes = {
 // }
 
 export default connect(null, null)(Main)
+// export default Main

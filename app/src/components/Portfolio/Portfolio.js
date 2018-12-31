@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 import { withStyles } from '@material-ui/core/styles';
+import { updateAnchor } from "../../state/Portfolio/actions.js"
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Drawer from '@material-ui/core/Drawer';
 import InfoIcon from '@material-ui/icons/Info';
+import Modal from '@material-ui/core/Modal';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import LinkIcon from '@material-ui/icons/OpenInNewOutlined';
 import image1 from '../../assets/img/portfolioImg/1router.jpg';
 import image2 from '../../assets/img/portfolioImg/2code.jpg';
@@ -30,13 +37,13 @@ import image19 from '../../assets/img/portfolioImg/19svalley.jpg';
 import image20 from '../../assets/img/portfolioImg/20stats.jpg';
 import image21 from '../../assets/img/portfolioImg/21more.jpg';
 // import jrVideo from "../../assets/img/jrclipped.mp4";
-import Popover from '@material-ui/core/Popover';
 
 
 const tileData = [
     {
         img: image1,
-        id: 1,
+        num: 1,
+        id: "portfolioItem",
         ref: "http://job-router.herokuapp.com/",
         title: 'Job-Router',
         tech: 'MongoDB, React 16.7.2A',
@@ -47,7 +54,8 @@ const tileData = [
     },
     {
         img: image2,
-        id: 2,
+        num: 2,
+        id: "portfolioItem",
         ref: "https://github.com/blaney83/SPA-Dynamic-Background-Scroll-Feed-Template",
         title: 'SPA Vertical Website Template',
         tech: 'React',
@@ -58,7 +66,8 @@ const tileData = [
     },
     {
         img: image3,
-        id: 3,
+        num: 3,
+        id: "portfolioItem",
         ref: "https://github.com/blaney83/React-Template",
         title: 'MERN Template',
         tech: 'Mongo, Express, React, Node',
@@ -69,7 +78,8 @@ const tileData = [
     },
     {
         img: image4,
-        id: 4,
+        num: 4,
+        id: "portfolioItem",
         ref: "https://github.com/blaney83/new_laptop",
         title: 'New Laptop',
         tech: 'Mongo, Node',
@@ -80,7 +90,8 @@ const tileData = [
     },
     {
         img: image5,
-        id: 5,
+        num: 5,
+        id: "portfolioItem",
         ref: "https://fanter.herokuapp.com/",
         title: 'Fanter',
         tech: 'mySQL, ORMs',
@@ -91,7 +102,8 @@ const tileData = [
     },
     {
         img: image6,
-        id: 6,
+        num: 6,
+        id: "portfolioItem",
         ref: "https://github.com/blaney83/cli_sql_store",
         title: 'CLI Store Software',
         tech: 'SQL, Node',
@@ -102,8 +114,9 @@ const tileData = [
     },
     {
         img: image7,
-        id: 7,
-        ref:"https://pillcoach.herokuapp.com/",
+        num: 7,
+        id: "portfolioItem",
+        ref: "https://pillcoach.herokuapp.com/",
         title: 'Pill Coach',
         tech: 'SQL, Express, ES7',
         featured: true,
@@ -113,7 +126,8 @@ const tileData = [
     },
     {
         img: image8,
-        id: 8,
+        num: 8,
+        id: "portfolioItem",
         ref: "https://github.com/blaney83/useful_snippets_and_components",
         title: 'Useful Snippets',
         tech: 'Varies',
@@ -124,7 +138,8 @@ const tileData = [
     },
     {
         img: image9,
-        id: 9,
+        num: 9,
+        id: "portfolioItem",
         ref: "https://github.com/blaney83/liri-node-app",
         title: 'Liri',
         tech: 'Node, REST',
@@ -135,7 +150,8 @@ const tileData = [
     },
     {
         img: image10,
-        id: 10,
+        num: 10,
+        id: "portfolioItem",
         ref: "https://github.com/blaney83/SVW_project_one",
         title: "Let's Travel",
         tech: 'Google API, ES6',
@@ -146,7 +162,8 @@ const tileData = [
     },
     {
         img: image11,
-        id: 11,
+        num: 11,
+        id: "portfolioItem",
         href: "https://blaney83.github.io/RPS-Multiplayer/",
         title: 'Multi-Player RPS',
         tech: 'G-Firebase',
@@ -157,7 +174,8 @@ const tileData = [
     },
     {
         img: image12,
-        id: 12,
+        num: 12,
+        id: "portfolioItem",
         ref: "https://memory-tiles.herokuapp.com/",
         title: 'React Tiles',
         tech: 'React',
@@ -168,8 +186,9 @@ const tileData = [
     },
     {
         img: image13,
-        id: 13,
-        ref:"https://blaney83.github.io/Interactive-Giphy-Search/",
+        num: 13,
+        id: "portfolioItem",
+        ref: "https://blaney83.github.io/Interactive-Giphy-Search/",
         title: 'Giphy Search',
         tech: 'AJAX',
         featured: true,
@@ -179,7 +198,8 @@ const tileData = [
     },
     {
         img: image14,
-        id: 14,
+        num: 14,
+        id: "portfolioItem",
         ref: "https://blaney83.github.io/TriviaGame/",
         title: 'Harry Potter Trivia',
         tech: 'Materialize, jQuery',
@@ -190,7 +210,8 @@ const tileData = [
     },
     {
         img: image15,
-        id: 15,
+        num: 15,
+        id: "portfolioItem",
         ref: "https://blaney83.github.io/Projects/jQuery_Game/index.html",
         title: 'Bees V. Wasp',
         tech: 'JS',
@@ -201,7 +222,8 @@ const tileData = [
     },
     {
         img: image16,
-        id: 16,
+        num: 16,
+        id: "portfolioItem",
         ref: "https://friendfinder5001.herokuapp.com/",
         title: 'Friend Finder',
         tech: 'Matching Algorithm',
@@ -212,7 +234,8 @@ const tileData = [
     },
     {
         img: image17,
-        id: 17,
+        num: 17,
+        id: "portfolioItem",
         ref: "https://github.com/blaney83/playlist_manager",
         title: 'SQL Playlist',
         tech: 'SQL',
@@ -223,7 +246,8 @@ const tileData = [
     },
     {
         img: image18,
-        id: 18,
+        num: 18,
+        id: "portfolioItem",
         ref: "https://blaney83.github.io/Projects/Tic_Tac_Toe/index.html",
         title: 'Unbeatable T-T-T',
         tech: 'Mini-Max Algorithm',
@@ -234,7 +258,8 @@ const tileData = [
     },
     {
         img: image19,
-        id: 19,
+        num: 19,
+        id: "portfolioItem",
         ref: "https://blaney83.github.io/Projects/WordGuess/index.html",
         title: "Silicon Valley 'Bach'man",
         tech: 'JS',
@@ -245,7 +270,8 @@ const tileData = [
     },
     {
         img: image20,
-        id: 20,
+        num: 20,
+        id: "portfolioItem",
         ref: "https://blaney83.github.io/Projects/Rock_Paper_Scissors/index.html",
         title: 'RPS Stats',
         tech: 'JS',
@@ -256,7 +282,8 @@ const tileData = [
     },
     {
         img: image21,
-        id: 21,
+        num: 21,
+        id: "portfolioItem",
         ref: "https://github.com/blaney83?before=Y3Vyc29yOnYyOpK5MjAxOC0wOS0yOVQxNTowMDo1My0wNzowMM4I85n9&tab=repositories",
         title: 'More Comming Soon!',
         tech: 'Suprise',
@@ -354,83 +381,60 @@ const styles = theme => ({
         position: "absolute",
         top: "8px",
         right: "8px"
+    },
+    paper: {
+        position: 'absolute',
+        width: theme.spacing.unit * 50,
+        backgroundColor: "#0a0a0ae0",
+        boxShadow: theme.shadows[5],
+        padding: theme.spacing.unit * 4,
+        // color: "white",
+        outline: 'none',
+        top: `${55}%`,
+        left: `${55}%`,
+        transform: `translate(-${55}%, -${55}%)`
+    },
+    modalText: {
+        color: "white"
     }
 });
 
 
 function Portfolio(props) {
     const { classes } = props;
-    const [anchorEl, setAnchorEl] = useState(null)
-    // const [sortMethod, setSortMethod] = useState(props.sort)
-    const open = Boolean(anchorEl)
 
-    // function chooseMedia(tile) {
-    //     if (tile.isImg) {
-    //         return (<img src={tile.img} alt={tile.title} className={tile.featured ? classes.featuredImage : classes.nonFeaturedImage} />)
-    //     } else if (!tile.isImg) {
-    //         return (<video autoPlay={true} height="100%" loop={true} src={tile.img} alt={tile.title} className={tile.featured ? classes.featuredImage : classes.nonFeaturedImage} />)
-    //     }
-    // }
-
-    function openPopover(e) {
-        if (e.target === anchorEl) {
-            setAnchorEl(null)
-        } else {
-            setAnchorEl(e.target)
+    function sortTheProject(sortMethod, tileData) {
+        if (sortMethod === 0) {
+            return (mapTheProjects(tileData))
+        } else if (sortMethod === 1) {
+            let artfulArray = tileData.filter(tile => tile.polished)
+            return (mapTheProjects(artfulArray))
+        } else if (sortMethod === 2) {
+            let sloppyProjects = tileData.filter(tile => !tile.polished)
+            return (mapTheProjects(sloppyProjects))
         }
     }
 
-    function sortTheProject(sortMethod, tileData){
-        if(sortMethod === 0){
-            return(mapTheProjects(tileData))
-        }else if(sortMethod === 1){
-            let artfulArray = tileData.filter(tile=>tile.polished)
-            return(mapTheProjects(artfulArray))
-        }else if(sortMethod === 2){
-            let sloppyProjects = tileData.filter(tile=>!tile.polished)
-            return(mapTheProjects(sloppyProjects))
-        }
-    }
-
-    function mapTheProjects(arrayOfArt){
-        return(arrayOfArt.map(tile => (
-            <GridListTile key={tile.img} style={{backgroundImage: "url('" + tile.img + "')"}} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1} className={tile.featured ? classes.featuredGridListTile : classes.nonFeaturedGridListTile}>
+    function mapTheProjects(arrayOfArt) {
+        return (arrayOfArt.map(tile => (
+            <GridListTile key={tile.img} style={{ backgroundImage: "url('" + tile.img + "')" }} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1} className={tile.featured ? classes.featuredGridListTile : classes.nonFeaturedGridListTile}>
                 {/* {chooseMedia(tile)} */}
                 <IconButton
                     className={classes.infoIcon}
-                    id={tile.id}
-                    aria-owns={open ? tile.id : undefined}
-                    aria-haspopup="true"
                     variant="contained"
-                    onClick={(e) => openPopover(e)}
+                    onClick={() => props.setAnchorEl(tile.num, props.anchorEl)}
                 >
                     <InfoIcon />
                 </IconButton>
-                <Popover
-                    id={tile.id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={(e) => openPopover(e)}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'center',
-                    }}
-                >
-                    <Typography className={classes.typography}>{tile.popOverText}</Typography>
-                </Popover>
                 <GridListTileBar
                     title={tile.title}
                     subtitle={<span>
                         {tile.tech}
                     </span>}
                     actionIcon={
-                        <a 
-                        // className={classes.listText} 
-                        href={tile.ref} rel="noopener noreferrer" target="_blank">
+                        <a
+                            // className={classes.listText} 
+                            href={tile.ref} rel="noopener noreferrer" target="_blank">
                             <IconButton
                                 className={classes.icon}
                                 variant="contained"
@@ -438,9 +442,21 @@ function Portfolio(props) {
                             >
                                 <LinkIcon />
                             </IconButton>
-                            </a>
-                            }
-                        />
+                        </a>
+                    }
+                />
+                <Modal
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={props.anchorEl === "modal" + tile.num}
+                    onClose={() => props.setAnchorEl(tile.num, props.anchorEl)}
+                >
+                    <div className={classes.paper}>
+                        <Typography variant="subtitle1" className={classes.modalText}>
+                            {tile.popOverText}
+                        </Typography>
+                    </div>
+                </Modal>
             </GridListTile>
         )))
     }
@@ -448,14 +464,37 @@ function Portfolio(props) {
     return (
         <div className={classes.root} >
             <GridList spacing={1} className={classes.gridList} id="portfolioTarget">
-                {sortTheProject(props.sort, tileData)}
+                {sortTheProject(props.portfolioSort, tileData)}
             </GridList>
         </div>
-            );
-        }
-        
+    );
+}
+
 Portfolio.propTypes = {
-                    classes: PropTypes.object.isRequired,
-            };
-            
-export default withStyles(styles)(Portfolio);
+    classes: PropTypes.object.isRequired,
+};
+
+function mapDispatchToProps(dispatch) {
+    const p3Methods = {
+        setAnchorEl(tileNum, currentAnchorEl) {
+            if (currentAnchorEl === "modal" + tileNum) {
+                dispatch(updateAnchor({
+                    anchorEl: null,
+                    // anchorMessage: null
+                }))
+            } else {
+                dispatch(updateAnchor({
+                    anchorEl: "modal" + tileNum,
+                    // anchorMessage: anchorMessage
+                }))
+            }
+        }
+    }
+    return (p3Methods)
+}
+
+function mapStateToProps(state) {
+    return { portfolioSort: state.portfolioSort.portfolioSort, anchorEl: state.portfolioReducer.anchorEl }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Portfolio));

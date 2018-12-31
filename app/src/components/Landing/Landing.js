@@ -66,4 +66,5 @@ function Landing(props) {
 }
 
 
+// export default withStyles(styles)(Landing)
 export default connect(null, null)(withStyles(styles)(Landing))

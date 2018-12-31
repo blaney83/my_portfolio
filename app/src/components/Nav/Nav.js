@@ -198,11 +198,18 @@ const styles = theme => ({
     sideIcons: {
         color: "white !important"
     },
+    sideIconsScroll: {
+        color: "white !important",
+        height: "1rem",
+        width: "1rem",
+        overflow: "visible",
+    },
     sideIconsHide: {
         color: "transparent !important"
     },
     sideIconLabels: {
-        color: "white !important"
+        color: "white !important",
+        textDecoration: "none !important"
     },
     sideIconSubLabels: {
         color: "white !important"
@@ -273,7 +280,7 @@ const styles = theme => ({
         fontSize: "1.2rem",
         color: "white !important"
     },
-    infoSideSecondaryHeader:{
+    infoSideSecondaryHeader: {
         fontSize: "1rem",
         lineHeight: ".5rem",
         color: "white !important"
@@ -315,9 +322,9 @@ class Sidebar extends React.Component {
         path: this.props
     };
 
+
     componentDidMount() {
         let hello = this
-        console.log(this.state)
         window.addEventListener('hashchange', function () {
             hello.setState({ currentPage: window.location.hash })
         });
@@ -328,7 +335,7 @@ class Sidebar extends React.Component {
             hello.setState({ screenOrientationAngle: window.screen.orientation.angle })
         });
         window.addEventListener("resize", function () {
-            hello.setState({ screenZoom: window.visualViewport.scale, screenSize: [window.innerWidth, window.innerHeight]})
+            hello.setState({ screenZoom: window.visualViewport.scale, screenSize: [window.innerWidth, window.innerHeight] })
         });
         let infoRequestConfig = {
             "async": true,
@@ -341,7 +348,6 @@ class Sidebar extends React.Component {
             }
         }
         axios(infoRequestConfig).then(resp => {
-            console.log(resp)
             this.setState({
                 IPAddress: resp.data.ip,
                 userCity: resp.data.city,
@@ -356,8 +362,20 @@ class Sidebar extends React.Component {
             })
         })
     }
-    componentWillUnmount(){
-        window.removeEventListener(["scroll", "resize", "orientationchange", "hashchange"])
+    componentWillUnmount() {
+        let hello = this
+        window.removeEventListener("hashchange", function () {
+            hello.setState({ currentPage: window.location.hash })
+        })
+        window.removeEventListener("orientationchange", function () {
+            hello.setState({ screenOrientationAngle: window.screen.orientation.angle })
+        })
+        window.removeEventListener("scroll", function () {
+            hello.setState({ yScrollPosition: Math.floor(window.scrollY) })
+        })
+        window.removeEventListener("resize", function () {
+            hello.setState({ screenZoom: window.visualViewport.scale, screenSize: [window.innerWidth, window.innerHeight] })
+        })
     }
     guttersMod = (open1, open2) => {
         if (open1 || open2) {
@@ -447,14 +465,14 @@ class Sidebar extends React.Component {
                         </div>
                         {/* <Divider /> */}
                         <List>
-                        <ListItem button={true}
+                            {/* <ListItem button={true}
                                 key={"IpAddress"}
-                                className={classes.infoListItems}>
+                                className={classes.sideListItems}>
                                 <ListItemIcon>
-                                    <ListItemText primary={"y: " + this.state.yScrollPosition} primaryTypographyProps={{ className: classes.infoSideIconLabels }} />
-                                </ListItemIcon>
-                                <ListItemText primary="Current Page Location" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
-                            </ListItem>
+                                    <ListItemText primary={"y: " + this.state.yScrollPosition} primaryTypographyProps={{ className: classes.sideIconsScroll }} />
+                                </ListItemIcon> */}
+                            {/* <ListItemText primary="Current Page Location" primaryTypographyProps={{ className: classes.sideIconLabels }}  /> */}
+                            {/* </ListItem> */}
                             <ListItem button={true}
                                 key={"Home"}
                                 onClick={() => goToAnchor("home", true)}
@@ -515,7 +533,7 @@ class Sidebar extends React.Component {
                             </ListItem>
                         </List>
                         <List className={classes.signOutStayDown}>
-                            <a className={classes.listText} href="https://github.com/blaney83" rel="noopener noreferrer" target="_blank">
+                            <a className={classes.sideIconLabels} href="https://github.com/blaney83" rel="noopener noreferrer" target="_blank">
                                 <ListItem
                                     button={true}
                                     className={classes.sideListItems}
@@ -528,11 +546,11 @@ class Sidebar extends React.Component {
                                         />
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="My GitHub"
+                                        primary="GitHub"
                                         primaryTypographyProps={{ className: classes.sideIconLabels }} secondaryTypographyProps={{ className: classes.sideIconSubLabels }} />
                                 </ListItem>
                             </a>
-                            <a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/" rel="noopener noreferrer" target="_blank">
+                            <a className={classes.sideIconLabels} href="https://www.linkedin.com/in/ben-laney-090613117/" rel="noopener noreferrer" target="_blank">
                                 <ListItem
                                     button={true}
                                     className={classes.sideListItems}
@@ -545,7 +563,7 @@ class Sidebar extends React.Component {
                                         />
                                     </ListItemIcon>
                                     <ListItemText
-                                        primary="LinkedIn Profile"
+                                        primary="LinkedIn"
                                         primaryTypographyProps={{ className: classes.sideIconLabels }} secondaryTypographyProps={{ className: classes.sideIconSubLabels }} />
                                 </ListItem>
                             </a>
@@ -577,7 +595,7 @@ class Sidebar extends React.Component {
                         {/* <Divider /> */}
                         <List>
                             <ListItem button={true}
-                                key={"IpAddress"}
+                                key={"header"}
                                 className={classes.infoListHeader}>
                                 <ListItemIcon>
                                     <StatsIcon className={classes.sideIconsHide} />
@@ -593,15 +611,15 @@ class Sidebar extends React.Component {
                                 <ListItemText primary="Device Info" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem> */}
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"networkType"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
-                                <DeviceIcon className={classes.sideIcons} />
+                                    <DeviceIcon className={classes.sideIcons} />
                                 </ListItemIcon>
                                 <ListItemText primary={this.state.networkType} secondary="NetworkType" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"downSpeed"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -609,7 +627,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.networkGHZ} secondary="Downlink Speed" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"browserOrigin"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -617,7 +635,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.browserType} secondary="Browser Origin" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"os"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -625,7 +643,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.systemType} secondary="OS" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"screenSize"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -633,7 +651,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.screenSize[0] + " x " + this.state.screenSize[1]} secondary="Screen Size" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"orientation"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -641,7 +659,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.screenOrientationType} secondary="Orientation" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"orientation2"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -649,20 +667,20 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.screenOrientationType} secondary="Orientation" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"deviceAngle"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
                                 </ListItemIcon>
-                                <ListItemText primary={this.state.screenOrientationAngle} secondary="Device Angle" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
+                                <ListItemText primary={this.state.screenOrientationAngle + " degrees"} secondary="Device Angle" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"zoomSettings"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
                                 </ListItemIcon>
-                                <ListItemText primary={this.state.screenZoom} secondary="Current Zoom" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
+                                <ListItemText primary={this.state.screenZoom + "x"} secondary="Current Zoom" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
                                 key={"IpAddress"}
@@ -673,7 +691,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.IPAddress} secondary="IP Address" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"userCity"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -681,7 +699,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.userCity} secondary="City" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"userState"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -689,7 +707,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.userState} secondary="State" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"userCountry"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -697,7 +715,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.userCountry} secondary="Country" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"userLongitude"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -705,7 +723,7 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.userLongitude} secondary="Longitude" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"userLatitude"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
@@ -713,14 +731,14 @@ class Sidebar extends React.Component {
                                 <ListItemText primary={this.state.userLatitude} secondary="Latitude" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
                             <ListItem button={true}
-                                key={"Home"}
+                                key={"internetProvider"}
                                 className={classes.infoListItems}>
                                 <ListItemIcon>
                                     <HomeIcon className={classes.sideIconsHide} />
                                 </ListItemIcon>
                                 <ListItemText primary={this.state.userInternetServiceProvider} secondary="Internet Provider" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
-                            <ListItem button key={"Search Jobs"}
+                            <ListItem button key={"proxy"}
                                 className={classes.infoListItems}
                             >
                                 <ListItemIcon>
@@ -728,7 +746,7 @@ class Sidebar extends React.Component {
                                 </ListItemIcon>
                                 <ListItemText primary={this.state.userProxyBool} secondary="Proxy" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
-                            <ListItem button key={"Saved Jobs"}
+                            <ListItem button key={"anonymous"}
                                 className={classes.infoListItems}
                             >
                                 <ListItemIcon>
@@ -736,13 +754,21 @@ class Sidebar extends React.Component {
                                 </ListItemIcon>
                                 <ListItemText primary={this.state.userAnonymousBool} secondary="Anonymous" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
                             </ListItem>
-                            <ListItem button key={"Account"}
+                            <ListItem button key={"userTime"}
                                 className={classes.infoListItems}
                             >
                                 <ListItemIcon>
                                     <AccountIcon className={classes.sideIconsHide} />
                                 </ListItemIcon>
                                 <ListItemText primary={this.state.userCurrentTime} secondary="Your Time" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} />
+                            </ListItem>
+                            <ListItem button key={"userTime"}
+                                className={classes.infoListItems}
+                            >
+                                <ListItemIcon>
+                                    <ListItemText primary={"y: " + this.state.yScrollPosition} primaryTypographyProps={{ className: classes.sideIconsScroll }} />
+                                </ListItemIcon>
+                                {/* <ListItemText primary={this.state.userCurrentTime} secondary="Your Time" primaryTypographyProps={{ className: classes.infoSideIconLabels }} secondaryTypographyProps={{ className: classes.infoSideIconSubLabels }} /> */}
                             </ListItem>
                         </List>
                         <List className={classes.signOutStayDown}>
@@ -781,3 +807,4 @@ Sidebar.propTypes = {
 };
 
 export default connect(mapStateToProps, null)(withStyles(styles, { withTheme: true })(Sidebar));
+// export default withStyles(styles, { withTheme: true })(Sidebar);

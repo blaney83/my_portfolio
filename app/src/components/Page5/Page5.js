@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { connect } from "react-redux";
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+// import { cold } from 'react-hot-loader'
 import bgImage1 from "../../assets/img/rainy.jpg"
 import LinkIcon from '@material-ui/icons/CallMade';
 import CopyLink from '@material-ui/icons/AttachFile';

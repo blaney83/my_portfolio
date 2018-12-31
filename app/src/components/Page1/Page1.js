@@ -1,5 +1,6 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
 import Particles from "react-particles-js"
 import { withStyles } from '@material-ui/core/styles';
 import bgImage from "../../assets/img/page1BG.jpg"
@@ -120,7 +121,7 @@ const styles = theme => ({
     toTheFront: {
         zIndex: "310"
     },
-    heading : {
+    heading: {
         color: "white"
     },
     secondaryHeading: {
@@ -142,113 +143,118 @@ const styles = theme => ({
 //     width: theme.spacing.unit * 9 + 1,
 // },
 
-function Page1(props) {
-    const { classes } = props;
-    const [expanded, setExpanded] = useState("")
-    const [clicks, setClicks] = useState(0)
-    function togglePanel(panel){
-        if(panel === expanded){
-            setExpanded(null)
-        }else{
-            setExpanded(panel)
+class Page1 extends React.Component {
+    state = {
+        clicks : 0,
+        expanded:  ""
+    }
+
+    togglePanel = (panel, expanded)=>{
+        if (panel === expanded) {
+            this.setState({expanded : ""})
+        } else {
+            this.setState({expanded : panel})
         }
     }
 
-    return (
-        <ScrollableAnchor id={'about_me'}>
-        <div className={classes.firstPage}>
-            <div className={classes.firstPageMainContainer}>
-                <Grid container className={classes.firstPageCardContainer}>
-                    <Grid item>
-                        <Card className={classes.mainCard}>
-                            <Grid container justify="flex-start" alignItems="flex-end" className={classes.headerContainer}>
-                                <Grid item xs={12} sm={3}>
-                                    <Avatar src={Headshot} className={classes.avatarBubble} />
-                                    <button onClick={()=>setClicks(clicks + 1)}>{clicks}click me</button>
-                                </Grid>
-                                <Grid item xs={12} sm={9}>
-                                    <CardHeader
-                                        className={classes.cardHeader}
-                                        titleTypographyProps={{
-                                            variant: "h3",
-                                            align: "left",
-                                            classes: {
-                                                h3: classes.headerText
-                                            }
-                                        }}
-                                        title="About Me"
-                                    />
-                                </Grid>
-                            </Grid>
-                            <CardContent className={classes.cardContent}>
-                                <div className={classes.root}>
-                                    <ExpansionPanel expanded={expanded === "panel1"} className={classes.paperStyle} >
-                                        <ExpansionPanelSummary onClick={() => togglePanel("panel1")} expandIcon={<ExpandMoreIcon className={classes.expandIcons} color="secondary"/>}>
-                                            <Typography className={classes.heading}>Early Life</Typography>
-                                            <Typography className={classes.secondaryHeading}>
-                                            {/* I am an expansion panel */}
-                                            </Typography>
-                                        </ExpansionPanelSummary>
-                                        <ExpansionPanelDetails>
-                                            <Typography className={classes.panelBody}>
-                                                I moved to Arizona at the age of three and spent most of my adolescence in and around The Valley of the Sun. As a child I enjoyed all things science. 
-                                        </Typography>
-                                        </ExpansionPanelDetails>
-                                    </ExpansionPanel>
-                                    {/* </div> */}
-                                    <ExpansionPanel expanded={expanded === 'panel2'} className={classes.paperStyle}>
-                                        <ExpansionPanelSummary onClick={() => togglePanel("panel2")} expandIcon={<ExpandMoreIcon className={classes.expandIcons} color="secondary"/>}>
-                                            <Typography className={classes.heading}>Educational Background</Typography>
-                                            <Typography className={classes.secondaryHeading}>
-                                                {/* You are currently not an owner */}
-                                            </Typography>
-                                        </ExpansionPanelSummary>
-                                        <ExpansionPanelDetails>
-                                            <Typography className={classes.panelBody}>
-                                                Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar
-                                                diam eros in elit. Pellentesque convallis laoreet laoreet.
-                                            </Typography>
-                                        </ExpansionPanelDetails>
-                                    </ExpansionPanel>
-                                    <ExpansionPanel expanded={expanded === 'panel3'} className={classes.paperStyle}>
-                                        <ExpansionPanelSummary onClick={() => togglePanel("panel3")} expandIcon={<ExpandMoreIcon className={classes.expandIcons} color="secondary"/>}>
-                                            <Typography className={classes.heading}>Personal Favorite</Typography>
-                                            <Typography className={classes.secondaryHeading}>
-                                                {/* Filtering has been entirely disabled for whole web server */}
-                                            </Typography>
-                                        </ExpansionPanelSummary>
-                                        <ExpansionPanelDetails>
-                                            <Typography className={classes.panelBody}>
-                                                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
-                                                eros, vitae egestas augue. Duis vel est augue.
-                                            </Typography>
-                                        </ExpansionPanelDetails>
-                                    </ExpansionPanel>
-                                    <ExpansionPanel expanded={expanded === 'panel4'} className={classes.paperStyle}>
-                                        <ExpansionPanelSummary onClick={() => togglePanel("panel4")} expandIcon={<ExpandMoreIcon className={classes.expandIcons} color="secondary"/>}>
-                                            <Typography className={classes.heading}>Tech Favorites</Typography>
-                                        </ExpansionPanelSummary>
-                                        <ExpansionPanelDetails>
-                                            <Typography className={classes.panelBody}>
-                                                Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
-                                                eros, vitae egestas augue. Duis vel est augue.
-                                            </Typography>
-                                        </ExpansionPanelDetails>
-                                    </ExpansionPanel>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    </Grid>
-                </Grid>
-            </div>
-            <Particles
-                className={classes.particleDiv}
-                params={PartParams}
-            />
-        </div>
-        </ScrollableAnchor>
-    )
 
+    render() {
+        const { classes } = this.props;
+        return (
+            <ScrollableAnchor id={'about_me'}>
+                <div className={classes.firstPage}>
+                    <div className={classes.firstPageMainContainer}>
+                        <Grid container className={classes.firstPageCardContainer}>
+                            <Grid item>
+                                <Card className={classes.mainCard}>
+                                    <Grid container justify="flex-start" alignItems="flex-end" className={classes.headerContainer}>
+                                        <Grid item xs={12} sm={3}>
+                                            <Avatar src={Headshot} className={classes.avatarBubble} />
+                                            {/* <button onClick={() => setClicks(clicks + 1)}>{clicks}click me</button> */}
+                                        </Grid>
+                                        <Grid item xs={12} sm={9}>
+                                            <CardHeader
+                                                className={classes.cardHeader}
+                                                titleTypographyProps={{
+                                                    variant: "h3",
+                                                    align: "left",
+                                                    classes: {
+                                                        h3: classes.headerText
+                                                    }
+                                                }}
+                                                title="About Me"
+                                            />
+                                        </Grid>
+                                    </Grid>
+                                    <CardContent className={classes.cardContent}>
+                                        <div className={classes.root}>
+                                            <ExpansionPanel expanded={this.state.expanded === "panel1"} className={classes.paperStyle} >
+                                                <ExpansionPanelSummary onClick={() => this.togglePanel("panel1", this.state.expanded)} expandIcon={<ExpandMoreIcon className={classes.expandIcons} color="secondary" />}>
+                                                    <Typography className={classes.heading}>Early Life</Typography>
+                                                    <Typography className={classes.secondaryHeading}>
+                                                        {/* I am an expansion panel */}
+                                                    </Typography>
+                                                </ExpansionPanelSummary>
+                                                <ExpansionPanelDetails>
+                                                    <Typography className={classes.panelBody}>
+                                                        I moved to Arizona at the age of three and spent most of my adolescence in and around The Valley of the Sun. As a child I enjoyed all things science.
+                                        </Typography>
+                                                </ExpansionPanelDetails>
+                                            </ExpansionPanel>
+                                            {/* </div> */}
+                                            <ExpansionPanel expanded={this.state.expanded === 'panel2'} className={classes.paperStyle}>
+                                                <ExpansionPanelSummary onClick={() => this.togglePanel("panel2", this.state.expanded)} expandIcon={<ExpandMoreIcon className={classes.expandIcons} color="secondary" />}>
+                                                    <Typography className={classes.heading}>Educational Background</Typography>
+                                                    <Typography className={classes.secondaryHeading}>
+                                                        {/* You are currently not an owner */}
+                                                    </Typography>
+                                                </ExpansionPanelSummary>
+                                                <ExpansionPanelDetails>
+                                                    <Typography className={classes.panelBody}>
+                                                        Donec placerat, lectus sed mattis semper, neque lectus feugiat lectus, varius pulvinar
+                                                        diam eros in elit. Pellentesque convallis laoreet laoreet.
+                                            </Typography>
+                                                </ExpansionPanelDetails>
+                                            </ExpansionPanel>
+                                            <ExpansionPanel expanded={this.state.expanded === 'panel3'} className={classes.paperStyle}>
+                                                <ExpansionPanelSummary onClick={() => this.togglePanel("panel3", this.state.expanded)} expandIcon={<ExpandMoreIcon className={classes.expandIcons} color="secondary" />}>
+                                                    <Typography className={classes.heading}>Personal Favorite</Typography>
+                                                    <Typography className={classes.secondaryHeading}>
+                                                        {/* Filtering has been entirely disabled for whole web server */}
+                                                    </Typography>
+                                                </ExpansionPanelSummary>
+                                                <ExpansionPanelDetails>
+                                                    <Typography className={classes.panelBody}>
+                                                        Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
+                                                        eros, vitae egestas augue. Duis vel est augue.
+                                            </Typography>
+                                                </ExpansionPanelDetails>
+                                            </ExpansionPanel>
+                                            <ExpansionPanel expanded={this.state.expanded === 'panel4'} className={classes.paperStyle}>
+                                                <ExpansionPanelSummary onClick={() => this.togglePanel("panel4", this.state.expanded)} expandIcon={<ExpandMoreIcon className={classes.expandIcons} color="secondary" />}>
+                                                    <Typography className={classes.heading}>Tech Favorites</Typography>
+                                                </ExpansionPanelSummary>
+                                                <ExpansionPanelDetails>
+                                                    <Typography className={classes.panelBody}>
+                                                        Nunc vitae orci ultricies, auctor nunc in, volutpat nisl. Integer sit amet egestas
+                                                        eros, vitae egestas augue. Duis vel est augue.
+                                            </Typography>
+                                                </ExpansionPanelDetails>
+                                            </ExpansionPanel>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        </Grid>
+                    </div>
+                    <Particles
+                        className={classes.particleDiv}
+                        params={PartParams}
+                    />
+                </div>
+            </ScrollableAnchor>
+        )
+    }
 }
 
 // function mapDispatchToProps(dispatch) {
@@ -258,5 +264,10 @@ function Page1(props) {
 // function mapStateToProps(state) {
 
 // }
+
+Page1.propTypes = {
+    classes: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired,
+};
 
 export default connect(null, null)(withStyles(styles)(Page1))

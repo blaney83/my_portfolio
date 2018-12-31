@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/blaney83/my_portfolio#readme",
   "dependencies": {
-    "create-react-app": "^2.1.2"
+    "create-react-app": "^2.1.2",
+    "express": "^4.16.4"
   }
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 import { connect } from "react-redux";
+// import {useSortHook} from "../Hooks/p3Hook.js"
+import { portSortAction } from "../../state/p3/actions.js"
 import { withStyles } from '@material-ui/core/styles';
 import bgImage from "../../assets/img/page3BG.jpg"
 import bgImage1 from "../../assets/img/trianglify.png"
@@ -139,10 +141,13 @@ const styles = theme => ({
     }
 })
 
-
+// const initialState = {portfolioSort: 0};
 function Page3(props) {
     const { classes } = props;
-    const [portfolioSort, setPortfolioSort] = useState(0)
+    // const [portfolioSort, setPortfolioSort] = useSortHook(initialState, {useState})
+    // console.log(portfolioSort.portfolioSort)
+    // console.log(setPortfolioSort)
+    console.log(props)
     let mousedownIDL = -1;
     let mousedownIDR = -1;
     function scrollPortfolioLeft(x) {
@@ -186,34 +191,30 @@ function Page3(props) {
         scrollPortfolioRight()
     }
 
-
-
-
-
-
     return (
         <ScrollableAnchor id={'projects'}>
             <div className={classes.thirdContainer}>
                 <div className={classes.thirdPage} />
                 <div className={classes.thirdEmptyHalf} />
                 <div className={classes.portfolioContainer}>
+                    <button id="popoverAnchor"></button>
                     <Typography variant="h2" className={classes.portfolioHeader}>Project Anthology</Typography>
                     <div className={classes.portfolioGridListContainer}>
                         <AppBar position="static" color="default" className={classes.portfolioTabBar}>
                             <Tabs
-                                value={portfolioSort}
+                                value={props.portfolioSort}
                                 // onChange={this.handleChange}
                                 indicatorColor="primary"
                                 // textColor="primary"
                                 fullWidth
                                 className={classes.portfolioTabs}
                             >
-                                <Tab label="All" onClick={() => setPortfolioSort(0)} />
-                                <Tab label="Polished" onClick={() => setPortfolioSort(1)} />
-                                <Tab label="Practice" onClick={() => setPortfolioSort(2)} />
+                                <Tab label="All" onClick={() => props.setPortfolioSort( portSortAction, 0)} />
+                                <Tab label="Polished" onClick={() => props.setPortfolioSort( portSortAction, 1) }/>
+                                <Tab label="Practice" onClick={() => props.setPortfolioSort( portSortAction, 2)} />
                             </Tabs>
                         </AppBar>
-                        <Portfolio sort={portfolioSort} ></Portfolio>
+                        <Portfolio sort={props.portfolioSort} ></Portfolio>
                         <IconButton>
                             <Left className={classes.leftIcon} onClick={scrollPortfolioLeft} onMouseDown={mousedownL} onMouseUp={mouseupL} />
                         </IconButton>
@@ -228,11 +229,21 @@ function Page3(props) {
 
 }
 
-// function mapDispatchToProps(dispatch) {
-// }
+function mapDispatchToProps(dispatch) {
+    const p3Methods = {
+        setPortfolioSort(portSortAction, sortId) {
+            // setCurrentGraph(graphId)
+            dispatch(portSortAction({
+                portfolioSort: sortId
+            }))
+        }
+    }
+    return(p3Methods)
+}
 
-// function mapStateToProps(state) {
+function mapStateToProps(state) {
+    return { portfolioSort: state.portfolioSort.portfolioSort }
+}
 
-// }
-
-export default connect(null, null)(withStyles(styles)(Page3))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page3))
+// export default withStyles(styles)(Page3)
