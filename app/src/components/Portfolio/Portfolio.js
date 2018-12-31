@@ -475,7 +475,7 @@ Portfolio.propTypes = {
 };
 
 function mapDispatchToProps(dispatch) {
-    const p3Methods = {
+    const portMethods = {
         setAnchorEl(tileNum, currentAnchorEl) {
             if (currentAnchorEl === "modal" + tileNum) {
                 dispatch(updateAnchor({
@@ -490,7 +490,7 @@ function mapDispatchToProps(dispatch) {
             }
         }
     }
-    return (p3Methods)
+    return (portMethods)
 }
 
 function mapStateToProps(state) {

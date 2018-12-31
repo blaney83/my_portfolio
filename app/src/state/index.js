@@ -5,6 +5,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import portfolioReducer from "./Portfolio/reducer"
 import graphReducer from "./Graphs/reducer"
 import portfolioSort from "./p3/reducer"
+import p5reducer from "./p5/reducer"
 
 const persistConfig = {
     key: 'root',
@@ -15,7 +16,8 @@ const persistConfig = {
 const reducers = combineReducers({
     portfolioReducer,
     graphReducer,
-    portfolioSort
+    portfolioSort,
+    p5reducer
 });
 
 const pReducer = persistReducer(persistConfig, reducers);

@@ -197,7 +197,6 @@ function Page3(props) {
                 <div className={classes.thirdPage} />
                 <div className={classes.thirdEmptyHalf} />
                 <div className={classes.portfolioContainer}>
-                    <button id="popoverAnchor"></button>
                     <Typography variant="h2" className={classes.portfolioHeader}>Project Anthology</Typography>
                     <div className={classes.portfolioGridListContainer}>
                         <AppBar position="static" color="default" className={classes.portfolioTabBar}>

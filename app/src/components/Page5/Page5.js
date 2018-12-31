@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 // import { cold } from 'react-hot-loader'
+import { updateP5State } from "../../state/p5/actions"
 import bgImage1 from "../../assets/img/rainy.jpg"
 import LinkIcon from '@material-ui/icons/CallMade';
 import CopyLink from '@material-ui/icons/AttachFile';
@@ -174,18 +175,22 @@ const styles = theme => ({
             // marginBottom: "2rem",
         },
     },
+    snackMessage: {
+        width: "20%",
+        left: "45%"
+    },
+    shareStyle: {
+        bottom: "0px",
+        left: "30%",
+        position: "absolute",
+    }
 })
 
 
 function Page5(props) {
     const { classes } = props;
-    const [emailOpen, setEmailOpen] = useState(false)
-    const [gitHubOpen, setGitHubOpen] = useState(false)
-    const [linkedInOpen, setLinkedInOpen] = useState(false)
-    const [addressOpen, setAddressOpen] = useState(false)
-    const [shareOpen, setShareOpen] = useState(false)
-
-    function copyEmail() {
+    console.log(props)
+    function copyEmail(p5State, toggleState) {
         const myEmail = document.createElement('textarea');
         myEmail.value = "professionallaney@gmail.com"
         myEmail.setAttribute('readonly', '');
@@ -194,10 +199,10 @@ function Page5(props) {
         document.body.appendChild(myEmail);
         myEmail.select()
         document.execCommand('copy')
-        setEmailOpen(true)
+        toggleState(p5State, "email", updateP5State)
         document.body.removeChild(myEmail);
     }
-    function copyGitHub() {
+    function copyGitHub(p5State, toggleState) {
         const myGitHub = document.createElement('textarea');
         myGitHub.value = "https://github.com/blaney83"
         myGitHub.setAttribute('readonly', '');
@@ -206,10 +211,10 @@ function Page5(props) {
         document.body.appendChild(myGitHub);
         myGitHub.select()
         document.execCommand('copy')
-        setGitHubOpen(true)
+        toggleState(p5State, "gitHub", updateP5State)
         document.body.removeChild(myGitHub);
     }
-    function copyLinkedIn() {
+    function copyLinkedIn(p5State, toggleState) {
         const myLinkedIn = document.createElement('textarea');
         myLinkedIn.value = "https://www.linkedin.com/in/ben-laney-090613117/"
         myLinkedIn.setAttribute('readonly', '');
@@ -218,10 +223,11 @@ function Page5(props) {
         document.body.appendChild(myLinkedIn);
         myLinkedIn.select()
         document.execCommand('copy')
-        setLinkedInOpen(true)
+        console.log(props)
+        toggleState(p5State, "linkedIn", updateP5State)
         document.body.removeChild(myLinkedIn);
     }
-    function copyAddress() {
+    function copyAddress(p5State, toggleState) {
         const myAddress = document.createElement('textarea');
         myAddress.value = "https://www.linkedin.com/in/ben-laney-090613117/"
         myAddress.setAttribute('readonly', '');
@@ -230,7 +236,7 @@ function Page5(props) {
         document.body.appendChild(myAddress);
         myAddress.select()
         document.execCommand('copy')
-        setAddressOpen(true)
+        toggleState(p5State, "address", updateP5State)
         document.body.removeChild(myAddress);
     }
     return (
@@ -264,7 +270,7 @@ function Page5(props) {
                                                     secondary={<span className={classes.secondaryListText}>E-Mail</span>}
                                                 />
                                                 <ListItemSecondaryAction>
-                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyEmail()}>
+                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyEmail(props.p5State, props.setP5State)}>
                                                         <CopyLink className={classes.contactIcons} />
                                                     </IconButton>
                                                     <a href="mailto:professionallaney@gmail.com">
@@ -274,13 +280,14 @@ function Page5(props) {
                                                     </a>
                                                 </ListItemSecondaryAction>
                                                 <Snackbar
+                                                    className={classes.snackMessage}
                                                     anchorOrigin={{
                                                         vertical: 'bottom',
                                                         horizontal: 'center',
                                                     }}
-                                                    open={emailOpen}
-                                                    autoHideDuration={3000}
-                                                    onClose={() => setEmailOpen(false)}
+                                                    open={props.p5State === "email"}
+                                                    autoHideDuration={1500}
+                                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                                     ContentProps={{
                                                         'aria-describedby': 'message-id',
                                                     }}
@@ -298,7 +305,7 @@ function Page5(props) {
                                                     secondary={<span className={classes.secondaryListText}>GitHub</span>}
                                                 />
                                                 <ListItemSecondaryAction>
-                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyGitHub()}>
+                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyGitHub(props.p5State, props.setP5State)}>
                                                         <CopyLink className={classes.contactIcons} />
                                                     </IconButton>
                                                     <a className={classes.listText} href="https://github.com/blaney83" rel="noopener noreferrer" target="_blank">
@@ -308,13 +315,14 @@ function Page5(props) {
                                                     </a>
                                                 </ListItemSecondaryAction>
                                                 <Snackbar
+                                                    className={classes.snackMessage}
                                                     anchorOrigin={{
                                                         vertical: 'bottom',
                                                         horizontal: 'center',
                                                     }}
-                                                    open={gitHubOpen}
-                                                    autoHideDuration={3000}
-                                                    onClose={() => setGitHubOpen(false)}
+                                                    open={props.p5State === "gitHub"}
+                                                    autoHideDuration={1500}
+                                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                                     ContentProps={{
                                                         'aria-describedby': 'message-id',
                                                     }}
@@ -332,7 +340,7 @@ function Page5(props) {
                                                     secondary={<span className={classes.secondaryListText}>LinkedIn</span>}
                                                 />
                                                 <ListItemSecondaryAction>
-                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyLinkedIn()}>
+                                                    <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyLinkedIn(props.p5State, props.setP5State)}>
                                                         <CopyLink className={classes.contactIcons} />
                                                     </IconButton>
                                                     <a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/" rel="noopener noreferrer" target="_blank">
@@ -342,13 +350,14 @@ function Page5(props) {
                                                     </a>
                                                 </ListItemSecondaryAction>
                                                 <Snackbar
+                                                    className={classes.snackMessage}
                                                     anchorOrigin={{
                                                         vertical: 'bottom',
                                                         horizontal: 'center',
                                                     }}
-                                                    open={linkedInOpen}
-                                                    autoHideDuration={3000}
-                                                    onClose={() => setLinkedInOpen(false)}
+                                                    open={props.p5State === "linkedIn"}
+                                                    autoHideDuration={1500}
+                                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                                     ContentProps={{
                                                         'aria-describedby': 'message-id',
                                                     }}
@@ -362,17 +371,18 @@ function Page5(props) {
                                 </Grid>
                             </CardContent>
                             <CardActions className={classes.actions} >
-                                <IconButton aria-label="Copy Website Address" className={classes.contactIconsBB} onClick={() => copyAddress()}>
+                                <IconButton aria-label="Copy Website Address" className={classes.contactIconsBB} onClick={() => copyAddress(props.p5State, props.setP5State)}>
                                     <CopyLink className={classes.contactIcons} />
                                 </IconButton>
                                 <Snackbar
+                                    className={classes.snackMessage}
                                     anchorOrigin={{
                                         vertical: 'bottom',
                                         horizontal: 'center',
                                     }}
-                                    open={addressOpen}
-                                    autoHideDuration={3000}
-                                    onClose={() => setAddressOpen(false)}
+                                    open={props.p5State === "address"}
+                                    autoHideDuration={1500}
+                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                     ContentProps={{
                                         'aria-describedby': 'message-id',
                                     }}
@@ -380,14 +390,14 @@ function Page5(props) {
                                     action={[
                                     ]}
                                 />
-                                <IconButton aria-label="Share" className={classes.contactIconsBB} onClick={() => setShareOpen(true)}>
+                                <IconButton aria-label="Share" className={classes.contactIconsBB} onClick={() => props.setP5State(props.p5State, "shared", updateP5State)}>
                                     <ShareIcon className={classes.contactIcons} />
                                 </IconButton>
                                 <Modal
                                     aria-labelledby="simple-modal-title"
                                     aria-describedby="simple-modal-description"
-                                    open={shareOpen}
-                                    onClose={setShareOpen(false)}
+                                    open={props.p5State === "shared"}
+                                    onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                 >
                                     <div class="sharethis-inline-share-buttons"></div>
                                 </Modal>
@@ -401,14 +411,27 @@ function Page5(props) {
 
 }
 
-// function mapDispatchToProps(dispatch) {
-// }
+function mapDispatchToProps(dispatch) {
+    const p5Methods = {
+        setP5State(currentState, newState, setState) {
+            if (currentState === newState) {
+                dispatch(setState({
+                    p5State: false
+                }))
+            } else {
+                dispatch(setState({
+                    p5State: newState
+                }))
+            }
+        },
+    }
+    return (p5Methods)
+}
 
-// function mapStateToProps(state) {
-
-// }
-
-export default connect(null, null)(withStyles(styles)(Page5))
+function mapStateToProps(state) {
+    return { p5State: state.p5reducer.p5State }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Page5))
 
 
 
