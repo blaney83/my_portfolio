@@ -3,13 +3,14 @@ const Chartist = require("chartist")
 
 var cloudChart = {
     data: {
-        labels: ['G-Cloud', 'G-APIs', 'G-Firebase', 'AWS', 'Virtual Box'],
+        labels: ['Google\nCloud', 'Google\nAPIs', 'Google\nFirebase', 'AWS', 'Virtual Box'],
         series: [
             [3, 6, 5, 2, 6]
         ]
     },
     options: {
-        low: 0
+        low: 0,
+        high: 10
     },
     animation: {
         // Let's put a sequence number aside so we can use it in the event callbacks
