@@ -28,6 +28,12 @@ const styles = theme => ({
         width: "100vw",
         backgroundImage: "url('" + bgImage + "')",
         backgroundPosition: 'center',
+        "-webkit-backgroundPosition": 'center',
+        "-moz-backgroundPosition": 'center',
+        "-o-backgroundPosition": 'center',
+        "-webkit-backgroundRepeat": 'no-repeat',
+        "-moz-backgroundRepeat": 'no-repeat',
+        "-o-backgroundRepeat": 'no-repeat',
         backgroundRepeat: 'no-repeat',
         "-webkit-background-size": "cover",
         "-moz-background-size": "cover",
@@ -35,6 +41,9 @@ const styles = theme => ({
         backgroundSize: 'cover',
         [theme.breakpoints.up('sm')]: {
         },
+        "-webkit-backgroundAttachment": 'fixed',
+        "-moz-backgroundAttachment": 'fixed',
+        "-o-backgroundAttachment": 'fixed',
         backgroundAttachment: 'fixed',
         zIndex: "-1",
         // overflowY: "hidden"
