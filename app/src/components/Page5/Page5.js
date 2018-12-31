@@ -259,16 +259,18 @@ function Page5(props) {
                                                     <Avatar src={EmailIcon} />
                                                 </ListItemAvatar>
                                                 <ListItemText
-                                                    primary={<div className={classes.listText}>professionallaney@gmail.com</div>}
+                                                    primary={<a href="mailto:professionallaney@gmail.com" className={classes.listText}>professionallaney@gmail.com</a>}
                                                     secondary={<span className={classes.secondaryListText}>E-Mail</span>}
                                                 />
                                                 <ListItemSecondaryAction>
                                                     <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyEmail()}>
                                                         <CopyLink className={classes.contactIcons} />
                                                     </IconButton>
-                                                    <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
-                                                        <LinkIcon className={classes.contactIcons} />
-                                                    </IconButton>
+                                                    <a href="mailto:professionallaney@gmail.com">
+                                                        <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
+                                                            <LinkIcon className={classes.contactIcons} />
+                                                        </IconButton>
+                                                    </a>
                                                 </ListItemSecondaryAction>
                                                 <Snackbar
                                                     anchorOrigin={{
@@ -298,9 +300,11 @@ function Page5(props) {
                                                     <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyGitHub()}>
                                                         <CopyLink className={classes.contactIcons} />
                                                     </IconButton>
-                                                    <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
-                                                        <LinkIcon className={classes.contactIcons} />
-                                                    </IconButton>
+                                                    <a className={classes.listText} href="https://github.com/blaney83" rel="noopener noreferrer" target="_blank">
+                                                        <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
+                                                            <LinkIcon className={classes.contactIcons} />
+                                                        </IconButton>
+                                                    </a>
                                                 </ListItemSecondaryAction>
                                                 <Snackbar
                                                     anchorOrigin={{
@@ -330,9 +334,11 @@ function Page5(props) {
                                                     <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyLinkedIn()}>
                                                         <CopyLink className={classes.contactIcons} />
                                                     </IconButton>
-                                                    <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
-                                                        <LinkIcon className={classes.contactIcons} />
-                                                    </IconButton>
+                                                    <a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/" rel="noopener noreferrer" target="_blank">
+                                                        <IconButton aria-label="LinkIcon" className={classes.contactIconsBB}>
+                                                            <LinkIcon className={classes.contactIcons} />
+                                                        </IconButton>
+                                                    </a>
                                                 </ListItemSecondaryAction>
                                                 <Snackbar
                                                     anchorOrigin={{
