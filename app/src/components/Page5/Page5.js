@@ -399,7 +399,7 @@ function Page5(props) {
                                     open={props.p5State === "shared"}
                                     onClose={() => props.setP5State(props.p5State, null, updateP5State)}
                                 >
-                                    <div class="sharethis-inline-share-buttons"></div>
+                                    <div class="sharethis-inline-share-buttons" className={classes.shareStyle}></div>
                                 </Modal>
                             </CardActions>
                         </Card>
