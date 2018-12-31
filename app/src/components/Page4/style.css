@@ -58,7 +58,7 @@
 	left: 0;
 	right: 0;
 	/* text-align: center; */
-	font-size: .9em;
+	font-size: 1em;
 	color: white;
 	border-radius: 5px;
 	padding: 5px;
@@ -94,6 +94,21 @@
   
 	  @media(max-width: 600px){
 		.coverflow__figure__3bk_C {
-			min-width: 160px;
+			/* min-width: 160px; */
 		}
-	  }
+		}
+		@media(min-width: 1000px){
+			.coverflow__figure__3bk_C {
+				max-width: 16vw;
+				max-height: 45vh;
+			}
+			.coverflow__text__39hqd{
+				max-width: 16vw;
+				max-height: 45vh;
+			}
+			.coverflow__cover__25-7e{
+				max-width: 16vw;
+				max-height: 45vh;
+			}
+			}
+		

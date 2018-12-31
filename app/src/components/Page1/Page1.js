@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux";
 import Particles from "react-particles-js"
-import injectSheet from 'react-jss'
+import { withStyles } from '@material-ui/core/styles';
 import bgImage from "../../assets/img/page1BG.jpg"
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
 import CardHeader from '@material-ui/core/CardHeader';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
@@ -14,7 +12,6 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { callbackify } from "util";
 import { Avatar } from "@material-ui/core";
 import Headshot from "../../assets/img/headshot.jpg"
 import ScrollableAnchor from 'react-scrollable-anchor'
@@ -96,6 +93,19 @@ const styles = theme => ({
         fontSize: "2.5rem",
         [theme.breakpoints.up('sm')]: {
             fontSize: "4rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: "5rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "8rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "10rem",
+            // marginBottom: "0px"
         },
         fontFamily: "monospace",
         fontVariant: "ordinal",
@@ -103,7 +113,9 @@ const styles = theme => ({
         fontWeight: "bold"
     },
     cardContent: {
-        zIndex: "1"
+        zIndex: "1",
+        paddingBottom: "0px !important",
+        padding: "0px"
     },
     toTheFront: {
         zIndex: "310"
@@ -133,7 +145,7 @@ const styles = theme => ({
 function Page1(props) {
     const { classes } = props;
     const [expanded, setExpanded] = useState("")
-
+    const [clicks, setClicks] = useState(0)
     function togglePanel(panel){
         if(panel === expanded){
             setExpanded(null)
@@ -152,6 +164,7 @@ function Page1(props) {
                             <Grid container justify="flex-start" alignItems="flex-end" className={classes.headerContainer}>
                                 <Grid item xs={12} sm={3}>
                                     <Avatar src={Headshot} className={classes.avatarBubble} />
+                                    <button onClick={()=>setClicks(clicks + 1)}>{clicks}click me</button>
                                 </Grid>
                                 <Grid item xs={12} sm={9}>
                                     <CardHeader
@@ -238,12 +251,12 @@ function Page1(props) {
 
 }
 
-function mapDispatchToProps(dispatch) {
+// function mapDispatchToProps(dispatch) {
 
-}
+// }
 
-function mapStateToProps(state) {
+// function mapStateToProps(state) {
 
-}
+// }
 
-export default connect(null, mapDispatchToProps)(injectSheet(styles)(Page1))
+export default connect(null, null)(withStyles(styles)(Page1))

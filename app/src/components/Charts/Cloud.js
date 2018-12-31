@@ -118,9 +118,9 @@ var cloudChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]

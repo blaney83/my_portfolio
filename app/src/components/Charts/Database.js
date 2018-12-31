@@ -118,9 +118,9 @@ var sqlChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]
@@ -269,9 +269,9 @@ var noSQLChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]
@@ -420,9 +420,9 @@ var unstructuredChart = {
             {
                 seriesBarDistance: 5,
                 axisX: {
-                    labelInterpolationFnc: function (value) {
-                        return value[0];
-                    }
+                    // labelInterpolationFnc: function (value) {
+                    //     return value[0];
+                    // }
                 }
             }
         ]

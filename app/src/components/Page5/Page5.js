@@ -1,38 +1,27 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux";
-import injectSheet from 'react-jss'
-import Button from '@material-ui/core/Button';
-import bgImage from "../../assets/img/forest.jpg"
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import bgImage1 from "../../assets/img/rainy.jpg"
-import FolderIcon from '@material-ui/icons/Folder';
-import DeleteIcon from '@material-ui/icons/Delete';
 import LinkIcon from '@material-ui/icons/CallMade';
 import CopyLink from '@material-ui/icons/AttachFile';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import bgImage2 from "../../assets/img/bg4.jpg"
 import bgImage3 from "../../assets/img/bg5.jpg"
-import classnames from 'classnames';
 import ShareIcon from '@material-ui/icons/Share';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import EmailIcon from '../../assets/icons/email.svg';
 import GitHubIcon from '../../assets/icons/GitHub.svg';
 import LinkedIcon from '../../assets/icons/linked.svg';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
-import GraphTabs from "../GraphTabs/GraphTabs.js"
 import Snackbar from '@material-ui/core/Snackbar';
 import ScrollableAnchor from 'react-scrollable-anchor'
 import Modal from '@material-ui/core/Modal';
@@ -91,7 +80,22 @@ const styles = theme => ({
         marginBottom: "0px",
         [theme.breakpoints.up('sm')]: {
             fontSize: "4rem",
-            marginBottom: "2rem",
+            // marginTop: "-2rem",
+            paddingBottom: "2rem",
+            marginBottom: "1rem",
+
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: "5rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "8rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "10rem",
+            // marginBottom: "0px"
         },
         fontFamily: "monospace",
         fontVariant: "ordinal",
@@ -247,7 +251,7 @@ function Page5(props) {
                                 }}
                             />
                             <CardContent className={classes.contactCardContent}>
-                                <Grid item xs={12} md={6}>
+                                <Grid item xs={12} md={12}>
                                     <div className={classes.demo}>
                                         <List dense={false}>
                                             <ListItem>
@@ -256,7 +260,7 @@ function Page5(props) {
                                                 </ListItemAvatar>
                                                 <ListItemText
                                                     primary={<div className={classes.listText}>professionallaney@gmail.com</div>}
-                                                    secondary={<div className={classes.secondaryListText}>E-Mail</div>}
+                                                    secondary={<span className={classes.secondaryListText}>E-Mail</span>}
                                                 />
                                                 <ListItemSecondaryAction>
                                                     <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyEmail()}>
@@ -288,7 +292,7 @@ function Page5(props) {
                                                 </ListItemAvatar>
                                                 <ListItemText
                                                     primary={<a className={classes.listText} href="https://github.com/blaney83" rel="noopener noreferrer" target="_blank">https://github.com/blaney83</a>}
-                                                    secondary={<div className={classes.secondaryListText}>GitHub</div>}
+                                                    secondary={<span className={classes.secondaryListText}>GitHub</span>}
                                                 />
                                                 <ListItemSecondaryAction>
                                                     <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyGitHub()}>
@@ -320,7 +324,7 @@ function Page5(props) {
                                                 </ListItemAvatar>
                                                 <ListItemText
                                                     primary={<a className={classes.listText} href="https://www.linkedin.com/in/ben-laney-090613117/" rel="noopener noreferrer" target="_blank">www.linkedin.com/in/ben-laney</a>}
-                                                    secondary={<div className={classes.secondaryListText}>LinkedIn</div>}
+                                                    secondary={<span className={classes.secondaryListText}>LinkedIn</span>}
                                                 />
                                                 <ListItemSecondaryAction>
                                                     <IconButton aria-label="CopyLink" className={classes.contactIconsBB} onClick={() => copyLinkedIn()}>
@@ -369,7 +373,7 @@ function Page5(props) {
                                     action={[
                                     ]}
                                 />
-                                <IconButton aria-label="Share" className={classes.contactIconsBB} onClick={()=>setShareOpen(true)}>
+                                <IconButton aria-label="Share" className={classes.contactIconsBB} onClick={() => setShareOpen(true)}>
                                     <ShareIcon className={classes.contactIcons} />
                                 </IconButton>
                                 <Modal
@@ -378,7 +382,7 @@ function Page5(props) {
                                     open={shareOpen}
                                     onClose={setShareOpen(false)}
                                 >
-                                <div class="sharethis-inline-share-buttons"></div>
+                                    <div class="sharethis-inline-share-buttons"></div>
                                 </Modal>
                             </CardActions>
                         </Card>
@@ -390,14 +394,14 @@ function Page5(props) {
 
 }
 
-function mapDispatchToProps(dispatch) {
-}
+// function mapDispatchToProps(dispatch) {
+// }
 
-function mapStateToProps(state) {
+// function mapStateToProps(state) {
 
-}
+// }
 
-export default connect(null, mapDispatchToProps)(injectSheet(styles)(Page5))
+export default connect(null, null)(withStyles(styles)(Page5))
 
 
 

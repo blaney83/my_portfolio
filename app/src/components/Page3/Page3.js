@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { connect } from "react-redux";
-import injectSheet from 'react-jss'
-import Button from '@material-ui/core/Button';
+import { withStyles } from '@material-ui/core/styles';
 import bgImage from "../../assets/img/page3BG.jpg"
 import bgImage1 from "../../assets/img/trianglify.png"
 import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
 import Portfolio from "../Portfolio/Portfolio.js"
 import Left from '@material-ui/icons/KeyboardArrowLeft';
 import Right from '@material-ui/icons/KeyboardArrowRight';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Zoom from '@material-ui/core/Zoom';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import green from '@material-ui/core/colors/green';
 import ScrollableAnchor from 'react-scrollable-anchor'
 
@@ -81,6 +75,20 @@ const styles = theme => ({
         fontSize: "3rem",
         [theme.breakpoints.up('sm')]: {
             fontSize: "4rem",
+            marginBottom: "1rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('md')]: {
+            fontSize: "5rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('lg')]: {
+            fontSize: "8rem",
+            // marginBottom: "0px"
+        },
+        [theme.breakpoints.up('xl')]: {
+            fontSize: "10rem",
+            // marginBottom: "0px"
         },
         fontFamily: "monospace",
         fontVariant: "ordinal",
@@ -134,46 +142,97 @@ const styles = theme => ({
 
 function Page3(props) {
     const { classes } = props;
-    const [portfolioSort, setPortfolioSort] = useState("All")
+    const [portfolioSort, setPortfolioSort] = useState(0)
+    let mousedownIDL = -1;
+    let mousedownIDR = -1;
+    function scrollPortfolioLeft(x) {
+        let currentPosition = document.getElementById("portfolioTarget").scrollLeft
+        document.getElementById("portfolioTarget").scroll({
+            left: currentPosition.scrollLeft - 200,
+            behavior: 'smooth'
+        })
+    }
+    function scrollPortfolioRight(x) {
+        let currentPosition = document.getElementById("portfolioTarget")
+        currentPosition.scroll({
+            left: currentPosition.scrollLeft + 200,
+            behavior: 'smooth'
+        })
+    }
+    function mousedownL(event) {
+        if (mousedownIDL === -1)  //Prevent multimple loops!
+            mousedownIDL = setInterval(whilemousedownL, 300 /*execute every 100ms*/);
+    }
+    function mouseupL(event) {
+        if (mousedownIDL !== -1) {  //Only stop if exists
+            clearInterval(mousedownIDL);
+            mousedownIDL = -1;
+        }
+    }
+    function whilemousedownL() {
+        scrollPortfolioLeft()
+    }
+    function mousedownR(event) {
+        if (mousedownIDR === -1)  //Prevent multimple loops!
+            mousedownIDR = setInterval(whilemousedownR, 300 /*execute every 100ms*/);
+    }
+    function mouseupR(event) {
+        if (mousedownIDR !== -1) {  //Only stop if exists
+            clearInterval(mousedownIDR);
+            mousedownIDR = -1;
+        }
+    }
+    function whilemousedownR() {
+        scrollPortfolioRight()
+    }
+
+
+
+
+
 
     return (
         <ScrollableAnchor id={'projects'}>
-        <div className={classes.thirdContainer}>
-            <div className={classes.thirdPage} />
-            <div className={classes.thirdEmptyHalf} />
-            <div className={classes.portfolioContainer}>
-                <Typography variant="h2" className={classes.portfolioHeader}>Project Anthology</Typography>
-                <div className={classes.portfolioGridListContainer}>
-                    <AppBar position="static" color="default" className={classes.portfolioTabBar}>
-                        <Tabs
-                            value={portfolioSort}
-                            // onChange={this.handleChange}
-                            indicatorColor="primary"
-                            // textColor="primary"
-                            fullWidth
-                            className={classes.portfolioTabs}
-                        >
-                            <Tab label="All" />
-                            <Tab label="Current Projects" />
-                            <Tab label="Hosted Practice" />
-                        </Tabs>
-                    </AppBar>
-                    <Portfolio></Portfolio>
-                    <Left className={classes.leftIcon} />
-                    <Right className={classes.rightIcon} />
+            <div className={classes.thirdContainer}>
+                <div className={classes.thirdPage} />
+                <div className={classes.thirdEmptyHalf} />
+                <div className={classes.portfolioContainer}>
+                    <Typography variant="h2" className={classes.portfolioHeader}>Project Anthology</Typography>
+                    <div className={classes.portfolioGridListContainer}>
+                        <AppBar position="static" color="default" className={classes.portfolioTabBar}>
+                            <Tabs
+                                value={portfolioSort}
+                                // onChange={this.handleChange}
+                                indicatorColor="primary"
+                                // textColor="primary"
+                                fullWidth
+                                className={classes.portfolioTabs}
+                            >
+                                <Tab label="All" onClick={() => setPortfolioSort(0)} />
+                                <Tab label="Polished" onClick={() => setPortfolioSort(1)} />
+                                <Tab label="Practice" onClick={() => setPortfolioSort(2)} />
+                            </Tabs>
+                        </AppBar>
+                        <Portfolio sort={portfolioSort} ></Portfolio>
+                        <IconButton>
+                            <Left className={classes.leftIcon} onClick={scrollPortfolioLeft} onMouseDown={mousedownL} onMouseUp={mouseupL} />
+                        </IconButton>
+                        <IconButton>
+                            <Right className={classes.rightIcon} onClick={scrollPortfolioRight} onMouseDown={mousedownR} onMouseUp={mouseupR} />
+                        </IconButton>
+                    </div>
                 </div>
             </div>
-        </div>
         </ScrollableAnchor>
     )
 
 }
 
-function mapDispatchToProps(dispatch) {
-}
+// function mapDispatchToProps(dispatch) {
+// }
 
-function mapStateToProps(state) {
+// function mapStateToProps(state) {
 
-}
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Page3))
+export default connect(null, null)(withStyles(styles)(Page3))

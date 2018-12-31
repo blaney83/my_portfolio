@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { withStyles } from '@material-ui/core/styles';
-import injectSheet from 'react-jss'
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -227,14 +226,14 @@ GraphTabs.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-function mapDispatchToProps(dispatch) {
+// function mapDispatchToProps(dispatch) {
 
-}
+// }
 
-function mapStateToProps(state) {
+// function mapStateToProps(state) {
 
-}
+// }
 
-export default connect(null, mapDispatchToProps)(injectSheet(styles)(GraphTabs))
+export default connect(null, null)(withStyles(styles)(GraphTabs))
 
 // export default withStyles(styles)(GraphTabs);
