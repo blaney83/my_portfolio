@@ -325,6 +325,7 @@ class Sidebar extends React.Component {
 
     componentDidMount() {
         let hello = this
+        console.log(window)
         window.addEventListener('hashchange', function () {
             hello.setState({ currentPage: window.location.hash })
         });
