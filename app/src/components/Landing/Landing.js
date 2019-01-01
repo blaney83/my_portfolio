@@ -10,7 +10,6 @@ const styles = theme => ({
         height: "33vh",
         width: "100vw",
         backgroundImage: "url('" + bgImage + "')",
-        backgroundPositionY: "-30px",
         backgroundPositionX: "center",
         backgroundRepeat: 'no-repeat',
         "-webkit-background-size": "cover",
@@ -19,6 +18,7 @@ const styles = theme => ({
         backgroundSize: 'cover',
         backgroundAttachment: 'scroll',
         [theme.breakpoints.up('sm')]: {
+            backgroundPositionY: "-30px",
             backgroundAttachment: 'fixed',
         },
         zIndex: "-1",
