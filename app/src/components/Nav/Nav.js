@@ -103,6 +103,7 @@ const styles = theme => ({
         },
     },
     drawerOpen: {
+        backgroundColor: "#1a1a1ae8",
         width: drawerWidth,
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
@@ -110,6 +111,7 @@ const styles = theme => ({
         }),
     },
     drawerClose: {
+        backgroundColor: "#1a1a1a9c",
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -132,6 +134,7 @@ const styles = theme => ({
         },
     },
     drawer2Open: {
+        backgroundColor: "#1a1a1ae8",
         width: drawerWidth,
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
@@ -139,6 +142,7 @@ const styles = theme => ({
         }),
     },
     drawer2Close: {
+        backgroundColor: "#1a1a1a9c",
         transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -171,6 +175,10 @@ const styles = theme => ({
         ...theme.mixins.toolbar,
     },
     sideTbCloseIcon: {
+        color: "white",
+        marginRight: "10px"
+    },
+    sideTbCloseIcon2: {
         color: "white",
     },
     content: {
@@ -237,7 +245,6 @@ const styles = theme => ({
         justifyContent: "space-between",
     },
     seeThruPaper: {
-        backgroundColor: "#1a1a1a9c",
         // backgroundColor: "transparent !important",
         border: "none !important",
     },
@@ -590,7 +597,7 @@ class Sidebar extends React.Component {
                         <div className={classes.toolbar2}>
                             <IconButton onClick={this.handleDrawer2Close}>
                                 {/* {theme.direction === 'ltr' ?  <ChevronRightIcon /> : <ChevronLeftIcon /> } */}
-                                {this.state.open2 ? <ChevronRightIcon className={classes.sideTbCloseIcon} /> : ""}
+                                {this.state.open2 ? <ChevronRightIcon className={classes.sideTbCloseIcon2} /> : ""}
                             </IconButton>
                         </div>
                         {/* <Divider /> */}
